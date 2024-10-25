@@ -13,3 +13,7 @@ config_version=5
 config/name="LCNC-Project"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Debug="*res://src/singletons/Debug.tscn"
