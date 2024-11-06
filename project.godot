@@ -11,9 +11,11 @@ config_version=5
 [application]
 
 config/name="LCNC-Project"
-config/features=PackedStringArray("4.2", "Forward Plus")
+run/main_scene="res://src/scenes/TitleScreen.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Debug="*res://src/singletons/Debug.tscn"
+Global="*res://src/singletons/Global.gd"
