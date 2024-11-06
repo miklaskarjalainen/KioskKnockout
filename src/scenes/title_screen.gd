@@ -9,12 +9,15 @@ func _ready() -> void:
 			button.grab_focus();
 
 func _on_play_button_pressed() -> void:
+	Console.warning("Not Implemented")
 	pass # Replace with function body.
 
 func _on_options_button_pressed() -> void:
+	Console.warning("Not Implemented")
 	pass # Replace with function body.
 
 func _on_about_button_pressed() -> void:
+	Console.warning("Not Implemented")
 	pass # Replace with function body.
 
 func _on_exit_button_pressed() -> void:
