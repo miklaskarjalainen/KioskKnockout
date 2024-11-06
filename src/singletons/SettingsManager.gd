@@ -33,7 +33,7 @@ class Settings:
 		# Keybinds
 		var binds_keys: PackedStringArray = config.get_section_keys("binds")
 		for action in binds_keys:
-			var events: Array[int] = config.get_value("binds", action, [])
+			var events: Array = config.get_value("binds", action, [])
 			InputMap.action_erase_events(action)
 			for ev_physcial_key in events:
 				var input_event = InputEventKey.new()
@@ -67,4 +67,3 @@ func _ready() -> void:
 
 func _exit_tree() -> void:
 	_save_settings(SETTINGS_SAVE_PATH)
-
