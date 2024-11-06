@@ -23,6 +23,27 @@ static func initialize_commands():
 	)
 	
 	Console.add_command(
+		"eval",
+		Cmd.new(
+			func(args: Array[String]):
+				var s = ""
+				for a in args:
+					s += a + " "
+				
+				var expr := Expression.new()
+				expr.parse(s)
+				var result = expr.execute()
+				if not result:
+					Console.error("Could not evaluate expression!")
+					return
+				Console.message(s, ["= ",result])
+				pass,
+			1,
+			"this is help"
+			),
+	)
+	
+	Console.add_command(
 		"echo",
 		Cmd.new(
 			func(args: Array[String]):
