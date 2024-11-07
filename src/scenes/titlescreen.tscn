@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc65uf8d6ov47"]
+[gd_scene load_steps=2 format=3 uid="uid://cc65uf8d6ov47"]
 
-[ext_resource type="Script" path="res://src/scenes/title_screen.gd" id="1_ifww3"]
-[ext_resource type="PackedScene" uid="uid://b065ep38rua2x" path="res://src/singletons/Debug.tscn" id="2_v334w"]
+[ext_resource type="Script" path="res://src/scenes/TitleScreen.gd" id="1_ifww3"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -93,9 +92,6 @@ focus_neighbor_bottom = NodePath("../PlayButton")
 focus_next = NodePath("../PlayButton")
 focus_previous = NodePath("../AboutButton")
 text = "Exit"
-
-[node name="Debug" parent="." instance=ExtResource("2_v334w")]
-layout_mode = 1
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsHBox/PlayButton" to="." method="_on_play_button_pressed"]
