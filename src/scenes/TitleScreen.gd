@@ -12,8 +12,7 @@ func set_focus() -> void:
 			button.grab_focus();
 
 func _on_play_button_pressed() -> void:
-	Console.warning("Not Implemented")
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://src/scenes/Arena1.tscn")
 
 func _on_options_button_pressed() -> void:
 	Global.OptionsOpened.emit()
