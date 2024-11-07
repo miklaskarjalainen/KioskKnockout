@@ -89,6 +89,7 @@ InputRight = "joy_right"
 InputDown = "joy_down"
 InputUp = "joy_up"
 InputJump = "joy_jump"
+InputNormal = "joy_normal_action"
 
 [node name="player2" parent="." node_paths=PackedStringArray("Opponent") instance=ExtResource("2_y6vyn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.68664, 0)

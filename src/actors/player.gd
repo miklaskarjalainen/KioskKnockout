@@ -12,6 +12,7 @@ const MODEL_ROTATION_SPEED := 8.4
 @export var InputDown := "kb_down"
 @export var InputUp := "kb_up"
 @export var InputJump := "kb_jump"
+@export var InputNormal := "kb_normal_action"
 
 func _ready():
 	assert(Opponent, "Opponent not assigned")

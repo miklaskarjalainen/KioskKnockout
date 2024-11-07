@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dp6sarh3doobm"]
+[gd_scene load_steps=7 format=3 uid="uid://dp6sarh3doobm"]
 
 [ext_resource type="Script" path="res://src/actors/player.gd" id="1_8625e"]
 [ext_resource type="Script" path="res://src/actors/PlayerController.gd" id="2_rcsg1"]
 [ext_resource type="PackedScene" uid="uid://c2uuuowdqrphi" path="res://assets/characters/generic.gltf" id="3_bcynx"]
+[ext_resource type="Script" path="res://src/actors/ActionController.gd" id="3_t468b"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rw8oh"]
 
@@ -25,5 +26,13 @@ mesh = SubResource("CapsuleMesh_4rug2")
 script = ExtResource("2_rcsg1")
 player = NodePath("..")
 
+[node name="PlayerActionController" type="Node" parent="."]
+script = ExtResource("3_t468b")
+
 [node name="player_model" parent="." instance=ExtResource("3_bcynx")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="RElbow" parent="player_model/Node/Torso/RArm2" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20981, 0.0358567, -0.00778223)
+
+[editable path="player_model"]
