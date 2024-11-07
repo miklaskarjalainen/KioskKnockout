@@ -1,14 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvp2vq4xjs5cs"]
+[gd_scene load_steps=13 format=3 uid="uid://dvp2vq4xjs5cs"]
 
-[ext_resource type="Texture2D" uid="uid://bcd1t6j57wxtc" path="res://assets/dev/dev_blue.png" id="1_6sc4u"]
+[ext_resource type="Material" uid="uid://bwwrkqr1noawi" path="res://assets/dev/dev_blue.tres" id="1_f7b4o"]
+[ext_resource type="Material" uid="uid://cjxillm06ji65" path="res://assets/dev/dev_orange.tres" id="2_cxg53"]
 [ext_resource type="PackedScene" uid="uid://dp6sarh3doobm" path="res://src/actors/Player.tscn" id="2_y6vyn"]
+[ext_resource type="Material" uid="uid://cwqh8r2btxpsp" path="res://assets/dev/dev_gray.tres" id="3_diw7d"]
+[ext_resource type="Script" path="res://src/scenes/TargetCamera.gd" id="4_b2icj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fop1y"]
-size = Vector3(20, 1, 4)
+size = Vector3(100, 1, 70)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8npta"]
-albedo_texture = ExtResource("1_6sc4u")
-uv1_triplanar = true
+[sub_resource type="BoxMesh" id="BoxMesh_64x4u"]
+lightmap_size_hint = Vector2i(24, 36)
+material = ExtResource("2_cxg53")
+size = Vector3(10, 5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mnm20"]
+lightmap_size_hint = Vector2i(24, 36)
+material = ExtResource("2_cxg53")
+size = Vector3(2, 2, 2)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ic1ce"]
 
@@ -19,26 +28,61 @@ sky_material = SubResource("ProceduralSkyMaterial_ic1ce")
 background_mode = 2
 sky = SubResource("Sky_etotk")
 
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_w6j0n"]
+
 [node name="Arena1" type="Node3D"]
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0317192, 0.161488, -0.0142205)
+[node name="floor" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0317192, 0.161488, 21.9858)
 mesh = SubResource("BoxMesh_fop1y")
-material = SubResource("StandardMaterial3D_8npta")
+material = ExtResource("1_f7b4o")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.988649, 0.150243, 0, -0.150243, 0.988649, 0, 3.56911, 6.84331)
-fov = 104.124
+[node name="back_wall" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0317192, 2.16149, -10.0142)
+mesh = SubResource("BoxMesh_fop1y")
+material = ExtResource("1_f7b4o")
+
+[node name="left_wall" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(-0.0100355, 0, -0.99995, 0, 1, 0, 0.99995, 0, -0.0100355, -17, 1.63, 0.087)
+mesh = SubResource("BoxMesh_64x4u")
+
+[node name="box1" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.860964, 0, -0.508666, 0, 1, 0, 0.508666, 0, 0.860964, -4.08988, 1.63006, -4.91322)
+mesh = SubResource("BoxMesh_mnm20")
+
+[node name="right_wall" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(-0.0100355, 0, -0.99995, 0, 1, 0, 0.99995, 0, -0.0100355, 17, 1.63, 0.087)
+mesh = SubResource("BoxMesh_64x4u")
+
+[node name="box2" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.361885, 0, -0.932223, 0, 1, 0, 0.932223, 0, 0.361885, 1.90674, 1.6431, -4.68888)
+mesh = SubResource("BoxMesh_mnm20")
+material = ExtResource("3_diw7d")
+
+[node name="box3" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.590831, 0, -0.806795, 0, 1, 0, 0.806795, 0, 0.590831, 3.77119, 1.6431, -5.41265)
+mesh = SubResource("BoxMesh_mnm20")
+material = ExtResource("3_diw7d")
+
+[node name="box4" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.361885, 0, -0.932223, 0, 1, 0, 0.932223, 0, 0.361885, 2.47708, 3.6431, -5.98298)
+mesh = SubResource("BoxMesh_mnm20")
+material = ExtResource("3_diw7d")
+
+[node name="box5" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.590831, 0, -0.806795, 0, 1, 0, 0.806795, 0, 0.590831, 2.11611, 1.6431, -6.9146)
+mesh = SubResource("BoxMesh_mnm20")
+material = ExtResource("3_diw7d")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.266353, -0.712342, 0.649327, 0.40585, 0.693918, 0.594781, -0.874266, 0.105108, 0.473931, 21.8999, 13.0236, 12.3503)
 shadow_enabled = true
 
 [node name="player1" parent="." instance=ExtResource("2_y6vyn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.38664, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.71, 0)
 InputLeft = "joy_left"
 InputRight = "joy_right"
 InputDown = "joy_down"
@@ -46,7 +90,13 @@ InputUp = "joy_up"
 InputJump = "joy_jump"
 
 [node name="player2" parent="." instance=ExtResource("2_y6vyn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.38664, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.68664, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_d5h23")
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("Targets")]
+transform = Transform3D(1, 0, 0, 0, 0.998519, 0.0544035, 0, -0.0544035, 0.998519, 0, 3, 8.714)
+attributes = SubResource("CameraAttributesPhysical_w6j0n")
+script = ExtResource("4_b2icj")
+Targets = [NodePath("../player1"), NodePath("../player2")]
