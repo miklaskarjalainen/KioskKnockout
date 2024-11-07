@@ -15,10 +15,14 @@ static func initialize_commands():
 		"help",
 		Cmd.new(
 			func(args: Array[String]):
-				Console.message("you called out for help")
+				Console.message("<--- Available Commands Are --->")
+				var commands: Dictionary = Console.get_commands()
+				for cmd_name in commands:
+					Console.message("\t-%s - %s" % [cmd_name, commands[cmd_name].help_text])
+				
 				pass,
 			0,
-			"this is help"
+			"Lists the available commands"
 			),
 	)
 	
@@ -39,7 +43,7 @@ static func initialize_commands():
 				Console.message(s, ["= ",result])
 				pass,
 			1,
-			"this is help"
+			"Evaluates an expression"
 			),
 	)
 	

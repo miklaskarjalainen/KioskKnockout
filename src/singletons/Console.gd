@@ -6,6 +6,9 @@ var _previous_focus: Control = null
 @onready var _output_text: RichTextLabel = $output
 @onready var _input_text: LineEdit = $input
 
+func get_commands() -> Dictionary:
+	return commands
+
 func toggle_visibility() -> void:
 	visible = not visible
 	if visible:
@@ -18,10 +21,11 @@ func toggle_visibility() -> void:
 			_previous_focus.grab_focus()
 
 func message(msg: String, args := []):
-	_output_text.add_text(msg)
+	var combined := msg
 	for i in args:
-		_output_text.add_text("%s" % [i])
-	_output_text.add_text("\n")
+		combined += "%s" % i
+	combined += "\n"
+	_output_text.add_text(combined)
 
 func warning(msg: String, args := []):
 	_output_text.push_color(Color.ORANGE)
