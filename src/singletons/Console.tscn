@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://qok2pqrsc10t"]
+[gd_scene load_steps=3 format=3 uid="uid://qok2pqrsc10t"]
 
 [ext_resource type="Script" path="res://src/singletons/Console.gd" id="1_3jvy8"]
+[ext_resource type="Theme" uid="uid://droiqkjvi5u78" path="res://src/singletons/Console/ConsoleTheme.tres" id="2_q2or7"]
 
 [node name="DeveloperConsole" type="Control"]
 z_index = 10
@@ -19,16 +20,16 @@ anchor_right = 1.0
 anchor_bottom = 0.506
 offset_bottom = 0.111969
 mouse_filter = 2
-color = Color(0, 0, 0, 0.552941)
+color = Color(0.137255, 0.137255, 0.137255, 0.909804)
 metadata/_edit_lock_ = true
 
 [node name="output" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0138889
-anchor_right = 0.986111
+anchor_right = 1.0
 anchor_bottom = 0.444444
 focus_mode = 2
+theme = ExtResource("2_q2or7")
 bbcode_enabled = true
 scroll_following = true
 autowrap_mode = 2
@@ -41,6 +42,7 @@ anchors_preset = -1
 anchor_top = 0.444444
 anchor_right = 1.0
 anchor_bottom = 0.506173
+theme = ExtResource("2_q2or7")
 placeholder_text = "Enter command or type \"help\" for list of commands."
 metadata/_edit_use_anchors_ = true
 
