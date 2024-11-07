@@ -11,15 +11,16 @@ config_version=5
 [application]
 
 config/name="LCNC-Project"
-run/main_scene="res://src/scenes/TitleScreen.tscn"
+run/main_scene="res://src/scenes/UI.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Console="*res://src/singletons/Console.tscn"
 Debug="*res://src/singletons/Debug.tscn"
 Global="*res://src/singletons/Global.gd"
+Ui="*res://src/scenes/UI.tscn"
+Console="*res://src/singletons/Console.tscn"
 SettingsManager="*res://src/singletons/SettingsManager.gd"
 
 [editor_plugins]
