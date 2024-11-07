@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp6sarh3doobm"]
+[gd_scene load_steps=6 format=3 uid="uid://dp6sarh3doobm"]
 
 [ext_resource type="Script" path="res://src/actors/player.gd" id="1_8625e"]
 [ext_resource type="Script" path="res://src/actors/PlayerController.gd" id="2_rcsg1"]
+[ext_resource type="PackedScene" uid="uid://c2uuuowdqrphi" path="res://assets/characters/generic.gltf" id="3_bcynx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rw8oh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4rug2"]
 
 [node name="Player" type="CharacterBody3D"]
+collision_layer = 0
 script = ExtResource("1_8625e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -16,8 +18,12 @@ shape = SubResource("CapsuleShape3D_rw8oh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00816, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_4rug2")
 
 [node name="PlayerController" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_rcsg1")
 player = NodePath("..")
+
+[node name="player_model" parent="." instance=ExtResource("3_bcynx")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
