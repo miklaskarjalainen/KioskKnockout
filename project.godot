@@ -22,6 +22,10 @@ Debug="*res://src/singletons/Debug.tscn"
 Global="*res://src/singletons/Global.gd"
 SettingsManager="*res://src/singletons/SettingsManager.gd"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/anthonyec.camera_preview/plugin.cfg")
+
 [input]
 
 kb_pause={
