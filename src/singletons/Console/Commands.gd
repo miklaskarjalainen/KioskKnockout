@@ -73,4 +73,35 @@ static func initialize_commands():
 			),
 	)
 	
+	Console.add_command(
+		"enable_vsync",
+		Cmd.new(
+			func(args: Array[String]):
+				if args[0] == "0":
+					DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+				elif args[0] == "1":
+					DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+				else:
+					Console.error("Invalid argument")
+				pass,
+			1,
+			"pass 0 or 1 to enable or disable VSync."
+			),
+	)
+	
+	Console.add_command(
+		"max_fps",
+		Cmd.new(
+			func(args: Array[String]):
+				var set_fps = int(args[0])
+				if set_fps == 0:
+					Console.error("Invalid argument")
+					return
+				Engine.max_fps = set_fps
+				pass,
+			1,
+			"pass an integer to set the max fps to."
+			),
+	)
+	
 	pass
