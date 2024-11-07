@@ -9,6 +9,10 @@ class Settings:
 		# Generic
 		config.set_value("generic", "version", version)
 		
+		# Graphics settings
+		config.set_value("video", "vsync", DisplayServer.window_get_vsync_mode() as int)
+		config.set_value("video", "max_fps", Engine.max_fps)
+		
 		# Keybinds
 		var action_names: Array[StringName] = InputMap.get_actions().filter(
 			func(action: StringName) -> bool:
@@ -29,6 +33,11 @@ class Settings:
 	
 	func load_from_config(config: ConfigFile) -> bool:
 		config.get_value("generic", "version", version)
+		
+		# Graphics settings
+		var vsync: int = config.get_value("video", "vsync", DisplayServer.window_get_vsync_mode() as int)
+		DisplayServer.window_set_vsync_mode(vsync)
+		Engine.max_fps = config.get_value("video", "max_fps", Engine.max_fps)
 		
 		# Keybinds
 		var binds_keys: PackedStringArray = config.get_section_keys("binds")
