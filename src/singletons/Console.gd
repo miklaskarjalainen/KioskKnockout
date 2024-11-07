@@ -27,6 +27,11 @@ func message(msg: String, args := []):
 	combined += "\n"
 	_output_text.add_text(combined)
 
+func info(msg: String, args := []):
+	_output_text.push_color(Color.LIGHT_SKY_BLUE)
+	message(msg, args)
+	_output_text.pop()
+
 func warning(msg: String, args := []):
 	_output_text.push_color(Color.ORANGE)
 	message(msg, args)
