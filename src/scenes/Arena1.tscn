@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dvp2vq4xjs5cs"]
 
-[ext_resource type="Texture2D" uid="uid://88vosgusdquh" path="res://assets/dev/dev_blue.png" id="1_6sc4u"]
+[ext_resource type="Texture2D" uid="uid://bcd1t6j57wxtc" path="res://assets/dev/dev_blue.png" id="1_6sc4u"]
 [ext_resource type="PackedScene" uid="uid://dp6sarh3doobm" path="res://src/actors/Player.tscn" id="2_y6vyn"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fop1y"]
@@ -37,8 +37,16 @@ fov = 104.124
 transform = Transform3D(0.266353, -0.712342, 0.649327, 0.40585, 0.693918, 0.594781, -0.874266, 0.105108, 0.473931, 21.8999, 13.0236, 12.3503)
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("2_y6vyn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38664, 0)
+[node name="player1" parent="." instance=ExtResource("2_y6vyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.38664, 0)
+InputLeft = "joy_left"
+InputRight = "joy_right"
+InputDown = "joy_down"
+InputUp = "joy_up"
+InputJump = "joy_jump"
+
+[node name="player2" parent="." instance=ExtResource("2_y6vyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.38664, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_d5h23")
