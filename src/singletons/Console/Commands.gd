@@ -104,4 +104,15 @@ static func initialize_commands():
 			),
 	)
 	
+	Console.add_command(
+		"reset_settings",
+		Cmd.new(
+			func(args: Array[String]):
+				SettingsManager.clear_settings()
+				pass,
+			0,
+			"Resets to default settings"
+			),
+	)
+	
 	pass

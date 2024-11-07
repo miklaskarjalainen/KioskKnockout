@@ -40,30 +40,40 @@ class Settings:
 				input_event.physical_keycode = ev_physcial_key
 				InputMap.action_add_event(action, input_event)
 			
-			print("Action %s registered, with events %s!" % [action, events])
 		
 		return true
 
+@onready var default_settings := ConfigFile.new()
 @onready var settings := Settings.new()
 const SETTINGS_SAVE_PATH := "user://settings.ini"
+
+func clear_settings():
+	var err = DirAccess.remove_absolute(SETTINGS_SAVE_PATH)
+	if err != OK:
+		Console.warning("Settings file could not be deleted from %s!" % SETTINGS_SAVE_PATH)
+	else:
+		Console.message("Settings file succesfully deleted settings from %s!" % SETTINGS_SAVE_PATH)
+	settings.load_from_config(default_settings)
 
 func _save_settings(fpath: String):
 	var config := settings.get_as_config()
 	var err := config.save(fpath)
 	if err != OK:
-		push_error("Could not save settings to '%s'" % fpath)
+		Console.error("Could not save settings to '%s'" % fpath)
 		return
-	print("Successfully saved settings to '%s'" % fpath);
+	Console.message("Successfully saved settings to '%s'" % fpath);
 
 func _open_settings(fpath: String):
 	var config := ConfigFile.new()
-	config.load(fpath)
+	if config.load(fpath) != OK:
+		Console.warning("Could not load settings from path %s!" % fpath)
+		return
 	if settings.load_from_config(config):
-		print("Succesfully loaded settings from '%s'" % fpath)
+		Console.message("Succesfully loaded settings from '%s'" % fpath)
 
 func _ready() -> void:
+	default_settings = settings.get_as_config()
 	_open_settings(SETTINGS_SAVE_PATH)
-	
 
 func _exit_tree() -> void:
 	_save_settings(SETTINGS_SAVE_PATH)
