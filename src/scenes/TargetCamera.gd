@@ -2,9 +2,11 @@ extends Camera3D
 class_name TargetCamera
 
 @export var Targets: Array[Node3D] = []
+@export var MinZoom := 25.0
 @export var MaxZoom := 50.0
 @export_range(0.1, 1.0) var MoveSpeed := 0.5
 @export_range(0.1, 0.4) var Smoothing := 0.3
+@export var Margin: Vector2 = Vector2(400, 200)
 
 
 @onready var _center_offset := Vector2(global_position.x, global_position.y)
@@ -25,6 +27,7 @@ func _ready() -> void:
 var _move_tween := Tween.new()
 
 func _process(delta: float) -> void:
+	#_multi_target()
 	var target_z := _calculate_position(_calculate_targets_rect(), _calculate_unprojected_rect())
 	global_position.z = lerp(global_position.z, target_z, delta * 16)
 
@@ -64,3 +67,46 @@ func _calculate_position(rect: Rect2, unprojected_rect: Rect2) -> float:
 	elif unprojected_rect.size.x / _viewport_rect.size.x < _initial_proportion:
 		z_pos = global_position.z - MoveSpeed
 	return clamp(z_pos, _initial_distance, MaxZoom)
+
+
+func _multi_target() -> void: 
+	if not Targets:
+		return
+	
+	# Keep camera centered between the targets
+	var point: Vector2 = Vector2.ZERO
+	for target in Targets:
+		point += _vec3_to_vec2(target.position)
+	point /= Targets.size()
+	position = lerp(position, Vector3(point.x, position.y, position.z), MoveSpeed)
+	
+	# Find the zoom that will contain the targets
+	var rect: Rect2 = _calculate_targets_rect()
+	rect = rect.grow_individual(Margin.x, Margin.y, Margin.x, Margin.y)
+	var screen_size: Vector2 = get_viewport().get_visible_rect().size
+	var z: float = rect.size.x / screen_size.y * 2
+	fov = clamp(z, MinZoom, MaxZoom)
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pass
