@@ -54,6 +54,17 @@ func _calculate_unprojected_rect() -> Rect2:
 func _calculate_position(unprojected_rect: Rect2) -> Vector3:
 	var center: Vector2 = _calculate_center()
 	var view_rect_ratio: float = unprojected_rect.size.x / _viewport_rect.size.x
+func _max_distance_between_targets() -> float:
+	var left_most: float = 99999.0
+	var right_most: float = -99999.0
+	for t in Targets:
+		if t.global_position.x < left_most:
+			left_most = t.global_position.x
+		elif t.global_position.x > right_most:
+			right_most = t.global_position.x
+	
+	return abs(left_most - right_most)
+
 	if _initial_proportion == 0:
 		_initial_proportion = view_rect_ratio
 	if _initial_distance == 0:
