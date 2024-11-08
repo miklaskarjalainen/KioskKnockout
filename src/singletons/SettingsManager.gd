@@ -79,6 +79,41 @@ func _open_settings(fpath: String):
 		return
 	if settings.load_from_config(config):
 		Console.message("Succesfully loaded settings from '%s'" % fpath)
+		_generate_joy_inputs()
+
+func _generate_joy_inputs():
+	_remove_generated_inputs()
+	var joy_actions: Array[StringName] = InputMap.get_actions().filter(
+		func(action: StringName):
+			return action.begins_with("joy")
+	)
+	
+	for ac in joy_actions:
+		# Creates inputs for controllers 1-4.
+		for i in 4:
+			var new_name: String = "_%s%s" % [i, ac]
+			if not InputMap.has_action(new_name):
+				InputMap.add_action(new_name, 0.5)
+			
+			# Duplicates the references.
+			var evs = InputMap.action_get_events(ac).map(
+				func(input: InputEvent):
+					return input.duplicate()
+			)
+			
+			for ev in evs:
+				ev.device = i
+				InputMap.action_add_event(new_name, ev)
+
+func _remove_generated_inputs():
+	var generated_inputs = InputMap.get_actions().filter(
+		func(action: String):
+			return action.begins_with("_")
+	)
+	
+	for ac in generated_inputs:
+		InputMap.erase_action(ac)
+	
 
 func _ready() -> void:
 	default_settings = settings.get_as_config()

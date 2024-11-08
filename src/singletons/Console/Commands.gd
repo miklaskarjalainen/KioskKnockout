@@ -131,4 +131,22 @@ static func initialize_commands():
 			),
 	)
 	
+	Console.add_command(
+		"get_action_events",
+		Cmd.new(
+			func(args: Array[String]):
+				if not InputMap.has_action(args[0]):
+					Console.error("no action called %s exists!" % args[0])
+					return
+				
+				var inputs = InputMap.action_get_events(args[0])
+				
+				Console.message(JSON.stringify(inputs, "  ", ))
+				
+				pass,
+			1,
+			"pass 0 or 1 to enable or disable visibility."
+			),
+	)
+	
 	pass
