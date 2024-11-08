@@ -4,8 +4,10 @@ class_name Player
 const MODEL_ROTATION_SPEED := 8.4
 
 @onready var Model: Node3D = $player_model
+@onready var Health: HealthComponent = $HealthComponent
 
-@export var Opponent: Player = null	
+@export var PlayerIndex := 0 # 0 is first player, 1 is second player
+@export var Opponent: Player = null
 
 @export var InputLeft := "kb_left"
 @export var InputRight := "kb_right"
@@ -18,6 +20,11 @@ func _ready():
 	assert(Opponent, "Opponent not assigned")
 	assert(Model, "Model not assigned")
 	Model.rotation.y = get_model_target_rotation()
+	
+	if PlayerIndex == 0:
+		GUI.player_1_path = get_path()
+	elif PlayerIndex == 1:
+		GUI.player_2_path = get_path()
 
 func get_model_target_rotation() -> float:
 	var opponent_on_right := is_opponent_on_right()
@@ -29,3 +36,5 @@ func is_opponent_on_right() -> bool:
 func _physics_process(delta: float) -> void:
 	var target_rot = get_model_target_rotation()
 	Model.rotation.y = lerp(Model.rotation.y, target_rot, delta * MODEL_ROTATION_SPEED)
+	
+	Debug.add_line("health", Health.current_health)

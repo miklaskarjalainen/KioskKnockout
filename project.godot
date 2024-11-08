@@ -21,10 +21,15 @@ Console="*res://src/singletons/Console.tscn"
 Debug="*res://src/singletons/Debug.tscn"
 Global="*res://src/singletons/Global.gd"
 SettingsManager="*res://src/singletons/SettingsManager.gd"
+GUI="*res://src/singletons/Gui.tscn"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/anthonyec.camera_preview/plugin.cfg")
+
+[gui]
+
+theme/custom="res://assets/MainTheme.tres"
 
 [input]
 

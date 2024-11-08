@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp6sarh3doobm"]
+[gd_scene load_steps=8 format=3 uid="uid://dp6sarh3doobm"]
 
 [ext_resource type="Script" path="res://src/actors/player.gd" id="1_8625e"]
 [ext_resource type="Script" path="res://src/actors/PlayerController.gd" id="2_rcsg1"]
 [ext_resource type="PackedScene" uid="uid://c2uuuowdqrphi" path="res://assets/characters/generic.gltf" id="3_bcynx"]
 [ext_resource type="Script" path="res://src/actors/ActionController.gd" id="3_t468b"]
+[ext_resource type="Script" path="res://src/actors/HealthComponent.gd" id="4_qrskp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rw8oh"]
 
@@ -28,6 +29,9 @@ player = NodePath("..")
 
 [node name="PlayerActionController" type="Node" parent="."]
 script = ExtResource("3_t468b")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_qrskp")
 
 [node name="player_model" parent="." instance=ExtResource("3_bcynx")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
