@@ -1,6 +1,8 @@
 extends Node
 
 const GRAVITY := 52.0
+# 0 = no buffering allowed, 1 = 1 frame, etc... (Physics frames)
+const JUMP_BUFFER_FRAMES := 4
 
 @export var player: Player = null
 
@@ -8,13 +10,16 @@ const GRAVITY := 52.0
 @export var JumpVelocity: float = 8.8
 @export var JumpHoldStr: float = 12.5
 
+var _jump_buffer: int = 0
+
 func is_grounded() -> bool:
 	return player.is_on_floor()
 
 func _ground_movement(delta: float) -> void:
 	# Handle jump.
-	if Input.is_action_just_pressed(player.InputJump):
+	if _jump_buffer > -1:
 		player.velocity.y = JumpVelocity
+		_jump_buffer = -1
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -32,8 +37,11 @@ func _air_movement(delta: float):
 		player.velocity.y += JumpHoldStr * delta
 
 func _physics_process(delta: float) -> void:
-	Debug.add_line("is_grounded: ", is_grounded())
-	Debug.add_line("velocity: ", player.velocity)
+	if _jump_buffer > -1:
+		_jump_buffer -= 1
+	
+	if Input.is_action_just_pressed(player.InputJump):
+		_jump_buffer = JUMP_BUFFER_FRAMES
 	
 	if is_grounded():
 		_ground_movement(delta)
