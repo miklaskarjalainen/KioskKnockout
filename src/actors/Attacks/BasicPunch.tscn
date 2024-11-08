@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ksrr3csn42ed"]
+
+[ext_resource type="Script" path="res://src/actors/Attacks/Attack.gd" id="1_ms50o"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wuhdk"]
+size = Vector3(0.143555, 0.136719, 0.294922)
+
+[node name="BasicPunch" type="Area3D"]
+script = ExtResource("1_ms50o")
+dmg = 5
+duration = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_wuhdk")

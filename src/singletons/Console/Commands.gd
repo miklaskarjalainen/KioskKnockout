@@ -115,4 +115,20 @@ static func initialize_commands():
 			),
 	)
 	
+	Console.add_command(
+		"visible_hurtboxes",
+		Cmd.new(
+			func(args: Array[String]):
+				if args[0] == "0":
+					AttackHurtbox.visible_hitboxes = false
+				elif args[0] == "1":
+					AttackHurtbox.visible_hitboxes = true
+				else:
+					Console.error("Invalid argument")
+				pass,
+			1,
+			"pass 0 or 1 to enable or disable visibility."
+			),
+	)
+	
 	pass
