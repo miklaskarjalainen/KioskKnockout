@@ -5,6 +5,7 @@ const GRAVITY := 52.0
 const JUMP_BUFFER_FRAMES := 4
 
 @export var player: Player = null
+@export var actions: ActionController = null
 
 @export var MoveSpeed: float = 3.4
 @export var JumpVelocity: float = 8.8
@@ -37,16 +38,22 @@ func _air_movement(delta: float):
 		player.velocity.y += JumpHoldStr * delta
 
 func _physics_process(delta: float) -> void:
+	player.velocity.y -= GRAVITY * delta
 	if _jump_buffer > -1:
 		_jump_buffer -= 1
 	
-	if Input.is_action_just_pressed(player.InputJump):
-		_jump_buffer = JUMP_BUFFER_FRAMES
-	
-	if is_grounded():
-		_ground_movement(delta)
-	else:
-		player.velocity.y -= GRAVITY * delta
-		_air_movement(delta)
+	player.velocity.x = 0.0
+	if not actions.is_performing_action():
+		if Input.is_action_just_pressed(player.InputJump):
+			_jump_buffer = JUMP_BUFFER_FRAMES
+		
+		if is_grounded():
+			_ground_movement(delta)
+		else:
+			_air_movement(delta)
 	
 	player.move_and_slide()
+
+func _ready():
+	assert(player, "is null")
+	assert(actions, "is null")
