@@ -79,9 +79,9 @@ func _open_settings(fpath: String):
 		return
 	if settings.load_from_config(config):
 		Console.message("Succesfully loaded settings from '%s'" % fpath)
-		_generate_joy_inputs()
+		regenerate_joy_inputs()
 
-func _generate_joy_inputs():
+func regenerate_joy_inputs():
 	_remove_generated_inputs()
 	var joy_actions: Array[StringName] = InputMap.get_actions().filter(
 		func(action: StringName):
