@@ -13,9 +13,13 @@ var _initial_distance: float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Global.in_game = true
 	top_level = true
 	assert(Targets != null and Targets.size(), "Targets is empty")
 	_initial_distance = global_position.z
+
+func _exit_tree() -> void:
+	Global.in_game = false
 
 func _vec3_to_vec2(vec: Vector3) -> Vector2:
 	return Vector2(vec.x, vec.y)

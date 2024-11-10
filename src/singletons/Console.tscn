@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://droiqkjvi5u78" path="res://src/singletons/Console/ConsoleTheme.tres" id="2_q2or7"]
 
 [node name="DeveloperConsole" type="Control"]
+process_mode = 3
 z_index = 10
 layout_mode = 3
 anchors_preset = 15

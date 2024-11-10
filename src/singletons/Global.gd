@@ -6,6 +6,8 @@ signal OptionsClosed()
 signal MasterVolumeChanged(new_value: float)
 signal MusicVolumeChanged(new_value: float)
 
+var in_game: bool = false
+
 var players_controller_prefix: Array[String] = [
 	"kb",
 	"_0joy"
