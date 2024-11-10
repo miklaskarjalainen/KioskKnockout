@@ -5,6 +5,7 @@ const MODEL_ROTATION_SPEED := 8.4
 
 @onready var Model: Node3D = $player_model
 @onready var Health: HealthComponent = $HealthComponent
+@onready var Controller: PlayerController = $PlayerController
 
 @export var PlayerIndex := 0 # 0 is first player, 1 is second player
 @export var Opponent: Player = null
