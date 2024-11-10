@@ -43,13 +43,12 @@ func _ground_movement(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_axis(player.InputLeft, player.InputRight)
-	var direction := (player.transform.basis * Vector3(input_dir, 0, 0)).normalized()
-	if direction.x:
-		var back_pedaling: bool = player.is_opponent_on_right() == (direction.x < 0.0)
+	if input_dir:
+		var back_pedaling: bool = player.is_opponent_on_right() == (input_dir < 0.0)
 		if back_pedaling:
-			player.velocity.x = direction.x * (MoveSpeed * BACK_PEDAL_MULTIPLIER)
+			player.velocity.x = input_dir * (MoveSpeed * BACK_PEDAL_MULTIPLIER)
 		else:
-			player.velocity.x = direction.x * MoveSpeed
+			player.velocity.x = input_dir * MoveSpeed
 	else:
 		player.velocity.x = 0.0
 
@@ -58,6 +57,10 @@ func _air_movement(delta: float):
 		player.velocity.y += JumpHoldStr * delta
 
 func _physics_process(delta: float) -> void:
+	# Moving on the Z-axis is porhibited.
+	player.velocity.z = 0.0
+	player.global_position.z = 0.0
+	
 	# Timers
 	if _jump_buffer > -1:
 		_jump_buffer -= 1
@@ -69,22 +72,31 @@ func _physics_process(delta: float) -> void:
 		_hitstun_timer -= 1
 		Debug.add_line("STUN", _hitstun_timer)
 	
-	if _knockback_timer == 0:
-		player.velocity.y -= GRAVITY * delta
-		player.velocity.x = 0.0
-		if not actions.is_performing_action() and _hitstun_timer <= 0:
-			if Input.is_action_just_pressed(player.InputJump):
-				_jump_buffer = JUMP_BUFFER_FRAMES
-			
-			if is_grounded():
-				_ground_movement(delta)
-			else:
-				_air_movement(delta)
-	else:
+	if _knockback_timer > 0:
+		# What to do if under the effect of a knockbock
 		player.velocity.x = _knockback_amount.x
 		player.velocity.y = _knockback_amount.y
+	elif is_hitstun():
+		# What to do when hitstun
+		_do_gravity(delta)
+		player.velocity.x = 0.0
+	elif actions.is_performing_action():
+		_do_gravity(delta)
+		player.velocity.x = 0.0
+	else:
+		# Normal movement
+		_do_gravity(delta)
+		if Input.is_action_just_pressed(player.InputJump):
+			_jump_buffer = JUMP_BUFFER_FRAMES
+		if is_grounded():
+				_ground_movement(delta)
+		else:
+			_air_movement(delta)
 	
 	player.move_and_slide()
+
+func _do_gravity(delta: float) -> void:
+	player.velocity.y -= GRAVITY * delta
 
 func _ready():
 	assert(player, "is null")
