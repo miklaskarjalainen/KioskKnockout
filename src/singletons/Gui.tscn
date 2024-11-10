@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://src/singletons/Gui.gd" id="1_irayg"]
 
 [node name="GUI" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,27 +12,57 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_irayg")
 
-[node name="Player1" type="ProgressBar" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.243056
-anchor_top = 0.0617284
-anchor_right = 0.486111
-anchor_bottom = 0.111111
-grow_horizontal = 2
-grow_vertical = 2
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Player1" type="ProgressBar" parent="HBoxContainer"]
+layout_mode = 2
 value = 50.0
 fill_mode = 1
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="Player2" type="ProgressBar" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.513889
-anchor_top = 0.0617284
-anchor_right = 0.756944
-anchor_bottom = 0.111111
+[node name="Player2" type="ProgressBar" parent="HBoxContainer"]
+layout_mode = 2
 value = 50.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
+
+[node name="PauseScreen" type="ColorRect" parent="."]
+z_index = 10
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333333
+anchor_top = 0.345679
+anchor_right = 0.666667
+anchor_bottom = 0.641975
+offset_top = 8.0
+offset_bottom = -7.99997
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.211765)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseScreen"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 40.0
+offset_right = 320.0
+offset_bottom = 160.0
+
+[node name="Label" type="Label" parent="PauseScreen/VBoxContainer"]
+layout_mode = 2
+text = "Game paused"
+horizontal_alignment = 1
+
+[node name="ContinueBtn" type="Button" parent="PauseScreen/VBoxContainer"]
+layout_mode = 2
+text = "Continue"
+
+[node name="QuitBtn" type="Button" parent="PauseScreen/VBoxContainer"]
+layout_mode = 2
+text = "Quit to title screen"
+
+[connection signal="pressed" from="PauseScreen/VBoxContainer/ContinueBtn" to="." method="_on_continue_btn_pressed"]
+[connection signal="pressed" from="PauseScreen/VBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
