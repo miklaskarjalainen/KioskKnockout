@@ -149,4 +149,19 @@ static func initialize_commands():
 			),
 	)
 	
+	Console.add_command(
+		"play",
+		Cmd.new(
+			func(args: Array[String]):
+				var n = Console.get_node_or_null("/root/UI")
+				if n == null:
+					Console.error("This command only works in the title screen")
+					return
+				n.get_tree().change_scene_to_file("res://src/scenes/Arena1.tscn")
+				pass,
+			0,
+			"Jump to arena, from ui"
+			),
+	)
+	
 	pass

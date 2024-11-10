@@ -2,7 +2,7 @@ extends Control
 
 var commands: Dictionary = {}
 
-var _previous_focus: Control = null
+var _previous_focus: NodePath = ""
 @onready var _output_text: RichTextLabel = $output
 @onready var _input_text: LineEdit = $input
 
@@ -13,12 +13,16 @@ func toggle_visibility() -> void:
 	visible = not visible
 	if visible:
 		_move_position_to_be_last_child()
-		_previous_focus = get_viewport().gui_get_focus_owner()
+		if get_viewport().gui_get_focus_owner() != null:
+			_previous_focus = get_viewport().gui_get_focus_owner().get_path()
 		_input_text.grab_focus()
 	else:
 		_input_text.release_focus()
 		if _previous_focus:
-			_previous_focus.grab_focus()
+			var n = get_node_or_null(_previous_focus)
+			if n != null:
+				n.grab_focus()
+			_previous_focus = ""
 
 func message(msg: String, args := []):
 	var combined := msg
