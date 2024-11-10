@@ -13,10 +13,23 @@ const BACK_PEDAL_MULTIPLIER := 0.8
 @export var JumpVelocity: float = 8.8
 @export var JumpHoldStr: float = 12.5
 
+var _hitstun_timer   : int = 0 # How many frames left.
 var _knockback_timer : int = 0 # How many frames left.
-var _knockback_amount: float = 0.0 # X velocity per frame.
+var _knockback_amount := Vector2(0,0)
 
 var _jump_buffer: int = 0
+
+func set_hitstun(duration: int):
+	_hitstun_timer = duration
+
+func is_hitstun() -> bool:
+	return _hitstun_timer > 0
+
+func apply_knockback(amount: Vector2, duration: int):
+	var dir = -1 if player.is_opponent_on_right() else 1
+	_knockback_amount = amount
+	_knockback_amount.x *= dir
+	_knockback_timer = duration
 
 func is_grounded() -> bool:
 	return player.is_on_floor()
@@ -45,25 +58,31 @@ func _air_movement(delta: float):
 		player.velocity.y += JumpHoldStr * delta
 
 func _physics_process(delta: float) -> void:
+	# Timers
 	if _jump_buffer > -1:
 		_jump_buffer -= 1
-	
 	if _knockback_timer > 0:
 		_knockback_timer -= 1
 		if _knockback_timer == 0:
-			_knockback_amount = 0.0
+			_knockback_amount = Vector2(0,0)
+	if _hitstun_timer > 0:
+		_hitstun_timer -= 1
+		Debug.add_line("STUN", _hitstun_timer)
 	
-	player.velocity.y -= GRAVITY * delta
-	player.velocity.x = _knockback_amount
-	
-	if not actions.is_performing_action() and _knockback_timer == 0:
-		if Input.is_action_just_pressed(player.InputJump):
-			_jump_buffer = JUMP_BUFFER_FRAMES
-		
-		if is_grounded():
-			_ground_movement(delta)
-		else:
-			_air_movement(delta)
+	if _knockback_timer == 0:
+		player.velocity.y -= GRAVITY * delta
+		player.velocity.x = 0.0
+		if not actions.is_performing_action() and _hitstun_timer <= 0:
+			if Input.is_action_just_pressed(player.InputJump):
+				_jump_buffer = JUMP_BUFFER_FRAMES
+			
+			if is_grounded():
+				_ground_movement(delta)
+			else:
+				_air_movement(delta)
+	else:
+		player.velocity.x = _knockback_amount.x
+		player.velocity.y = _knockback_amount.y
 	
 	player.move_and_slide()
 

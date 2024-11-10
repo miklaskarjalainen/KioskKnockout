@@ -8,11 +8,13 @@ static var visible_hitboxes: bool = false
 @export_range(0, 60) var startup  : int = 0 ## How many frames until the attack becomes active
 @export_range(0, 60) var active   : int = 0 ## How many frames the attack can do damage
 @export_range(0, 60) var recovery : int = 0 ## How many frames until the character can move. (After active frames)
-@export_range(0, 60) var hitstun  : int = 0 ## How many frames the target will be stun if hit
+@export_range(0, 60) var hitstun  : int = 0 ## How many frames the target will be stun if hit, should be greater or equal to knockback_duration. (For now atleast).
 @export_range(0, 60) var blockstun: int = 0 ## How many frames the target will be stun if blocked
 @export_category("Damage")
 @export_range(0, 100) var min_dmg: int = 0
 @export_range(0, 100) var max_dmg: int = 0
+@export var knockback_amount := Vector2(0,0)
+@export_range(0, 30) var knockback_duration: int = 0 ## Frames
 @export var play_anim: String = "punch"
 
 var _existed: int = 0 # How many frames this attack has existed.
@@ -66,7 +68,12 @@ func _on_body_entered(body: Node3D):
 	
 	_excludes.push_back(body)
 	var dmg: int = randi_range(min_dmg, max_dmg)
-	(body as Player).Health.damage(dmg)
+	(body as Player).damage(
+		dmg,
+		knockback_amount,
+		knockback_duration,
+		hitstun
+	)
 	Console.message("Did %s dmg to %s" % [dmg, body.name])
 
 func _create_mesh_for_collision_shape(shape: CollisionShape3D):

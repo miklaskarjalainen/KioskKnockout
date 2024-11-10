@@ -12,8 +12,11 @@ script = ExtResource("1_ms50o")
 startup = 15
 active = 24
 recovery = 10
+hitstun = 12
 min_dmg = 5
 max_dmg = 12
+knockback_amount = Vector2(2.4, 0)
+knockback_duration = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_wuhdk")

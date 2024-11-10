@@ -34,6 +34,11 @@ func get_model_target_rotation() -> float:
 func is_opponent_on_right() -> bool:
 	return Opponent.global_position.x > global_position.x
 
+func damage(dmg: int, knockback_amount: Vector2, knockback_duration: int, hitstun: int):
+	Health.damage(dmg)
+	Controller.apply_knockback(knockback_amount, knockback_duration) 
+	Controller.set_hitstun(hitstun)
+
 func _physics_process(delta: float) -> void:
 	var target_rot = get_model_target_rotation()
 	Model.rotation.y = lerp(Model.rotation.y, target_rot, delta * MODEL_ROTATION_SPEED)
