@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3 uid="uid://bavc8k7sl031p"]
+
+[ext_resource type="Script" path="res://src/scenes/SelectionScreen.gd" id="1_cxrss"]
+
+[node name="SelectionScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cxrss")
+
+[node name="bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.007
+anchor_bottom = 1.0
+offset_right = -8.06409
+color = Color(0.194349, 0.194349, 0.194349, 1)
+metadata/_edit_lock_ = true
+
+[node name="pl1_ready" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.131944
+anchor_top = 0.530864
+anchor_right = 0.25
+anchor_bottom = 0.592593
+text = "Ready"
+metadata/_edit_use_anchors_ = true
+
+[node name="pl2_ready" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.729167
+anchor_top = 0.530864
+anchor_right = 0.847222
+anchor_bottom = 0.592593
+text = "Ready"
+metadata/_edit_use_anchors_ = true
+
+[node name="back" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.0486111
+anchor_top = 0.851852
+anchor_right = 0.138889
+anchor_bottom = 0.91358
+text = "Back"
+metadata/_edit_use_anchors_ = true
+
+[node name="player1_inputs" type="ItemList" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.118056
+anchor_top = 0.246914
+anchor_right = 0.263889
+anchor_bottom = 0.493827
+metadata/_edit_use_anchors_ = true
+
+[node name="player2_inputs" type="ItemList" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.715278
+anchor_top = 0.246914
+anchor_right = 0.861111
+anchor_bottom = 0.493827
+metadata/_edit_use_anchors_ = true
+
+[connection signal="button_up" from="pl1_ready" to="." method="_pl_1_ready_pressed"]
+[connection signal="button_up" from="pl2_ready" to="." method="_pl_2_ready_pressed"]
