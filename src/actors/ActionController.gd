@@ -15,6 +15,9 @@ signal action_ended()
 
 var _performing_action := false
 
+func is_performing_action() -> bool:
+	return _performing_action 
+
 func _ready() -> void:
 	assert(anim_controller)
 	assert(player, "is null")
