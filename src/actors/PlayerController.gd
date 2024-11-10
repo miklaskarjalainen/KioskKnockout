@@ -1,6 +1,8 @@
 extends Node
 class_name PlayerController
 
+signal on_jump()
+
 const GRAVITY := 52.0
 # 0 = no buffering allowed, 1 = 1 frame, etc... (Physics frames)
 const JUMP_BUFFER_FRAMES := 4
@@ -10,7 +12,7 @@ const BACK_PEDAL_MULTIPLIER := 0.8
 @export var actions: ActionController = null
 
 @export var MoveSpeed: float = 3.4
-@export var JumpVelocity: float = 8.8
+@export var JumpVelocity: float = 10.2
 @export var JumpHoldStr: float = 12.5
 
 var _hitstun_timer   : int = 0 # How many frames left.
@@ -39,6 +41,7 @@ func _ground_movement(delta: float) -> void:
 	if _jump_buffer > -1:
 		player.velocity.y = JumpVelocity
 		_jump_buffer = -1
+		on_jump.emit()
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.

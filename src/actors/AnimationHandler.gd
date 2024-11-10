@@ -7,7 +7,6 @@ class_name AnimationController
 @export var anim: AnimationPlayer = null
 @export var actions: ActionController = null
 @export var controller: PlayerController = null
-var low_priority_anim: String = "idle"
 
 func stop_action():
 	anim.stop()
@@ -24,11 +23,26 @@ func _ready() -> void:
 		play_action(action)
 	)
 	actions.action_ended.connect(stop_action)
+	controller.on_jump.connect(func():
+		anim.stop()
+		anim.play("jump")
+	)
 
 func _physics_process(delta: float) -> void:
+	Debug.add_line("anim", anim.current_animation)
+	
 	if controller.is_hitstun():
 		anim.play("hitstun")
 		return
+	if anim.current_animation == "jump" and anim.is_playing():
+		return
 	
-	if not actions.is_performing_action() and anim.current_animation != low_priority_anim:
-		anim.play(low_priority_anim)
+	var target_anim = ""
+	if not actions.player.is_on_floor():
+		target_anim = "inair"
+	else:
+		target_anim = "idle"
+	
+	if not actions.is_performing_action() and anim.current_animation != target_anim:
+		
+		anim.play(target_anim)
