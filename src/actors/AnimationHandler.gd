@@ -4,7 +4,14 @@ extends Node
 ### automatically.
 class_name AnimationController
 
+enum State {
+	ACTION = 0,
+	MOVEMENT = 1,
+	IDLE = 2
+}
+
 @export var anim: AnimationPlayer = null
+@export var actions: ActionController = null
 
 # Animation priority list. First animation which is not empty string is played.
 # This is just an idea on how to handle this. Never tried it before.
@@ -14,12 +21,19 @@ var _animation_list: Array[String] = [
 	"idle", # [2] fallback
 ]
 
+func animation_state() -> State:
+	return _get_target_anim_index()
+
 func play_action(anim: String):
 	_animation_list[0] = anim
 
 func _ready() -> void:
 	assert(anim, "is null")
+	assert(actions, "is null")
 	anim.animation_finished.connect(_animation_finished)
+	actions.action_started.connect(func(action: String):
+		play_action(action)
+	)
 
 func _get_target_anim_index() -> int:
 	for idx in _animation_list.size():
