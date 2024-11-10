@@ -12,7 +12,7 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4rug2"]
 
 [node name="Player" type="CharacterBody3D"]
-collision_layer = 0
+collision_layer = 2
 script = ExtResource("1_8625e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -28,9 +28,10 @@ mesh = SubResource("CapsuleMesh_4rug2")
 script = ExtResource("3_t468b")
 anim_controller = NodePath("../AnimationHandler")
 
-[node name="AnimationHandler" type="Node" parent="." node_paths=PackedStringArray("anim")]
+[node name="AnimationHandler" type="Node" parent="." node_paths=PackedStringArray("anim", "actions")]
 script = ExtResource("2_bt2ar")
 anim = NodePath("../player_model/AnimationPlayer")
+actions = NodePath("../ActionController")
 
 [node name="PlayerController" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_rcsg1")

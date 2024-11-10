@@ -14,11 +14,6 @@ signal on_died()
 # Prevents getting healed after dying.
 var _is_dead := false
 
-func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed(get_parent().InputNormal):
-		damage(10)
-	
-
 func damage(dmg: int):
 	if dmg == 0 or _is_dead:
 		return
