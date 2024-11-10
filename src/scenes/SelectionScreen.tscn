@@ -20,26 +20,6 @@ offset_right = -8.06409
 color = Color(0.194349, 0.194349, 0.194349, 1)
 metadata/_edit_lock_ = true
 
-[node name="pl1_ready" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.131944
-anchor_top = 0.530864
-anchor_right = 0.25
-anchor_bottom = 0.592593
-text = "Ready"
-metadata/_edit_use_anchors_ = true
-
-[node name="pl2_ready" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.729167
-anchor_top = 0.530864
-anchor_right = 0.847222
-anchor_bottom = 0.592593
-text = "Ready"
-metadata/_edit_use_anchors_ = true
-
 [node name="back" type="Button" parent="."]
 layout_mode = 0
 anchor_left = 0.0486111
@@ -49,23 +29,43 @@ anchor_bottom = 0.91358
 text = "Back"
 metadata/_edit_use_anchors_ = true
 
-[node name="player1_inputs" type="ItemList" parent="."]
+[node name="_info" type="Label" parent="."]
+editor_description = "Replace this with prompts."
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -36.0
+offset_right = 128.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press any button to join. Press 'back' to leave."
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="players" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.118056
-anchor_top = 0.246914
-anchor_right = 0.263889
-anchor_bottom = 0.493827
+anchor_left = 0.340278
+anchor_top = 0.296296
+anchor_right = 0.638889
+anchor_bottom = 0.444444
+grow_horizontal = 2
+grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="player2_inputs" type="ItemList" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.715278
-anchor_top = 0.246914
-anchor_right = 0.861111
-anchor_bottom = 0.493827
+[node name="play" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.868056
+anchor_top = 0.864198
+anchor_right = 0.930556
+anchor_bottom = 0.938272
+text = "Play"
 metadata/_edit_use_anchors_ = true
 
-[connection signal="button_up" from="pl1_ready" to="." method="_pl_1_ready_pressed"]
-[connection signal="button_up" from="pl2_ready" to="." method="_pl_2_ready_pressed"]
+[connection signal="button_up" from="play" to="." method="_on_play_pressed"]

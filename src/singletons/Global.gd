@@ -6,6 +6,10 @@ signal OptionsClosed()
 signal MasterVolumeChanged(new_value: float)
 signal MusicVolumeChanged(new_value: float)
 
+var players_controller_prefix: Array[String] = [
+	"kb",
+	"_0joy"
+]
 
 ## Recursively finds node with the given name, from a parent node. 
 func find_node_or_null(parent: Node, target: String) -> Node:
@@ -18,5 +22,3 @@ func find_node_or_null(parent: Node, target: String) -> Node:
 			return found
 	
 	return null
-
- 

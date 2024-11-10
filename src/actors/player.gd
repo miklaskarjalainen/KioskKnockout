@@ -10,12 +10,12 @@ const MODEL_ROTATION_SPEED := 8.4
 @export var PlayerIndex := 0 # 0 is first player, 1 is second player
 @export var Opponent: Player = null
 
-@export var InputLeft := "kb_left"
-@export var InputRight := "kb_right"
-@export var InputDown := "kb_down"
-@export var InputUp := "kb_up"
-@export var InputJump := "kb_jump"
-@export var InputNormal := "kb_normal_action"
+@onready var InputLeft := "%s_left" % Global.players_controller_prefix[PlayerIndex]
+@onready var InputRight := "%s_right" % Global.players_controller_prefix[PlayerIndex]
+@onready var InputDown := "%s_down" % Global.players_controller_prefix[PlayerIndex]
+@onready var InputUp := "%s_up" % Global.players_controller_prefix[PlayerIndex]
+@onready var InputJump := "%s_jump" % Global.players_controller_prefix[PlayerIndex]
+@onready var InputNormal := "%s_normal_action" % Global.players_controller_prefix[PlayerIndex]
 
 func _ready():
 	assert(Opponent, "Opponent not assigned")
