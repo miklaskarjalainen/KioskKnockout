@@ -153,14 +153,32 @@ static func initialize_commands():
 		"play",
 		Cmd.new(
 			func(args: Array[String]):
-				var n = Console.get_node_or_null("/root/UI")
-				if n == null:
-					Console.error("This command only works in the title screen")
-					return
-				n.get_tree().change_scene_to_file("res://src/scenes/Arena1.tscn")
+				Global.change_main_scene_to("res://src/scenes/Arena1.tscn")
 				pass,
 			0,
-			"Jump to arena, from ui"
+			"Jump to arena"
+			),
+	)
+	
+	Console.add_command(
+		"exit",
+		Cmd.new(
+			func(args: Array[String]):
+				Global.change_main_scene_to("res://src/scenes/titlescreen.tscn")
+				pass,
+			0,
+			"Exits back to the titlescreen."
+			),
+	)
+	
+	Console.add_command(
+		"reload",
+		Cmd.new(
+			func(args: Array[String]):
+				Global.reload_main_scene()
+				pass,
+			0,
+			"Reloads the current scene."
 			),
 	)
 	
