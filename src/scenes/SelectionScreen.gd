@@ -4,13 +4,6 @@ extends Control
 
 const MIN_PLAYER_COUNT: int = 2
 const MAX_PLAYER_COUNT: int = 2
-const INPUT_PREFIXES: Array[String] = [
-	"kb",
-	"_0joy",
-	"_1joy",
-	"_2joy",
-	"_3joy",
-]
 
 var _players: Array[String] = []
 
@@ -26,23 +19,23 @@ func _physics_process(delta: float) -> void:
 		player_index += 1
 
 func _add_player(device: int):
-	if device >= INPUT_PREFIXES.size():
+	if device >= Global.INPUT_PREFIXES.size():
 		Console.error("Tried to add a control type which is overbounds! (%s)" % device)
 		return
 	if _players.size() >= MAX_PLAYER_COUNT:
 		return
 	
-	if not _players.has(INPUT_PREFIXES[device]):
-		_players.push_back(INPUT_PREFIXES[device])
+	if not _players.has(Global.INPUT_PREFIXES[device]):
+		_players.push_back(Global.INPUT_PREFIXES[device])
 	
 	_update_play_button()
 
 func _remove_player(device: int):
-	if device >= INPUT_PREFIXES.size():
+	if device >= Global.INPUT_PREFIXES.size():
 		Console.error("Tried to remove a control type which is overbounds! (%s)" % device)
 		return
 	
-	_players = _players.filter(func(n: String): return n != INPUT_PREFIXES[device])
+	_players = _players.filter(func(n: String): return n != Global.INPUT_PREFIXES[device])
 	_update_play_button()
 
 func _update_play_button():

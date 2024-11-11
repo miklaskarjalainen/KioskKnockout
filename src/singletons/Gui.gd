@@ -22,6 +22,13 @@ func _physics_process(delta: float) -> void:
 
 func _ready() -> void:
 	pause_screen.hide()
+	Input.joy_connection_changed.connect(func (device: int, connected: bool):
+		if connected:
+			return
+		elif Global.players_controller_prefix.has(Global.INPUT_PREFIXES[device + 1]):
+			get_tree().paused = true
+			pause_screen.show()
+	)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:

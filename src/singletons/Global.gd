@@ -3,6 +3,14 @@ extends Node
 var _main_scene_tree: SceneTree = null
 var in_game: bool = false
 
+const INPUT_PREFIXES: Array[String] = [
+	"kb",
+	"_0joy",
+	"_1joy",
+	"_2joy",
+	"_3joy",
+]
+
 var players_controller_prefix: Array[String] = [
 	"kb",
 	"_0joy"
