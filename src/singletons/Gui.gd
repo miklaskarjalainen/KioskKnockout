@@ -3,8 +3,8 @@ extends Control
 var player_1_path: NodePath = ""
 var player_2_path: NodePath = ""
 
-@onready var player1_bar: ProgressBar = $HBoxContainer/Player1
-@onready var player2_bar: ProgressBar = $HBoxContainer/Player2
+@onready var player1_bar: ProgressBar = $container/Player1
+@onready var player2_bar: ProgressBar = $container/Player2
 @onready var pause_screen: ColorRect = $PauseScreen
 
 
