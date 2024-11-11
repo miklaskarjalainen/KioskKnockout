@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7e6oeys5oskm"]
+
+[ext_resource type="Script" path="res://src/singletons/AudioManager.gd" id="1_vpb52"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_vpb52")
+
+[node name="BGMusicPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="UISoundPlayer" type="AudioStreamPlayer" parent="."]
