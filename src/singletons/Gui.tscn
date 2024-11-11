@@ -52,24 +52,28 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.211765)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PauseScreen"]
-layout_mode = 0
-anchor_left = 0.166666
-anchor_top = 0.227273
-anchor_right = 0.833332
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0416666
+anchor_right = 0.958331
 anchor_bottom = 0.909092
+theme_override_constants/separation = 12
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="PauseScreen/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 6
 text = "Game paused"
 horizontal_alignment = 1
 
 [node name="ContinueBtn" type="Button" parent="PauseScreen/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Continue"
 
 [node name="QuitBtn" type="Button" parent="PauseScreen/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Quit to title screen"
 
 [connection signal="pressed" from="PauseScreen/VBoxContainer/ContinueBtn" to="." method="_on_continue_btn_pressed"]
