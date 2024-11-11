@@ -1,7 +1,6 @@
 extends Control
 class_name OptionsMenu
 
-
 func _on_close_button_pressed() -> void:
 	Global.change_main_scene_to("res://src/scenes/TitleScreen.tscn")
 
