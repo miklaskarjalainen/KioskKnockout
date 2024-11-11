@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cc65uf8d6ov47"]
 
-[ext_resource type="Script" path="res://src/scenes/TitleScreen.gd" id="1_ifww3"]
+[ext_resource type="Script" path="res://src/scenes/TitleScreen.gd" id="1_bry7n"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ifww3")
+script = ExtResource("1_bry7n")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

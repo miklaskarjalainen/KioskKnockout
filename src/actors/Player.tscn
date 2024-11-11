@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://src/actors/ActionController.gd" id="3_t468b"]
 [ext_resource type="Script" path="res://src/actors/HealthComponent.gd" id="4_qrskp"]
 
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rw8oh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4rug2"]
