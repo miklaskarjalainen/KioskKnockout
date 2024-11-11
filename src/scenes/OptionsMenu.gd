@@ -3,7 +3,7 @@ class_name OptionsMenu
 
 
 func _on_close_button_pressed() -> void:
-	Global.change_main_scene_to("res://src/scenes/titlescreen.tscn")
+	Global.change_main_scene_to("res://src/scenes/TitleScreen.tscn")
 
 @onready var master_volume_label: Label = $MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Audio/Master/Percentage
 func _on_master_volume_slider_value_changed(value: float) -> void:

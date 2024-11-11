@@ -66,4 +66,8 @@ func _input(event: InputEvent) -> void:
 
 func _on_play_pressed() -> void:
 	Global.players_controller_prefix = _players
-	get_tree().change_scene_to_file("res://src/scenes/Arena1.tscn")
+	Global.change_main_scene_to("res://src/scenes/Arena1.tscn")
+
+
+func _on_back_pressed() -> void:
+	Global.change_main_scene_to("res://src/scenes/TitleScreen.tscn")

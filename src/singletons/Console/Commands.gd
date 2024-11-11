@@ -164,7 +164,7 @@ static func initialize_commands():
 		"exit",
 		Cmd.new(
 			func(args: Array[String]):
-				Global.change_main_scene_to("res://src/scenes/titlescreen.tscn")
+				Global.change_main_scene_to("res://src/scenes/TitleScreen.tscn")
 				pass,
 			0,
 			"Exits back to the titlescreen."

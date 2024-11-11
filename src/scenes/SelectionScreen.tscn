@@ -68,4 +68,5 @@ anchor_bottom = 0.938272
 text = "Play"
 metadata/_edit_use_anchors_ = true
 
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
 [connection signal="button_up" from="play" to="." method="_on_play_pressed"]
