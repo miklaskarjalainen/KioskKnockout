@@ -1,8 +1,5 @@
 extends Node
 
-var _main_scene_tree: SceneTree = null
-var in_game: bool = false
-
 const INPUT_PREFIXES: Array[String] = [
 	"kb",
 	"_0joy",
@@ -15,6 +12,15 @@ var players_controller_prefix: Array[String] = [
 	"kb",
 	"_0joy"
 ]
+var _main_scene_tree: SceneTree = null
+var in_game: bool = false
+
+## Grab focus of a nth child of a node
+func set_focus(parent: Node, index: int) -> void:
+	if parent:
+		var child = parent.get_child(index);
+		if child:
+			child.grab_focus()
 
 ## Recursively finds node with the given name, from a parent node. 
 func find_node_or_null(parent: Node, target: String) -> Node:

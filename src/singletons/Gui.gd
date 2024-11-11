@@ -28,6 +28,7 @@ func _ready() -> void:
 		elif Global.players_controller_prefix.has(Global.INPUT_PREFIXES[device + 1]):
 			get_tree().paused = true
 			pause_screen.show()
+			Global.set_focus(pause_screen.get_child(0), 1)
 	)
 
 func _input(event: InputEvent) -> void:
@@ -37,6 +38,7 @@ func _input(event: InputEvent) -> void:
 			get_tree().paused = !get_tree().paused
 			if get_tree().paused:
 				pause_screen.show()
+				Global.set_focus(pause_screen.get_child(0), 1)
 			else:
 				pause_screen.hide()
 
