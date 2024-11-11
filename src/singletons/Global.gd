@@ -1,11 +1,5 @@
 extends Node
 
-signal OptionsOpened()
-signal OptionsClosed()
-
-signal MasterVolumeChanged(new_value: float)
-signal MusicVolumeChanged(new_value: float)
-
 var _main_scene_tree: SceneTree = null
 var in_game: bool = false
 

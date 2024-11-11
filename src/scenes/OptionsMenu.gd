@@ -3,16 +3,14 @@ class_name OptionsMenu
 
 
 func _on_close_button_pressed() -> void:
-	Global.OptionsClosed.emit()
+	Global.change_main_scene_to("res://src/scenes/titlescreen.tscn")
 
 @onready var master_volume_label: Label = $MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Audio/Master/Percentage
 func _on_master_volume_slider_value_changed(value: float) -> void:
-	Global.MasterVolumeChanged.emit(value)
 	master_volume_label.text = "%s%s" % [int(value), "%"]
 
 @onready var music_volume_label: Label = $MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Audio/Music/Percentage
 func _on_music_volume_slider_value_changed(value: float) -> void:
-	Global.MusicVolumeChanged.emit(value)
 	music_volume_label.text = "%s%s" % [int(value), "%"]
 
 @onready var sfx_volume_label: Label = $MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Audio/SFX/Percentage

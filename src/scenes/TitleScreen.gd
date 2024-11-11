@@ -13,10 +13,10 @@ func set_focus() -> void:
 			button.grab_focus();
 
 func _on_play_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://src/scenes/SelectionScreen.tscn")
+	Global.change_main_scene_to("res://src/scenes/SelectionScreen.tscn")
 
 func _on_options_button_pressed() -> void:
-	Global.OptionsOpened.emit()
+	Global.change_main_scene_to("res://src/scenes/OptionsMenu.tscn")
 
 func _on_about_button_pressed() -> void:
 	Console.warning("Not Implemented")

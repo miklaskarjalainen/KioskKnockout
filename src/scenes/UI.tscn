@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://cb6sr4dfq80b1"]
+[gd_scene load_steps=5 format=3 uid="uid://2llsijmjjb88"]
 
-[ext_resource type="PackedScene" uid="uid://cc65uf8d6ov47" path="res://src/scenes/TitleScreen.tscn" id="1_1ro70"]
-[ext_resource type="Script" path="res://src/scenes/UI.gd" id="1_ifb5n"]
+[ext_resource type="PackedScene" uid="uid://cc65uf8d6ov47" path="res://src/scenes/titlescreen.tscn" id="1_1ro70"]
 [ext_resource type="AudioStream" uid="uid://dqmt6iif7v4sj" path="res://assets/sounds/music/Generating Worlds.wav" id="2_e4igb"]
 [ext_resource type="PackedScene" uid="uid://70geglfywodp" path="res://src/scenes/OptionsMenu.tscn" id="3_4kieq"]
+
+[sub_resource type="GDScript" id="GDScript_fteat"]
+script/source = "extends Control
+class_name UI
+
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var title_screen: Control = $TitleScreen
+@onready var options_menu: OptionsMenu = $OptionsMenu
+"
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -12,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ifb5n")
+script = SubResource("GDScript_fteat")
 
 [node name="TitleScreen" parent="." instance=ExtResource("1_1ro70")]
 layout_mode = 1
