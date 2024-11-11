@@ -4,6 +4,7 @@ extends Control;
 
 func _ready() -> void:
 	set_focus()
+	Global._main_scene_tree = get_tree()
 
 func set_focus() -> void:
 	if buttons_h_box:
