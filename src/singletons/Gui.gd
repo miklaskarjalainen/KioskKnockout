@@ -12,10 +12,10 @@ func _update_health_bars() -> void:
 	var pl1: Player = get_node_or_null(player_1_path)
 	var pl2: Player = get_node_or_null(player_2_path)
 	
-	if pl1:
+	if pl1 and pl2:
 		player1_bar.value = pl1.Health.current_health
-	if pl2:
 		player2_bar.value = pl2.Health.current_health
+	visible = Global.in_game
 
 func _physics_process(delta: float) -> void:
 	_update_health_bars()
