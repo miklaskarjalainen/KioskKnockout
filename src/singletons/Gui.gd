@@ -38,5 +38,6 @@ func _on_continue_btn_pressed() -> void:
 	pause_screen.hide()
 
 func _on_quit_btn_pressed() -> void:
-	Console.warning("Not Implemented")
-	pass # Replace with function body.
+	get_tree().paused = false
+	Console.excute_cmd("exit")
+	pause_screen.hide()

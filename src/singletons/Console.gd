@@ -64,6 +64,22 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("kb_toggle_console"):
 		toggle_visibility()
 
+func excute_cmd(cmd: String, args: Array[String] = []) -> bool:
+	if not commands.has(cmd):
+		error("No command '%s' exists!" % cmd)
+		return false
+	
+	var arg_count = commands[cmd].arg_count
+	if args.size() < arg_count:
+		if arg_count == 1:
+			error("Command '%s' requires at least one argument!" % [cmd])
+		else:
+			error("Command '%s' requires at least %s arguments!" % [cmd, arg_count])
+		return false
+	
+	commands[cmd].fn.call(args)
+	return true
+
 func _on_input_text_submitted(new_text: String) -> void:
 	if new_text.is_empty():
 		return
@@ -73,17 +89,5 @@ func _on_input_text_submitted(new_text: String) -> void:
 	cmd_args.remove_at(0)
 	_input_text.clear()
 	
-	if not commands.has(cmd_name):
-		error("No command '%s' exists!" % cmd_name)
-		return
-	
-	var arg_count = commands[cmd_name].arg_count
-	if cmd_args.size() < arg_count:
-		if arg_count == 1:
-			error("Command '%s' requires at least one argument!" % [cmd_name])
-		else:
-			error("Command '%s' requires at least %s arguments!" % [cmd_name, arg_count])
-		return
-	
-	commands[cmd_name].fn.call(cmd_args)
+	excute_cmd(cmd_name, cmd_args)
 	
