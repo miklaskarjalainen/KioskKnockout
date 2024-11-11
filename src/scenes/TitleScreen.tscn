@@ -32,27 +32,35 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="Control" parent="MarginContainer"]
 layout_mode = 2
-alignment = 1
 
 [node name="GameTitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+offset_top = 122.0
+offset_right = 1088.0
+offset_bottom = 167.0
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 32
 text = "LCNC - Project"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ButtonsHBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
+[node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+anchor_left = 0.367647
+anchor_top = 0.479452
+anchor_right = 0.632353
+anchor_bottom = 0.868151
 size_flags_horizontal = 4
 size_flags_vertical = 6
+alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsHBox"]
+[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 5
+size_flags_vertical = 3
 focus_neighbor_left = NodePath("../ExitButton")
 focus_neighbor_top = NodePath("../ExitButton")
 focus_neighbor_bottom = NodePath("../OptionsButton")
@@ -60,9 +68,10 @@ focus_next = NodePath("../OptionsButton")
 focus_previous = NodePath("../ExitButton")
 text = "Play"
 
-[node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsHBox"]
+[node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 5
+size_flags_vertical = 3
 focus_neighbor_left = NodePath("../PlayButton")
 focus_neighbor_top = NodePath("../PlayButton")
 focus_neighbor_right = NodePath("../AboutButton")
@@ -72,8 +81,10 @@ focus_previous = NodePath("../PlayButton")
 text = "Options
 "
 
-[node name="AboutButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsHBox"]
+[node name="AboutButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 3
 focus_neighbor_left = NodePath("../OptionsButton")
 focus_neighbor_top = NodePath("../OptionsButton")
 focus_neighbor_right = NodePath("../ExitButton")
@@ -82,9 +93,10 @@ focus_next = NodePath("../ExitButton")
 focus_previous = NodePath("../OptionsButton")
 text = "About"
 
-[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsHBox"]
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 5
+size_flags_vertical = 3
 focus_neighbor_left = NodePath("../AboutButton")
 focus_neighbor_top = NodePath("../AboutButton")
 focus_neighbor_right = NodePath("../PlayButton")
@@ -94,7 +106,7 @@ focus_previous = NodePath("../AboutButton")
 text = "Exit"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsHBox/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsHBox/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsHBox/AboutButton" to="." method="_on_about_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsHBox/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/AboutButton" to="." method="_on_about_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/ExitButton" to="." method="_on_exit_button_pressed"]

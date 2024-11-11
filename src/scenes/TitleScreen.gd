@@ -1,6 +1,6 @@
 extends Control;
 
-@onready var buttons_h_box = %ButtonsHBox;
+@onready var buttons_h_box: Container = Global.find_node_or_null(self, "ButtonContainer")
 
 func _ready() -> void:
 	set_focus()
