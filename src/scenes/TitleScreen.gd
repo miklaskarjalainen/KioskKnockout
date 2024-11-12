@@ -17,4 +17,5 @@ func _on_about_button_pressed() -> void:
 	pass # Replace with function body.
 
 func _on_exit_button_pressed() -> void:
+	print("quitting")
 	get_tree().quit()
