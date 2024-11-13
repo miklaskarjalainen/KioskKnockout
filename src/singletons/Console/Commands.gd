@@ -182,4 +182,19 @@ static func initialize_commands():
 			),
 	)
 	
+	Console.add_command(
+		"swap_characters",
+		Cmd.new(
+			func(args: Array[String]):
+				var controller: String = Global.players_controller_prefix[0]
+				Global.players_controller_prefix[0] = Global.players_controller_prefix[1]
+				Global.players_controller_prefix[1] = controller
+				Console.excute_cmd("reload")
+				Console.info("Character controllers swapped")
+				pass,
+			0,
+			"Swaps the active character controllers, ."
+			),
+	)
+	
 	pass
