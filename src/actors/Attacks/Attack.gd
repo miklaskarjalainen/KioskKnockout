@@ -5,6 +5,7 @@ const HITBOX_MATERIAL: StandardMaterial3D = preload("res://assets/dev/dev_solid_
 static var visible_hitboxes: bool = false
 
 @export_category("Frame Data")
+@export_range(0, 0.25, 0.01)  var stop_on_hit: float = 0.0 ## How many second to stop the engine for if hit is registered
 @export_range(0, 60) var startup  : int = 0 ## How many frames until the attack becomes active
 @export_range(0, 60) var active   : int = 0 ## How many frames the attack can do damage
 @export_range(0, 60) var recovery : int = 0 ## How many frames until the character can move. (After active frames)
@@ -28,10 +29,12 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 
 func _physics_process(_delta: float) -> void:
+	Console.info(str(_delta))
+	
 	_existed += 1
 	
 	if _existed == startup:
-		_enable_hitbox()
+		_enable_hitbox()	
 	
 	var after_startup = _existed - startup
 	if after_startup == active:
@@ -40,7 +43,6 @@ func _physics_process(_delta: float) -> void:
 	var after_active = after_startup - active
 	if after_active == recovery:
 		queue_free()
-	
 
 func _disable_hitbox():
 	for shape in get_children():
@@ -75,6 +77,16 @@ func _on_body_entered(body: Node3D):
 		hitstun
 	)
 	Console.message("Did %s dmg to %s" % [dmg, body.name])
+	
+	if stop_on_hit == 0.0:
+		return
+	
+	get_tree().create_timer(stop_on_hit)\
+	.timeout\
+	.connect(func():
+		get_tree().paused = false
+	)
+	get_tree().paused = true
 
 func _create_mesh_for_collision_shape(shape: CollisionShape3D):
 	var mesh: Mesh = null
