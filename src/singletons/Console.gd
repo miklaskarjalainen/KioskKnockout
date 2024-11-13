@@ -2,6 +2,9 @@ extends Control
 
 var commands: Dictionary = {}
 
+var _command_history: Array[String] = []
+var _command_position: int = -1
+
 var _previous_focus: NodePath = ""
 @onready var _output_text: RichTextLabel = $output
 @onready var _input_text: LineEdit = $input
@@ -63,6 +66,21 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("kb_toggle_console"):
 		toggle_visibility()
+	
+	# Iterate through the command history.
+	if Input.is_action_just_pressed("ui_up"):
+		if _command_history.size() > (_command_position + 1):
+			_command_position += 1
+			_input_text.text = _command_history[_command_position]
+		_input_text.caret_column = _input_text.text.length()
+	if Input.is_action_just_pressed("ui_down"):
+		_command_position = max(_command_position-1, -1)
+		if _command_position >= 0:
+			_input_text.text = _command_history[_command_position]
+			_input_text.caret_column = _input_text.text.length()
+		elif _command_position == -1:
+			_input_text.text = ""
+			_input_text.caret_column = 0
 
 func excute_cmd(cmd: String, args: Array[String] = []) -> bool:
 	if not commands.has(cmd):
@@ -90,4 +108,7 @@ func _on_input_text_submitted(new_text: String) -> void:
 	_input_text.clear()
 	
 	excute_cmd(cmd_name, cmd_args)
+	
+	_command_history.push_back(new_text)
+	_command_position = -1
 	
