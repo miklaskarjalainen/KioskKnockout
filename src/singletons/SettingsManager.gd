@@ -9,6 +9,12 @@ class Settings:
 		# Generic
 		config.set_value("generic", "version", version)
 		
+		# Audio settings
+		config.set_value("audio", "master_volume", db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master"))) as float)
+		config.set_value("audio", "music_volume", db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))) as float)
+		config.set_value("audio", "ui_volume", db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("UI"))) as float)
+		config.set_value("audio", "sfx_volume", db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX"))) as float)
+		
 		# Graphics settings
 		config.set_value("video", "vsync", DisplayServer.window_get_vsync_mode() as int)
 		config.set_value("video", "max_fps", Engine.max_fps)
@@ -38,6 +44,13 @@ class Settings:
 		var vsync: int = config.get_value("video", "vsync", DisplayServer.window_get_vsync_mode() as int)
 		DisplayServer.window_set_vsync_mode(vsync)
 		Engine.max_fps = config.get_value("video", "max_fps", Engine.max_fps)
+		
+		# Audio settings
+		AudioManager.master_volume = config.get_value("audio", "master_volume", 1.0)
+		AudioManager.music_volume = config.get_value("audio", "music_volume", 1.0)
+		AudioManager.ui_volume = config.get_value("audio", "ui_volume", 1.0)
+		AudioManager.sfx_volume = config.get_value("audio", "sfx_volume", 1.0)
+		AudioManager.update_audio_server()
 		
 		# Keybinds
 		var binds_keys: PackedStringArray = config.get_section_keys("binds")

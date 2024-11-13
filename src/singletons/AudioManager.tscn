@@ -8,3 +8,5 @@ script = ExtResource("1_vpb52")
 [node name="BGMusicPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="UISoundPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXSoundPlayer" type="AudioStreamPlayer" parent="."]
