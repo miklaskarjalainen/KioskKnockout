@@ -109,6 +109,6 @@ func _on_input_text_submitted(new_text: String) -> void:
 	
 	excute_cmd(cmd_name, cmd_args)
 	
-	_command_history.push_back(new_text)
+	_command_history.push_front(new_text)
 	_command_position = -1
 	
