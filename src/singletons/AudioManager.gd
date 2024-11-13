@@ -16,7 +16,6 @@ func play(fpath: String, audio_channel: Audio_Player, loop: bool = false) -> voi
 
 func update_audio_server() -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(master_volume))
-	## FIXME: For some reason the Music audio bus does not change, figure this out later.
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(music_volume))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("UI"), linear_to_db(ui_volume))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(sfx_volume))

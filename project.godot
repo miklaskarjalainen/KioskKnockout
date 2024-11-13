@@ -22,6 +22,7 @@ Debug="*res://src/singletons/Debug.tscn"
 Global="*res://src/singletons/Global.gd"
 SettingsManager="*res://src/singletons/SettingsManager.gd"
 GUI="*res://src/singletons/Gui.tscn"
+AudioManager="*res://src/singletons/AudioManager.tscn"
 
 [editor_plugins]
 
