@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c3upqq8m5bfey"
+path="res://.godot/imported/Generating Worlds.ogg-ca67dbc4f25e723fd0402b64cc975808.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/music/Generating Worlds.ogg"
+dest_files=["res://.godot/imported/Generating Worlds.ogg-ca67dbc4f25e723fd0402b64cc975808.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,18 +1,32 @@
 extends Node
 
-enum Audio_Player { Background, UI, SFX }
+enum Audio_Player { Music, UI, SFX }
 
-@onready var _bg_music_player: AudioStreamPlayer = $BGMusicPlayer
-@onready var _ui_sound_player: AudioStreamPlayer = $UISoundPlayer
-@onready var _sfx_sound_player: AudioStreamPlayer = $SFXSoundPlayer
+@onready var _music_player: AudioStreamPlayer = $BGMusicPlayer
+@onready var _ui_player: AudioStreamPlayer = $UISoundPlayer
+@onready var _sfx_player: AudioStreamPlayer = $SFXSoundPlayer
 
 var master_volume: float
 var music_volume: float
 var ui_volume: float
 var sfx_volume: float
 
-func play(fpath: String, audio_channel: Audio_Player, loop: bool = false) -> void:
-	pass
+func _ready() -> void:
+	AudioManager.play("res://assets/sounds/music/Generating Worlds.ogg", AudioManager.Audio_Player.Music)
+
+func play(fpath: String, audio_channel: Audio_Player) -> AudioStreamPlayer:
+	var audio_player: AudioStreamPlayer
+	match audio_channel:
+		Audio_Player.Music:
+			audio_player = _music_player
+		Audio_Player.UI:
+			audio_player = _ui_player
+		Audio_Player.SFX:
+			audio_player = _sfx_player
+	
+	audio_player.stream = AudioStreamOggVorbis.load_from_file(fpath)
+	audio_player.play()
+	return audio_player
 
 func update_audio_server() -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(master_volume))

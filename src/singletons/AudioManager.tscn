@@ -3,10 +3,16 @@
 [ext_resource type="Script" path="res://src/singletons/AudioManager.gd" id="1_vpb52"]
 
 [node name="AudioManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_vpb52")
 
 [node name="BGMusicPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
 
 [node name="UISoundPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 10
+bus = &"UI"
 
 [node name="SFXSoundPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 35
+bus = &"SFX"
