@@ -38,6 +38,7 @@ show_percentage = false
 metadata/_edit_use_anchors_ = true
 
 [node name="PauseScreen" type="ColorRect" parent="."]
+visible = false
 z_index = 10
 layout_mode = 1
 anchors_preset = -1
@@ -71,10 +72,54 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Continue"
 
-[node name="QuitBtn" type="Button" parent="PauseScreen/VBoxContainer"]
+[node name="PSQuitBtn" type="Button" parent="PauseScreen/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Quit to title screen"
 
+[node name="Timer" type="Timer" parent="."]
+
+[node name="TimerLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 480.0
+offset_top = 288.0
+offset_right = 672.0
+offset_bottom = 351.0
+theme_override_font_sizes/font_size = 40
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VictoryScreen" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+anchor_left = 0.222222
+anchor_top = 0.296296
+anchor_right = 0.777778
+anchor_bottom = 0.691358
+color = Color(0, 0, 0, 0.211765)
+metadata/_edit_use_anchors_ = true
+
+[node name="RestartBtn" type="Button" parent="VictoryScreen"]
+layout_mode = 2
+anchor_left = 0.8125
+anchor_top = 0.71875
+anchor_right = 0.948438
+anchor_bottom = 0.875
+text = "Play again"
+metadata/_edit_use_anchors_ = true
+
+[node name="VSQuitBtn" type="Button" parent="VictoryScreen"]
+layout_mode = 2
+anchor_left = 0.05
+anchor_top = 0.71875
+anchor_right = 0.289063
+anchor_bottom = 0.875
+text = "Quit to title screen"
+metadata/_edit_use_anchors_ = true
+
 [connection signal="pressed" from="PauseScreen/VBoxContainer/ContinueBtn" to="." method="_on_continue_btn_pressed"]
-[connection signal="pressed" from="PauseScreen/VBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
+[connection signal="pressed" from="PauseScreen/VBoxContainer/PSQuitBtn" to="." method="_on_ps_quit_btn_pressed"]
+[connection signal="pressed" from="VictoryScreen/RestartBtn" to="." method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="VictoryScreen/VSQuitBtn" to="." method="_on_vs_quit_btn_pressed"]

@@ -6,6 +6,9 @@ var player_2_path: NodePath = ""
 @onready var player1_bar: ProgressBar = $container/Player1
 @onready var player2_bar: ProgressBar = $container/Player2
 @onready var pause_screen: ColorRect = $PauseScreen
+@onready var timer: Timer = $Timer
+@onready var timer_label: Label = $TimerLabel
+@onready var victory_screen: ColorRect = $VictoryScreen
 
 
 func _update_health_bars() -> void:
@@ -19,9 +22,12 @@ func _update_health_bars() -> void:
 
 func _physics_process(delta: float) -> void:
 	_update_health_bars()
+	timer_label.text = str(ceil(timer.time_left))
 
 func _ready() -> void:
+	timer_label.hide()
 	pause_screen.hide()
+	victory_screen.hide()
 	Input.joy_connection_changed.connect(func (device: int, connected: bool):
 		if connected:
 			return
@@ -46,7 +52,30 @@ func _on_continue_btn_pressed() -> void:
 	get_tree().paused = false
 	pause_screen.hide()
 
-func _on_quit_btn_pressed() -> void:
+func _on_ps_quit_btn_pressed() -> void:
 	get_tree().paused = false
 	Console.excute_cmd("exit")
 	pause_screen.hide()
+
+func ko_timer() -> void:
+	timer.start(3)
+	timer_label.show()
+	timer.timeout.connect(
+		func() -> void:
+			## FIXME: you can still toggle pause menu while
+			## the victory screen is shown which toggles the pause state
+			get_tree().paused = true
+			timer_label.hide()
+			victory_screen.show()
+			timer.stop()
+	)
+
+func _on_vs_quit_btn_pressed() -> void:
+	get_tree().paused = false
+	Console.excute_cmd("exit")
+	victory_screen.hide()
+
+func _on_restart_btn_pressed() -> void:
+	get_tree().paused = false
+	Console.excute_cmd("reload")
+	victory_screen.hide()
