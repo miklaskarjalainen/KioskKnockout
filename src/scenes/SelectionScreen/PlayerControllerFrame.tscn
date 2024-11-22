@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://bej1u1c73id27"]
+
+[ext_resource type="Script" path="res://src/scenes/SelectionScreen/PlayerControllerFrame.gd" id="1_702bn"]
+[ext_resource type="Texture2D" uid="uid://dn6o5xm57t7hy" path="res://assets/prompts/diagrams/Xbox_Diagram_Simple.png" id="2_18mon"]
+
+[node name="unit" type="Control"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 3
+anchor_right = 0.208
+anchor_bottom = 0.58
+offset_right = 0.384003
+offset_bottom = 0.159973
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+script = ExtResource("1_702bn")
+
+[node name="bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.43134, 0.43134, 0.43134, 1)
+
+[node name="player_name" type="Label" parent="."]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 0.15
+theme_override_font_sizes/font_size = 32
+text = "PLAYER X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="controller_text" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.358974
+anchor_right = 1.0
+anchor_bottom = 0.717949
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_18mon")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="leave_prompt" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.851064
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[center]Press [img width=32 height=32]res://assets/prompts/diagrams/Xbox_B.png[/img] to leave!"
+metadata/_edit_use_anchors_ = true

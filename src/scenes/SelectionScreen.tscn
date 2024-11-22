@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bavc8k7sl031p"]
+[gd_scene load_steps=4 format=3 uid="uid://bavc8k7sl031p"]
 
 [ext_resource type="Script" path="res://src/scenes/SelectionScreen.gd" id="1_cxrss"]
+[ext_resource type="PackedScene" uid="uid://bej1u1c73id27" path="res://src/scenes/SelectionScreen/PlayerControllerFrame.tscn" id="2_rc6t4"]
+[ext_resource type="Script" path="res://src/scenes/SelectionScreen/PlayerFrameContainer.gd" id="2_sxq82"]
 
-[node name="SelectionScreen" type="Control"]
+[node name="SelectionScreen" type="Control" node_paths=PackedStringArray("player_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,6 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cxrss")
+player_container = NodePath("players")
 
 [node name="bg" type="ColorRect" parent="."]
 layout_mode = 1
@@ -32,31 +35,15 @@ metadata/_edit_use_anchors_ = true
 [node name="_info" type="Label" parent="."]
 editor_description = "Replace this with prompts."
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -128.0
-offset_top = -36.0
-offset_right = 128.0
-offset_bottom = 36.0
+anchors_preset = -1
+anchor_left = 0.326389
+anchor_top = 0.0493827
+anchor_right = 0.673611
+anchor_bottom = 0.160494
 grow_horizontal = 2
-grow_vertical = 2
 text = "Press any button to join. Press 'back' to leave."
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="players" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.340278
-anchor_top = 0.296296
-anchor_right = 0.638889
-anchor_bottom = 0.444444
-grow_horizontal = 2
-grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="play" type="Button" parent="."]
@@ -66,6 +53,18 @@ anchor_top = 0.864198
 anchor_right = 0.930556
 anchor_bottom = 0.938272
 text = "Play"
+metadata/_edit_use_anchors_ = true
+
+[node name="players" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.166667
+anchor_top = 0.209877
+anchor_right = 0.833333
+anchor_bottom = 0.691358
+alignment = 1
+script = ExtResource("2_sxq82")
+frame_scene = ExtResource("2_rc6t4")
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]

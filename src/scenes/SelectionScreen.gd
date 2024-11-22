@@ -1,6 +1,6 @@
 extends Control
 
-@onready var players_label: Label = $players
+@export var player_container: PlayerFrameContainer = null
 
 const MIN_PLAYER_COUNT: int = 2
 const MAX_PLAYER_COUNT: int = 2
@@ -9,14 +9,6 @@ var _players: Array[String] = []
 
 func _ready():
 	_update_play_button()
-
-func _physics_process(delta: float) -> void:
-	players_label.text = ""
-	
-	var player_index = 1
-	for pl in _players:
-		players_label.text += "Player: %s controls via %s!\n" % [player_index, pl]
-		player_index += 1
 
 func _add_player(device: int):
 	if device >= Global.INPUT_PREFIXES.size():
@@ -27,6 +19,7 @@ func _add_player(device: int):
 	
 	if not _players.has(Global.INPUT_PREFIXES[device]):
 		_players.push_back(Global.INPUT_PREFIXES[device])
+		player_container.add_player(device)
 	
 	_update_play_button()
 
@@ -35,6 +28,7 @@ func _remove_player(device: int):
 		Console.error("Tried to remove a control type which is overbounds! (%s)" % device)
 		return
 	
+	player_container.remove_player(device)
 	_players = _players.filter(func(n: String): return n != Global.INPUT_PREFIXES[device])
 	_update_play_button()
 
