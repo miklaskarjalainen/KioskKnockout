@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 	Debug.add_line("anim", anim.current_animation)
 	
 	if controller.is_hitstun():
-		anim.play("hitstun")
+		anim.play("getting_hit")
 		return
 	if anim.current_animation == "jump" and anim.is_playing():
 		return
@@ -54,5 +54,4 @@ func _physics_process(delta: float) -> void:
 		target_anim = "idle"
 	
 	if not actions.is_performing_action() and anim.current_animation != target_anim:
-		
-		anim.play(target_anim)
+		anim.play(target_anim, 0.15)
