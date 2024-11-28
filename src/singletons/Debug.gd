@@ -2,6 +2,8 @@ extends Control
 
 @onready var label: Label = $text_renderer
 
+func _ready() -> void:
+	hide();
 
 func add_line(n: String, v: Variant) -> void:
 	label.text += "%s: %s\n" % [n, v]
