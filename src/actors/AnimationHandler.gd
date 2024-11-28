@@ -40,6 +40,16 @@ func _physics_process(delta: float) -> void:
 	var target_anim = ""
 	if not actions.player.is_on_floor():
 		target_anim = "inair"
+	elif actions.player.velocity.x > 0.0:
+		if actions.player.is_opponent_on_right():
+			target_anim = "walk_forwards"
+		else:
+			target_anim = "walk_backwards"
+	elif actions.player.velocity.x < 0.0:
+		if actions.player.is_opponent_on_right():
+			target_anim = "walk_backwards"
+		else:
+			target_anim = "walk_forwards"
 	else:
 		target_anim = "idle"
 	
