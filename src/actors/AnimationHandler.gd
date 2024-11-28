@@ -7,6 +7,7 @@ class_name AnimationController
 @export var anim: AnimationPlayer = null
 @export var actions: ActionController = null
 @export var controller: PlayerController = null
+@export var health: HealthComponent = null
 
 func stop_action():
 	anim.stop()
@@ -27,9 +28,16 @@ func _ready() -> void:
 		anim.stop()
 		anim.play("jump")
 	)
+	health.on_died.connect(func():
+		anim.stop()
+		anim.play("Defeat")
+	)
 
 func _physics_process(delta: float) -> void:
 	Debug.add_line("anim", anim.current_animation)
+	
+	if health.current_health <= 0:
+		return
 	
 	if controller.is_hitstun():
 		anim.play("getting_hit")

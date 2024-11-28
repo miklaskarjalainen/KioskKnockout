@@ -25,7 +25,7 @@ func damage(dmg: int):
 	
 	# health changed
 	if prev != current_health:
-		if current_health == 0:
+		if current_health == 0 and not _is_dead:
 			_is_dead = true
 			on_died.emit()
 
