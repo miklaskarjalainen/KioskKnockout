@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://dvp2vq4xjs5cs"]
 
-[ext_resource type="Material" path="res://assets/dev/dev_blue.tres" id="1_f7b4o"]
-[ext_resource type="Material" path="res://assets/dev/dev_orange.tres" id="2_cxg53"]
+[ext_resource type="Material" uid="uid://bwwrkqr1noawi" path="res://assets/dev/dev_blue.tres" id="1_f7b4o"]
+[ext_resource type="Material" uid="uid://cjxillm06ji65" path="res://assets/dev/dev_orange.tres" id="2_cxg53"]
 [ext_resource type="PackedScene" uid="uid://dp6sarh3doobm" path="res://src/actors/Player.tscn" id="2_y6vyn"]
-[ext_resource type="Material" path="res://assets/dev/dev_gray.tres" id="3_diw7d"]
+[ext_resource type="Material" uid="uid://cwqh8r2btxpsp" path="res://assets/dev/dev_gray.tres" id="3_diw7d"]
 [ext_resource type="Script" path="res://src/scenes/TargetCamera.gd" id="4_b2icj"]
 [ext_resource type="PackedScene" uid="uid://16bs7hyhk3pq" path="res://src/scenes/GameState.tscn" id="6_hfkfd"]
 

@@ -12,6 +12,7 @@ static var visible_hitboxes: bool = false
 @export_range(0, 60) var hitstun  : int = 0 ## How many frames the target will be stun if hit, should be greater or equal to knockback_duration. (For now atleast).
 @export_range(0, 60) var blockstun: int = 0 ## How many frames the target will be stun if blocked
 @export_category("Damage")
+@export_enum("RightHand", "RightLeg", "LeftHand", "LeftLeg") var hitbox_location = 0
 @export_range(0, 100) var min_dmg: int = 0
 @export_range(0, 100) var max_dmg: int = 0
 @export var knockback_amount := Vector2(0,0)

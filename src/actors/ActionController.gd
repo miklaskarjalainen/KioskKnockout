@@ -2,7 +2,6 @@ extends Node
 class_name ActionController
 
 const ACTION_ERASE_FRAMES: int = 12
-const BASIC_PUNCH = preload("res://src/actors/Attacks/BasicPunch.tscn")
 
 ## Action name should be the same as the Animation name
 signal action_started(action_name: String)
@@ -13,6 +12,8 @@ signal action_ended()
 
 @onready var pos_rhand = Global.find_node_or_null(player, "pos_rhand")
 @onready var pos_lhand = Global.find_node_or_null(player, "pos_lhand")
+@onready var pos_rleg = Global.find_node_or_null(player, "pos_rleg")
+@onready var pos_lleg = Global.find_node_or_null(player, "pos_lleg")
 
 var _button_erase: int = -1
 var _button_buffer := []
@@ -32,6 +33,28 @@ func _ready() -> void:
 	action_started.connect(func(_ac: String): _performing_action = true)
 	action_ended.connect(func(): _performing_action = false)
 
+func _perform_action(action_path: String):
+	Console.message(action_path)
+	var atk: AttackHurtbox = load(action_path).instantiate()
+	action_started.emit(atk.play_anim)
+	atk.tree_exiting.connect(func():
+		action_ended.emit()
+	)
+	atk.add_exclude(player)
+	
+	match atk.hitbox_location:
+		0:
+			pos_rhand.add_child(atk)
+		1:
+			pos_rleg.add_child(atk)
+		2:
+			pos_lhand.add_child(atk)
+		3:
+			pos_lleg.add_child(atk)
+		_:
+			Console.error("Invalid hitbox location")
+	
+
 # Try to match action buffer to an action.
 func _submit_action():
 	if _button_buffer.size() == 0:
@@ -48,15 +71,13 @@ func _submit_action():
 		elif buf[0] == "right" and buf[1] == "right":
 			Console.warning("Dashes not implemented")
 			return
-	
-	if buf[0] == "normal":
-		var atk: AttackHurtbox = BASIC_PUNCH.instantiate()
-		action_started.emit(atk.play_anim)
-		atk.tree_exiting.connect(func():
-			action_ended.emit()
-		)
-		atk.add_exclude(player)
-		pos_rhand.add_child(atk)
+	match buf[0]:
+		"normal":
+			_perform_action("res://src/actors/Attacks/BasicPunch.tscn")
+		"special":
+			_perform_action("res://src/actors/Attacks/BasicKick.tscn")
+		_:
+			pass
 
 # Adds a action to buffer
 func _push_action(str: String):
@@ -84,6 +105,9 @@ func _handle_action_inputs() -> void:
 			_push_action("down")
 		if Input.is_action_just_pressed(player.InputNormal):
 			_push_action("normal")
+			_submit_action()
+		if Input.is_action_just_pressed(player.InputSpecial):
+			_push_action("special")
 			_submit_action()
 	
 	if _button_erase >= 0:

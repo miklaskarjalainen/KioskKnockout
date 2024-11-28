@@ -16,6 +16,8 @@ const MODEL_ROTATION_SPEED := 8.4
 @onready var InputUp := "%s_up" % Global.players_controller_prefix[PlayerIndex]
 @onready var InputJump := "%s_jump" % Global.players_controller_prefix[PlayerIndex]
 @onready var InputNormal := "%s_normal_action" % Global.players_controller_prefix[PlayerIndex]
+@onready var InputSpecial := "%s_special_action" % Global.players_controller_prefix[PlayerIndex]
+
 
 func _ready():
 	assert(Opponent, "Opponent not assigned")
