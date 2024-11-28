@@ -193,7 +193,21 @@ static func initialize_commands():
 				Console.info("Character controllers swapped")
 				pass,
 			0,
-			"Swaps the active character controllers, ."
+			"Swaps the active character controllers."
+			),
+	)
+	Console.add_command(
+		"debug",
+		Cmd.new(
+			func(args: Array[String]):
+				Debug.visible = !Debug.visible
+				if Debug.visible:
+					Console.info("Enabled Debug view")
+				else:
+					Console.info("Disabled Debug view")
+				pass,
+			0,
+			"Toggles the debug view"
 			),
 	)
 	
