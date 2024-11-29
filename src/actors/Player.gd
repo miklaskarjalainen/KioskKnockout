@@ -42,7 +42,7 @@ func damage(dmg: int, knockback_amount: Vector2, knockback_duration: int, hitstu
 	Controller.set_hitstun(hitstun)
 
 func _physics_process(delta: float) -> void:
-	if is_on_floor():
+	if is_on_floor() and not Health.is_dead():
 		var target_rot = get_model_target_rotation()
 		Model.rotation.y = lerp(Model.rotation.y, target_rot, delta * MODEL_ROTATION_SPEED)
 	
