@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://barh7166h7hd0"]
+
+[ext_resource type="Script" path="res://src/actors/Attacks/Attack.gd" id="1_annpk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wuhdk"]
+size = Vector3(0.185059, 0.253449, 0.294922)
+
+[node name="GroinKick" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_annpk")
+stop_on_hit = 0.08
+startup = 12
+active = 12
+recovery = 24
+hitstun = 12
+hitbox_location = 3
+min_dmg = 12
+max_dmg = 18
+knockback_amount = Vector2(3, 8)
+knockback_duration = 8
+play_anim = "Groinpain"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0475952, 0.345993, 0)
+shape = SubResource("BoxShape3D_wuhdk")

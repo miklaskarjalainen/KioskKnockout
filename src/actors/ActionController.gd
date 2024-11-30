@@ -4,11 +4,12 @@ class_name ActionController
 const ACTION_ERASE_FRAMES: int = 12
 
 ## Action name should be the same as the Animation name
-signal action_started(action_name: String)
+signal action_started(action_name: String, anim_spd: float)
 signal action_ended()
 
 @onready var player: Player = get_parent()
 @export var anim_controller: AnimationController = null
+@export var ground_cast: RayCast3D = null
 
 @onready var pos_rhand = Global.find_node_or_null(player, "pos_rhand")
 @onready var pos_lhand = Global.find_node_or_null(player, "pos_lhand")
@@ -30,13 +31,15 @@ func _ready() -> void:
 	assert(pos_rhand, "is null")
 	assert(pos_lhand, "is null")
 	
-	action_started.connect(func(_ac: String): _performing_action = true)
+	action_started.connect(func(_ac: String, _spd: float): _performing_action = true)
 	action_ended.connect(func(): _performing_action = false)
 
 func _perform_action(action_path: String):
-	Console.message(action_path)
+	if action_path.is_empty():
+		return
+	
 	var atk: AttackHurtbox = load(action_path).instantiate()
-	action_started.emit(atk.play_anim)
+	action_started.emit(atk.play_anim, atk.anim_speed)
 	atk.tree_exiting.connect(func():
 		action_ended.emit()
 	)
@@ -71,11 +74,27 @@ func _submit_action():
 		elif buf[0] == "right" and buf[1] == "right":
 			Console.warning("Dashes not implemented")
 			return
+	
+	var normal = "res://src/actors/Attacks/BasicPunch.tscn"
+	var special = "res://src/actors/Attacks/KarateKick.tscn"
+	
+	if buf.size() >= 2 and buf[1] == "up":
+		normal = "res://src/actors/Attacks/UpperCut.tscn"
+		special = "res://src/actors/Attacks/GroinKick.tscn"
+	
+	
+	if not player.is_on_floor():
+		normal = ""
+		special = ""
+	
+	if not ground_cast.is_colliding():
+		special = "res://src/actors/Attacks/JumpSpecial.tscn"
+	
 	match buf[0]:
 		"normal":
-			_perform_action("res://src/actors/Attacks/BasicPunch.tscn")
+			_perform_action(normal)
 		"special":
-			_perform_action("res://src/actors/Attacks/BasicKick.tscn")
+			_perform_action(special)
 		_:
 			pass
 

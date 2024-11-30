@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxrsgd63hbl8x"]
+
+[ext_resource type="Script" path="res://src/actors/Attacks/Attack.gd" id="1_4xqqn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wuhdk"]
+size = Vector3(0.240234, 0.344727, 0.294922)
+
+[node name="UpperCut" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_4xqqn")
+stop_on_hit = 0.08
+startup = 18
+active = 16
+recovery = 8
+hitstun = 8
+anim_speed = 1.1
+min_dmg = 10
+max_dmg = 14
+knockback_amount = Vector2(3, 8)
+knockback_duration = 8
+play_anim = "Uppercut"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104004, 0)
+shape = SubResource("BoxShape3D_wuhdk")

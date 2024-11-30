@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://qoo6p6iuujdu"]
+
+[ext_resource type="Script" path="res://src/actors/Attacks/Attack.gd" id="1_w645d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wuhdk"]
+size = Vector3(0.24707, 0.56369, 0.259766)
+
+[node name="KarateKick" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0671801, 0)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_w645d")
+stop_on_hit = 0.07
+startup = 12
+active = 12
+recovery = 32
+hitstun = 12
+anim_speed = 1.5
+hitbox_location = 1
+min_dmg = 5
+max_dmg = 12
+knockback_amount = Vector2(16, 2)
+knockback_duration = 5
+play_anim = "Long_kick"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.213486, 0)
+shape = SubResource("BoxShape3D_wuhdk")

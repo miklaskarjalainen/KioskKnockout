@@ -12,8 +12,8 @@ const BACK_PEDAL_MULTIPLIER := 0.8
 @export var actions: ActionController = null
 
 @export var MoveSpeed: float = 3.4
-@export var JumpVelocity: float = 10.2
-@export var JumpHoldStr: float = 12.5
+@export var JumpVelocity: float = 13.2
+@export var JumpHoldStr: float = 18.5
 
 var _hitstun_timer   : int = 0 # How many frames left.
 var _knockback_timer : int = 0 # How many frames left.
@@ -75,6 +75,9 @@ func _physics_process(delta: float) -> void:
 		_hitstun_timer -= 1
 		Debug.add_line("STUN", _hitstun_timer)
 	
+	if player.is_on_floor():
+		player.velocity.x = 0.0
+	
 	if _knockback_timer > 0:
 		# What to do if under the effect of a knockbock
 		player.velocity.x = _knockback_amount.x
@@ -82,10 +85,8 @@ func _physics_process(delta: float) -> void:
 	elif is_hitstun():
 		# What to do when hitstun
 		_do_gravity(delta)
-		player.velocity.x = 0.0
 	elif actions.is_performing_action():
 		_do_gravity(delta)
-		player.velocity.x = 0.0
 	else:
 		# Normal movement
 		_do_gravity(delta)

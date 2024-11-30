@@ -11,6 +11,7 @@ static var visible_hitboxes: bool = false
 @export_range(0, 60) var recovery : int = 0 ## How many frames until the character can move. (After active frames)
 @export_range(0, 60) var hitstun  : int = 0 ## How many frames the target will be stun if hit, should be greater or equal to knockback_duration. (For now atleast).
 @export_range(0, 60) var blockstun: int = 0 ## How many frames the target will be stun if blocked
+@export_range(0.2, 5.0, 0.1) var anim_speed: float = 1.0
 @export_category("Damage")
 @export_enum("RightHand", "RightLeg", "LeftHand", "LeftLeg") var hitbox_location = 0
 @export_range(0, 100) var min_dmg: int = 0
@@ -35,7 +36,7 @@ func _physics_process(_delta: float) -> void:
 	_existed += 1
 	
 	if _existed == startup:
-		_enable_hitbox()	
+		_enable_hitbox()
 	
 	var after_startup = _existed - startup
 	if after_startup == active:

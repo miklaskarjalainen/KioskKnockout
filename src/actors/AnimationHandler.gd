@@ -4,33 +4,31 @@ extends Node
 ## automatically.
 class_name AnimationController
 
+const ANIM_BLEND: float = 0.15
+
 @export var anim: AnimationPlayer = null
 @export var actions: ActionController = null
 @export var controller: PlayerController = null
 @export var health: HealthComponent = null
 
-func stop_action():
-	anim.stop()
-
-func play_action(p_anim: String):
-	anim.stop()
-	anim.play(p_anim)
+func play_action(p_anim: String, p_spd: float):
+	#anim.stop()
+	anim.play(p_anim, ANIM_BLEND, p_spd)
 
 func _ready() -> void:
 	assert(anim, "is null")
 	assert(actions, "is null")
 	assert(controller, "is null")
-	actions.action_started.connect(func(action: String):
-		play_action(action)
+	actions.action_started.connect(func(action: String, spd: float):
+		play_action(action, spd)
 	)
-	actions.action_ended.connect(stop_action)
 	controller.on_jump.connect(func():
-		anim.stop()
-		anim.play("jump")
+		#anim.stop()
+		anim.play("jump", ANIM_BLEND)
 	)
 	health.on_died.connect(func():
-		anim.stop()
-		anim.play("Defeat")
+		#anim.stop()
+		anim.play("Defeat", ANIM_BLEND)
 	)
 
 func _physics_process(delta: float) -> void:
@@ -40,7 +38,7 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	if controller.is_hitstun():
-		anim.play("getting_hit")
+		anim.play("getting_hit", ANIM_BLEND)
 		return
 	if anim.current_animation == "jump" and anim.is_playing():
 		return
@@ -50,16 +48,16 @@ func _physics_process(delta: float) -> void:
 		target_anim = "inair"
 	elif actions.player.velocity.x > 0.0:
 		if actions.player.is_opponent_on_right():
-			target_anim = "walk_forwards"
+			target_anim = "Walking_forward2"
 		else:
 			target_anim = "walk_backwards"
 	elif actions.player.velocity.x < 0.0:
 		if actions.player.is_opponent_on_right():
 			target_anim = "walk_backwards"
 		else:
-			target_anim = "walk_forwards"
+			target_anim = "Walking_forward2"
 	else:
 		target_anim = "idle"
 	
 	if not actions.is_performing_action() and anim.current_animation != target_anim:
-		anim.play(target_anim, 0.15)
+		anim.play(target_anim, ANIM_BLEND)
