@@ -1,11 +1,11 @@
 extends Camera3D
 class_name TargetCamera
 
-const MAGIC_NUMBER: float = 0.035
+const MAGIC_NUMBER: float = 0.034
 
 @export var Targets: Array[Node3D] = []
 @export var MaxZoom: float = 25.0
-@export_range(0.1, 16.0) var Smoothing: float = 2.4
+@export_range(0.1, 16.0) var Smoothing: float = 3.4
 @export_enum("Set Y", "Follow Y") var CameraMode: String = "Set Y"
 @export var Offset: Vector2 = Vector2(0, 2.33)
 
@@ -37,15 +37,19 @@ func _calculate_center() -> Vector2:
 	return point
 
 func _max_distance_between_targets() -> float:
-	var least_x: float
-	var most_x: float
+	var least_x: float = 9999
+	var most_x: float  = -9999
+	
 	for target in Targets:
 		if target.global_position.x < least_x:
 			least_x = target.global_position.x
 		if target.global_position.x > most_x:
 			most_x = target.global_position.x
 	
-	return abs(least_x - most_x)
+	Debug.add_line("leastx", least_x)
+	Debug.add_line("mostx", most_x)
+	
+	return abs(most_x - least_x)
 
 func _physics_process(delta: float) -> void:
 	# X & Y
@@ -60,6 +64,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Z
 	var distance := _max_distance_between_targets()
+	Debug.add_line("distance", distance)
 	target_camera_pos.z = _initial_distance + (distance * distance * MAGIC_NUMBER)
 	target_camera_pos.z = clamp(target_camera_pos.z, 0.0, MaxZoom)
 	
