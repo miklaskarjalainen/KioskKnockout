@@ -60,13 +60,25 @@ func _recharge_shield():
 		_recharge_timer -= RECHARGE_RATE
 		_block_health += 1
 
+func _perform_block():
+	if is_blocking():
+		return
+	if action.is_performing_action():
+		return
+	if not player.is_on_floor():
+		return
+	if _recovery_timer != 0 or _startup_timer != 0:
+		return
+	
+	_startup_timer = BLOCK_STARTUP
+	_recovery_timer = 0
+
 func _physics_process(delta: float) -> void:
 	_recharge_shield()
 	_discharge_shield()
 	
-	if Input.is_action_pressed(player.InputDown) and player.is_on_floor() and _recovery_timer == 0 and _startup_timer == 0 and not is_blocking():
-		_startup_timer = BLOCK_STARTUP
-		_recovery_timer = 0
+	if Input.is_action_pressed(player.InputDown):
+		_perform_block()
 	if not Input.is_action_pressed(player.InputDown) and _recovery_timer == 0 and is_blocking():
 		_recovery_timer = BLOCK_RECOVERY
 		_startup_timer = 0
@@ -79,6 +91,5 @@ func _physics_process(delta: float) -> void:
 	
 	if _recovery_timer > 0:
 		_recovery_timer -= 1
-	
 	
 	mesh.scale = Vector3(1.0,1.0,1.0) / (BLOCK_HEALTH/float(_block_health))
