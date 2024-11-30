@@ -46,9 +46,6 @@ func _max_distance_between_targets() -> float:
 		if target.global_position.x > most_x:
 			most_x = target.global_position.x
 	
-	Debug.add_line("leastx", least_x)
-	Debug.add_line("mostx", most_x)
-	
 	return abs(most_x - least_x)
 
 func _physics_process(delta: float) -> void:
@@ -64,7 +61,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Z
 	var distance := _max_distance_between_targets()
-	Debug.add_line("distance", distance)
+	Debug.add_line("damera_distance", distance)
 	target_camera_pos.z = _initial_distance + (distance * distance * MAGIC_NUMBER)
 	target_camera_pos.z = clamp(target_camera_pos.z, 0.0, MaxZoom)
 	
