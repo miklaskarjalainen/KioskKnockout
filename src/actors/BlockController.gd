@@ -10,7 +10,7 @@ const BLOCK_RECOVERY: int = 8
 const BLOCK_HEALTH: int = 60
 const RECHARGE_RATE: int = 8
 const DISCHARGE_RATE: int = 5
-const SHIELD_BREAK_STUN: int = 60
+const SHIELD_BREAK_STUN: int = 240
 
 var _is_blocking: bool = false
 var _block_health: int = BLOCK_HEALTH
@@ -23,6 +23,7 @@ var _discharge_timer: int = 0
 func damage(dmg: int):
 	_block_health -= dmg
 	if _block_health <= 0:
+		_set_block_state(false)
 		player.Controller.set_hitstun(SHIELD_BREAK_STUN)
 		_block_health = 1
 
@@ -63,6 +64,8 @@ func _recharge_shield():
 func _perform_block():
 	if is_blocking():
 		return
+	if player.Controller.is_hitstun():
+		return
 	if action.is_performing_action():
 		return
 	if not player.is_on_floor():
@@ -74,6 +77,7 @@ func _perform_block():
 	_recovery_timer = 0
 
 func _physics_process(delta: float) -> void:
+	Debug.add_line("blocking", is_blocking())
 	_recharge_shield()
 	_discharge_shield()
 	
