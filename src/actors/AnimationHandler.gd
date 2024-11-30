@@ -4,30 +4,29 @@ extends Node
 ## automatically.
 class_name AnimationController
 
-const ANIM_BLEND: float = 0.15
+const ANIM_BLEND: float = 0.25
 
 @export var anim: AnimationPlayer = null
 @export var actions: ActionController = null
 @export var controller: PlayerController = null
 @export var health: HealthComponent = null
+@export var block: BlockController = null
 
 func play_action(p_anim: String, p_spd: float):
-	#anim.stop()
 	anim.play(p_anim, ANIM_BLEND, p_spd)
 
 func _ready() -> void:
 	assert(anim, "is null")
 	assert(actions, "is null")
 	assert(controller, "is null")
+	assert(block, "is null")
 	actions.action_started.connect(func(action: String, spd: float):
 		play_action(action, spd)
 	)
 	controller.on_jump.connect(func():
-		#anim.stop()
 		anim.play("jump", ANIM_BLEND)
 	)
 	health.on_died.connect(func():
-		#anim.stop()
 		anim.play("Defeat", ANIM_BLEND)
 	)
 
@@ -44,7 +43,9 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	var target_anim = ""
-	if not actions.player.is_on_floor():
+	if block.is_blocking():
+		target_anim = "Block"
+	elif not actions.player.is_on_floor():
 		target_anim = "inair"
 	elif actions.player.velocity.x > 0.0:
 		if actions.player.is_opponent_on_right():

@@ -10,10 +10,13 @@ const BACK_PEDAL_MULTIPLIER := 0.8
 
 @export var player: Player = null
 @export var actions: ActionController = null
+@export var block: BlockController = null
 
 @export var MoveSpeed: float = 3.4
 @export var JumpVelocity: float = 13.2
 @export var JumpHoldStr: float = 18.5
+
+var is_blocking := true
 
 var _hitstun_timer   : int = 0 # How many frames left.
 var _knockback_timer : int = 0 # How many frames left.
@@ -52,8 +55,6 @@ func _ground_movement(delta: float) -> void:
 			player.velocity.x = input_dir * (MoveSpeed * BACK_PEDAL_MULTIPLIER)
 		else:
 			player.velocity.x = input_dir * MoveSpeed
-	else:
-		player.velocity.x = 0.0
 
 func _air_movement(delta: float):
 	if Input.is_action_pressed(player.InputJump) and player.velocity.y > 5.0:
@@ -83,9 +84,10 @@ func _physics_process(delta: float) -> void:
 		player.velocity.x = _knockback_amount.x
 		player.velocity.y = _knockback_amount.y
 	elif is_hitstun():
-		# What to do when hitstun
 		_do_gravity(delta)
 	elif actions.is_performing_action():
+		_do_gravity(delta)
+	elif not block.can_move():
 		_do_gravity(delta)
 	else:
 		# Normal movement
@@ -93,7 +95,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed(player.InputJump):
 			_jump_buffer = JUMP_BUFFER_FRAMES
 		if is_grounded():
-				_ground_movement(delta)
+			_ground_movement(delta)
 		else:
 			_air_movement(delta)
 	

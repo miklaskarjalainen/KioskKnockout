@@ -6,6 +6,7 @@ const MODEL_ROTATION_SPEED := 8.4
 @onready var Model: Node3D = $player_model
 @onready var Health: HealthComponent = $HealthComponent
 @onready var Controller: PlayerController = $PlayerController
+@onready var Block: BlockController = $BlockController
 
 @export var PlayerIndex := 0 # 0 is first player, 1 is second player
 @export var Opponent: Player = null
@@ -37,6 +38,15 @@ func is_opponent_on_right() -> bool:
 	return Opponent.global_position.x > global_position.x
 
 func damage(dmg: int, knockback_amount: Vector2, knockback_duration: int, hitstun: int):
+	if Block.is_blocking():
+		Block.damage(dmg)
+		# 10% of damage and  atleast 1.
+		dmg = max(dmg * 0.10, 1)
+		knockback_amount *= 0.10
+		Health.damage(dmg)
+		Controller.apply_knockback(knockback_amount, knockback_duration)
+		return
+	
 	Health.damage(dmg)
 	Controller.apply_knockback(knockback_amount, knockback_duration) 
 	Controller.set_hitstun(hitstun)

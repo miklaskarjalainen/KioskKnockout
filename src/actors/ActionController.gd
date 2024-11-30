@@ -10,6 +10,7 @@ signal action_ended()
 @onready var player: Player = get_parent()
 @export var anim_controller: AnimationController = null
 @export var ground_cast: RayCast3D = null
+@export var block: BlockController = null
 
 @onready var pos_rhand = Global.find_node_or_null(player, "pos_rhand")
 @onready var pos_lhand = Global.find_node_or_null(player, "pos_lhand")
@@ -66,6 +67,9 @@ func _submit_action():
 	var buf = _button_buffer.duplicate()
 	_button_buffer.clear()
 	
+	if not block.can_move():
+		return
+	
 	# TODO: dashes
 	if buf.size() >= 2:
 		if buf[0] == "left" and buf[1] == "left":
@@ -81,7 +85,6 @@ func _submit_action():
 	if buf.size() >= 2 and buf[1] == "up":
 		normal = "res://src/actors/Attacks/UpperCut.tscn"
 		special = "res://src/actors/Attacks/GroinKick.tscn"
-	
 	
 	if not player.is_on_floor():
 		normal = ""

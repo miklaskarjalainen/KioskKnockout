@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dp6sarh3doobm"]
+[gd_scene load_steps=11 format=3 uid="uid://dp6sarh3doobm"]
 
 [ext_resource type="Script" path="res://src/actors/Player.gd" id="1_8625e"]
 [ext_resource type="Script" path="res://src/actors/AnimationHandler.gd" id="2_bt2ar"]
@@ -6,10 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://c2uuuowdqrphi" path="res://assets/characters/generic.gltf" id="3_bcynx"]
 [ext_resource type="Script" path="res://src/actors/ActionController.gd" id="3_t468b"]
 [ext_resource type="Script" path="res://src/actors/HealthComponent.gd" id="4_qrskp"]
+[ext_resource type="Script" path="res://src/actors/BlockController.gd" id="6_fwpic"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rw8oh"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_4rug2"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xdqn2"]
+transparency = 1
+albedo_color = Color(0, 0.55, 1, 0.45098)
+
+[sub_resource type="SphereMesh" id="SphereMesh_wklba"]
+material = SubResource("StandardMaterial3D_xdqn2")
+radius = 0.75
+height = 1.5
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
@@ -19,30 +27,37 @@ script = ExtResource("1_8625e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.993321, 0)
 shape = SubResource("CapsuleShape3D_rw8oh")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00816, 0)
-visible = false
-mesh = SubResource("CapsuleMesh_4rug2")
-
-[node name="ActionController" type="Node" parent="." node_paths=PackedStringArray("anim_controller", "ground_cast")]
+[node name="ActionController" type="Node" parent="." node_paths=PackedStringArray("anim_controller", "ground_cast", "block")]
 script = ExtResource("3_t468b")
 anim_controller = NodePath("../AnimationHandler")
 ground_cast = NodePath("../GroundCloseness")
+block = NodePath("../BlockController")
 
-[node name="AnimationHandler" type="Node" parent="." node_paths=PackedStringArray("anim", "actions", "controller", "health")]
+[node name="AnimationHandler" type="Node" parent="." node_paths=PackedStringArray("anim", "actions", "controller", "health", "block")]
 script = ExtResource("2_bt2ar")
 anim = NodePath("../player_model/AnimationPlayer")
 actions = NodePath("../ActionController")
 controller = NodePath("../PlayerController")
 health = NodePath("../HealthComponent")
+block = NodePath("../BlockController")
 
-[node name="PlayerController" type="Node" parent="." node_paths=PackedStringArray("player", "actions")]
+[node name="PlayerController" type="Node" parent="." node_paths=PackedStringArray("player", "actions", "block")]
 script = ExtResource("2_rcsg1")
 player = NodePath("..")
 actions = NodePath("../ActionController")
+block = NodePath("../BlockController")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("4_qrskp")
+
+[node name="BlockController" type="Node" parent="." node_paths=PackedStringArray("action", "mesh")]
+script = ExtResource("6_fwpic")
+action = NodePath("../ActionController")
+mesh = NodePath("../block_mesh")
+
+[node name="block_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00816, 0)
+mesh = SubResource("SphereMesh_wklba")
 
 [node name="GroundCloseness" type="RayCast3D" parent="."]
 editor_description = "Used for jump special, cannot collide with env to allow special to work"
@@ -58,16 +73,16 @@ transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 
 transform = Transform3D(0.996195, -0.0871558, 0, 0.0871558, 0.996195, 0, 0, 0, 1, -0.0078125, 0.1875, 0)
 
 [node name="LArm2" parent="player_model/Node/Humanoid/Torso" index="2"]
-transform = Transform3D(-0.023456, -0.886167, -0.462773, 0.0386909, 0.461749, -0.886167, 0.998976, -0.038691, 0.0234558, -0.015625, 0.109375, 0.171875)
+transform = Transform3D(-0.234212, -0.0472106, -0.971039, -0.00895491, 0.998883, -0.0464044, 0.972144, -0.00217288, -0.234373, -0.015625, 0.109375, 0.171875)
 
 [node name="LEblow" parent="player_model/Node/Humanoid/Torso/LArm2" index="1"]
-transform = Transform3D(0.996195, 1.49012e-08, -0.0871557, 0.0754791, -0.5, 0.86273, -0.0435779, -0.866025, -0.498097, -0.0015625, -0.0078125, 0.203125)
+transform = Transform3D(0.955485, -0.134733, -0.262482, 0.28866, 0.242849, 0.926121, -0.0610356, -0.960661, 0.270931, -0.0015625, -0.0078125, 0.203125)
 
 [node name="RArm2" parent="player_model/Node/Humanoid/Torso" index="3"]
-transform = Transform3D(0.152779, -0.766321, 0.624029, -0.137764, 0.608761, 0.781301, -0.978611, -0.205335, -0.012566, -0.015625, 0.109375, -0.171875)
+transform = Transform3D(-0.149924, 0.0286261, 0.988284, -0.168075, 0.984294, -0.0540078, -0.974307, -0.174203, -0.142758, -0.015625, 0.109375, -0.171875)
 
 [node name="RElbow" parent="player_model/Node/Humanoid/Torso/RArm2" index="1"]
-transform = Transform3D(0.843391, 0.0468288, 0.535255, 0.536788, -0.11689, -0.835581, 0.0234367, 0.99204, -0.123721, -0.0015625, -0.0015625, -0.203125)
+transform = Transform3D(0.843391, -0.248097, 0.476591, 0.536788, 0.350373, -0.767527, 0.0234366, 0.903153, 0.428678, -0.0015625, -0.0015625, -0.203125)
 
 [node name="LLeg" parent="player_model/Node/Humanoid" index="1"]
 transform = Transform3D(0.953717, -0.300706, 0, 0.300706, 0.953717, 0, 0, 0, 1, 0, -0.28125, 0.0625)
