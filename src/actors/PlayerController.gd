@@ -79,7 +79,12 @@ func _physics_process(delta: float) -> void:
 	if player.is_on_floor():
 		player.velocity.x = 0.0
 	
+	if Input.is_action_just_pressed(player.InputJump):
+		_jump_buffer = JUMP_BUFFER_FRAMES
+	
 	if _knockback_timer > 0:
+		if player.is_on_wall():
+			_knockback_amount.x *= -1
 		# What to do if under the effect of a knockbock
 		player.velocity.x = _knockback_amount.x
 		player.velocity.y = _knockback_amount.y
@@ -92,8 +97,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		# Normal movement
 		_do_gravity(delta)
-		if Input.is_action_just_pressed(player.InputJump):
-			_jump_buffer = JUMP_BUFFER_FRAMES
 		if is_grounded():
 			_ground_movement(delta)
 		else:
