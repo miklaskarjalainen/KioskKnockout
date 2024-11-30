@@ -3,6 +3,7 @@ class_name Player
 
 const MODEL_ROTATION_SPEED := 8.4
 
+@onready var Action: ActionController = $ActionController
 @onready var Model: Node3D = $player_model
 @onready var Health: HealthComponent = $HealthComponent
 @onready var Controller: PlayerController = $PlayerController
