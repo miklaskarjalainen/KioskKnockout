@@ -34,7 +34,7 @@ func _ready() -> void:
 	controller.on_jump.connect(func():
 		anim.play("jump", ANIM_BLEND)
 	)
-	health.on_damaged.connect(func():
+	health.on_damaged.connect(func(_dmg: int):
 		anim.play("getting_hit", ANIM_BLEND)
 	)
 	health.on_died.connect(func():
