@@ -1,12 +1,14 @@
-extends Node3D
+extends Node
 class_name SkinChanger
+
+@export var model: Node3D = null
 
 func set_skin_texture(path: String):
 	var material := StandardMaterial3D.new()
 	material.set('albedo_texture', load(path))
 	material.set('texture_filter', 0) # Nearest neighbour
 	material.duplicate(true)
-	_apply_texture(self, material)
+	_apply_texture(model, material)
 
 func _apply_texture(base: Node, material: Material):
 	for child in base.get_children():

@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://src/actors/AiComponent.gd" id="4_5xm56"]
 [ext_resource type="Script" path="res://src/actors/HealthComponent.gd" id="4_qrskp"]
 [ext_resource type="Script" path="res://src/actors/BlockController.gd" id="6_fwpic"]
-[ext_resource type="Script" path="res://assets/characters/SkinChanger.gd" id="9_xuwwm"]
+[ext_resource type="Script" path="res://src/actors/SkinChanger.gd" id="9_xuwwm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rw8oh"]
 
@@ -62,6 +62,10 @@ script = ExtResource("6_fwpic")
 action = NodePath("../ActionController")
 mesh = NodePath("../block_mesh")
 
+[node name="SkinChanger" type="Node" parent="." node_paths=PackedStringArray("model")]
+script = ExtResource("9_xuwwm")
+model = NodePath("../player_model")
+
 [node name="block_mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00816, 0)
 mesh = SubResource("SphereMesh_wklba")
@@ -73,7 +77,6 @@ target_position = Vector3(0, -2, 0)
 
 [node name="player_model" parent="." instance=ExtResource("3_bcynx")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-script = ExtResource("9_xuwwm")
 
 [node name="Torso" parent="player_model/Node/Humanoid" index="0"]
 transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 0, -0.03125, 0)
