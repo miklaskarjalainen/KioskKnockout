@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dh5nkr4alh8x7"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://dh5nkr4alh8x7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e7o7r"]
 bg_color = Color(0.17, 0.17, 0.17, 1)
@@ -69,6 +69,22 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udp84"]
+bg_color = Color(0.640847, 0.207873, 0.0395658, 1)
+skew = Vector2(0.3, 0.005)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ugss"]
+bg_color = Color(0.64, 0.64, 0.0384, 1)
+skew = Vector2(0.3, 0.005)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [resource]
 Button/styles/disabled = SubResource("StyleBoxFlat_e7o7r")
 Button/styles/focus = SubResource("StyleBoxEmpty_2pitc")
@@ -79,3 +95,7 @@ Button/styles/pressed = SubResource("StyleBoxFlat_wkavr")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_4sfh7")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_5bgx2")
 ProgressBar/styles/low_health_fill = SubResource("StyleBoxFlat_40abh")
+ProgressBarRed/base_type = &"ProgressBar"
+ProgressBarRed/styles/fill = SubResource("StyleBoxFlat_udp84")
+ProgressBarYellow/base_type = &"ProgressBar"
+ProgressBarYellow/styles/fill = SubResource("StyleBoxFlat_3ugss")

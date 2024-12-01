@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c01d6uqplmoe1"]
+[gd_scene load_steps=4 format=3 uid="uid://c01d6uqplmoe1"]
 
 [ext_resource type="Script" path="res://src/singletons/Gui.gd" id="1_irayg"]
+[ext_resource type="Script" path="res://src/gui/CustomHealthBar.gd" id="2_aixh1"]
 [ext_resource type="Script" path="res://src/gui/SfxButton.gd" id="2_xnwok"]
 
 [node name="GUI" type="Control"]
@@ -29,6 +30,7 @@ layout_mode = 2
 value = 50.0
 fill_mode = 1
 show_percentage = false
+script = ExtResource("2_aixh1")
 metadata/_edit_use_anchors_ = true
 
 [node name="Player2" type="ProgressBar" parent="container"]
@@ -36,6 +38,7 @@ custom_minimum_size = Vector2(296, 32)
 layout_mode = 2
 value = 50.0
 show_percentage = false
+script = ExtResource("2_aixh1")
 metadata/_edit_use_anchors_ = true
 
 [node name="PauseScreen" type="ColorRect" parent="."]
