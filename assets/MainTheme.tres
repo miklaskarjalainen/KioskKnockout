@@ -51,9 +51,11 @@ shadow_size = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4sfh7"]
 bg_color = Color(0.172833, 0.172833, 0.172833, 1)
+skew = Vector2(0.3, 0.005)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5bgx2"]
 bg_color = Color(0.00687911, 0.457368, 0.194386, 1)
+skew = Vector2(0.3, 0.005)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
@@ -61,6 +63,7 @@ corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40abh"]
 bg_color = Color(0.640847, 0.207873, 0.0395658, 1)
+skew = Vector2(0.3, 0.005)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
