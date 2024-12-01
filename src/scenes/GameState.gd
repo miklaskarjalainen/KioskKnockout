@@ -14,11 +14,13 @@ func _ready() -> void:
 			target.Health.on_died.connect(func(): _on_player_death(target))
 	
 	GUI.start_timer()
-	AudioManager.play("res://assets/sounds/music/Infinite Realities.ogg", AudioManager.Audio_Player.Music)
+	if Ingame:
+		AudioManager.play("res://assets/sounds/music/Infinite Realities.ogg", AudioManager.Audio_Player.Music)
 
 func _exit_tree() -> void:
 	Global.in_game = false
-	AudioManager.play("res://assets/sounds/music/Generating Worlds.ogg", AudioManager.Audio_Player.Music)
+	if Ingame:
+		AudioManager.play("res://assets/sounds/music/Generating Worlds.ogg", AudioManager.Audio_Player.Music)
 
 func _on_player_death(player: Player) -> void:
 	GUI.ko_timer()
