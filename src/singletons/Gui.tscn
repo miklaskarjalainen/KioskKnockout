@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c01d6uqplmoe1"]
+[gd_scene load_steps=3 format=3 uid="uid://c01d6uqplmoe1"]
 
 [ext_resource type="Script" path="res://src/singletons/Gui.gd" id="1_irayg"]
+[ext_resource type="Script" path="res://src/gui/SfxButton.gd" id="2_xnwok"]
 
 [node name="GUI" type="Control"]
 process_mode = 3
@@ -71,11 +72,13 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 text = "Continue"
+script = ExtResource("2_xnwok")
 
 [node name="PSQuitBtn" type="Button" parent="PauseScreen/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Quit to title screen"
+script = ExtResource("2_xnwok")
 
 [node name="TimerLabel" type="Label" parent="."]
 visible = false
@@ -106,6 +109,7 @@ anchor_top = 0.71875
 anchor_right = 0.948438
 anchor_bottom = 0.875
 text = "Play again"
+script = ExtResource("2_xnwok")
 metadata/_edit_use_anchors_ = true
 
 [node name="VSQuitBtn" type="Button" parent="VictoryScreen"]
@@ -115,6 +119,7 @@ anchor_top = 0.71875
 anchor_right = 0.289063
 anchor_bottom = 0.875
 text = "Quit to title screen"
+script = ExtResource("2_xnwok")
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="PauseScreen/VBoxContainer/ContinueBtn" to="." method="_on_continue_btn_pressed"]

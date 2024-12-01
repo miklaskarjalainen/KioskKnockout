@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cc65uf8d6ov47"]
+[gd_scene load_steps=3 format=3 uid="uid://cc65uf8d6ov47"]
 
 [ext_resource type="Script" path="res://src/scenes/TitleScreen.gd" id="1_bry7n"]
+[ext_resource type="Script" path="res://src/gui/SfxButton.gd" id="2_w2rp5"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -68,6 +69,7 @@ focus_neighbor_bottom = NodePath("../OptionsButton")
 focus_next = NodePath("../OptionsButton")
 focus_previous = NodePath("../ExitButton")
 text = "Play"
+script = ExtResource("2_w2rp5")
 
 [node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
@@ -81,6 +83,7 @@ focus_next = NodePath("../AboutButton")
 focus_previous = NodePath("../PlayButton")
 text = "Options
 "
+script = ExtResource("2_w2rp5")
 
 [node name="AboutButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
@@ -93,6 +96,7 @@ focus_neighbor_bottom = NodePath("../ExitButton")
 focus_next = NodePath("../ExitButton")
 focus_previous = NodePath("../OptionsButton")
 text = "About"
+script = ExtResource("2_w2rp5")
 
 [node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
@@ -105,6 +109,7 @@ focus_neighbor_bottom = NodePath("../PlayButton")
 focus_next = NodePath("../PlayButton")
 focus_previous = NodePath("../AboutButton")
 text = "Exit"
+script = ExtResource("2_w2rp5")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/PlayButton" to="." method="_on_play_button_pressed"]
