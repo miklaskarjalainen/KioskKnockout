@@ -29,11 +29,13 @@ func _ready() -> void:
 	anim.animation_finished.connect(func(anim_name: String):
 		if anim_name == _action_anim:
 			anim.play("idle", ANIM_BLEND)
-			print("idle")
 	)
 	
 	controller.on_jump.connect(func():
 		anim.play("jump", ANIM_BLEND)
+	)
+	health.on_damaged.connect(func():
+		anim.play("getting_hit", ANIM_BLEND)
 	)
 	health.on_died.connect(func():
 		anim.play("Defeat", ANIM_BLEND)
@@ -46,7 +48,8 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	if controller.is_hitstun():
-		anim.play("getting_hit", ANIM_BLEND)
+		if anim.current_animation != "getting_hit":
+			anim.play("hitstun", ANIM_BLEND)
 		return
 	if anim.current_animation == "jump" and anim.is_playing():
 		return
