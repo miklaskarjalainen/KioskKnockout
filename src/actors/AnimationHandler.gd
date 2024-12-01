@@ -11,6 +11,7 @@ const ANIM_BLEND: float = 0.25
 @export var controller: PlayerController = null
 @export var health: HealthComponent = null
 @export var block: BlockController = null
+var _action_anim: String = ""
 
 func play_action(p_anim: String, p_spd: float):
 	anim.play(p_anim, ANIM_BLEND, p_spd)
@@ -20,9 +21,17 @@ func _ready() -> void:
 	assert(actions, "is null")
 	assert(controller, "is null")
 	assert(block, "is null")
+	
 	actions.action_started.connect(func(action: String, spd: float):
+		_action_anim = action
 		play_action(action, spd)
 	)
+	anim.animation_finished.connect(func(anim_name: String):
+		if anim_name == _action_anim:
+			anim.play("idle", ANIM_BLEND)
+			print("idle")
+	)
+	
 	controller.on_jump.connect(func():
 		anim.play("jump", ANIM_BLEND)
 	)
