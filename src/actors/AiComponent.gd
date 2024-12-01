@@ -20,6 +20,11 @@ func _weight_options() -> Dictionary:
 		player.InputSpecial: 0,
 	}
 	
+	if opponent.Health.is_dead():
+		opts[player.InputDown] = 400
+		opts[player.InputUp]   = 400
+		opts[_last_action]   = 1000
+	
 	# If opponent is really far, prefer walking towards it.
 	if dist_to_opp() > 1.6:
 		opts[player.InputDown] = 0
@@ -30,7 +35,7 @@ func _weight_options() -> Dictionary:
 			opts[player.InputRight] += 25
 		else:
 			opts[player.InputLeft] += 25
-	else:
+	elif not opponent.Health.is_dead():
 		# Otherwise prefer making an attack.
 		opts[player.InputDown] = 15
 		opts[player.InputNormal] = 25
