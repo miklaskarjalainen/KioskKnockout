@@ -40,6 +40,8 @@ func is_opponent_on_right() -> bool:
 
 func damage(dmg: int, knockback_amount: Vector2, knockback_duration: int, hitstun: int):
 	if Block.is_blocking():
+		AudioManager.play("res://assets/sounds/sfx/block1.ogg", AudioManager.Audio_Player.SFX)
+		
 		Block.damage(dmg)
 		# 10% of damage and  atleast 1.
 		dmg = max(dmg * 0.10, 1)
@@ -47,6 +49,11 @@ func damage(dmg: int, knockback_amount: Vector2, knockback_duration: int, hitstu
 		Health.damage(dmg)
 		Controller.apply_knockback(knockback_amount, knockback_duration)
 		return
+	
+	AudioManager.play("res://assets/sounds/sfx/hit1.ogg", AudioManager.Audio_Player.SFX)
+	
+	if dmg > randi_range(10, 18):
+		AudioManager.play("res://assets/sounds/sfx/voice_hit1.ogg", AudioManager.Audio_Player.SFX)
 	
 	Health.damage(dmg)
 	Controller.apply_knockback(knockback_amount, knockback_duration) 
