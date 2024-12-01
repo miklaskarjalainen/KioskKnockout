@@ -19,6 +19,7 @@ min_dmg = 4
 max_dmg = 6
 knockback_amount = Vector2(5, 0)
 knockback_duration = 8
+play_sfx = "res://assets/sounds/sfx/whiff1.ogg"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_wuhdk")

@@ -19,6 +19,7 @@ static var visible_hitboxes: bool = false
 @export var knockback_amount := Vector2(0,0)
 @export_range(0, 30) var knockback_duration: int = 0 ## Frames
 @export var play_anim: String = "punch"
+@export var play_sfx: String = ""
 
 var _existed: int = 0 # How many frames this attack has existed.
 var _excludes: Array[Node3D] = []
@@ -37,6 +38,8 @@ func _physics_process(_delta: float) -> void:
 	
 	if _existed == startup:
 		_enable_hitbox()
+		if not play_sfx.is_empty():
+			AudioManager.play(play_sfx, AudioManager.Audio_Player.SFX)
 	
 	var after_startup = _existed - startup
 	if after_startup == active:
