@@ -57,4 +57,7 @@ func _physics_process(delta: float) -> void:
 		var target_rot = get_model_target_rotation()
 		Model.rotation.y = lerp(Model.rotation.y, target_rot, delta * MODEL_ROTATION_SPEED)
 	
+	if Health.is_dead() and not is_on_floor():
+		Model.rotation.y = lerp(Model.rotation.y, Model.rotation.y+180, delta * MODEL_ROTATION_SPEED)
+	
 	Debug.add_line("health", Health.current_health)
