@@ -7,11 +7,22 @@ extends Node
 const EXTRA_JUMP_HEIGHT: float = 4.2
 const EXTRA_GRAVITY: float = 12.0
 
+var _recovery_phase: bool = false
+var _recovery_frames: int = 32
+
 func _ready() -> void:
 	attacker.velocity.y = EXTRA_JUMP_HEIGHT
 
 func _physics_process(delta: float) -> void:
-	attacker.velocity.y -= EXTRA_GRAVITY * delta
+	if not _recovery_phase:
+		attacker.velocity.y -= EXTRA_GRAVITY * delta
+		
+		if attacker.is_on_floor():
+			_recovery_phase = true
+	else:
+		_recovery_frames -= 1
+		if _recovery_frames <= 0:
+			get_parent().queue_free()
+		
+		
 	
-	if attacker.is_on_floor():
-		get_parent().queue_free()

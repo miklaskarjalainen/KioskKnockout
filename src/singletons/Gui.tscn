@@ -77,8 +77,6 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Quit to title screen"
 
-[node name="Timer" type="Timer" parent="."]
-
 [node name="TimerLabel" type="Label" parent="."]
 visible = false
 layout_mode = 0
