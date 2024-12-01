@@ -59,8 +59,8 @@ func _pick_weighted(dict: Dictionary):
 	return null
 
 var _last_action: String = ""
+# Press an action, release the action pressed previous frame.
 func _press(ac: String):
-	print(ac)
 	if _last_action == ac:
 		return
 	
