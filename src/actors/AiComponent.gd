@@ -8,6 +8,7 @@ extends Node
 func dist_to_opp() -> float:
 	return abs(player.global_position.x - opponent.global_position.x)
 
+# Get a weighted list of all actions the ai can make.
 func _weight_options() -> Dictionary:
 	var opts := {
 		player.InputLeft   : 1,
@@ -19,6 +20,7 @@ func _weight_options() -> Dictionary:
 		player.InputSpecial: 0,
 	}
 	
+	# If opponent is really far, prefer walking towards it.
 	if dist_to_opp() > 1.6:
 		opts[player.InputDown] = 0
 		opts[player.InputNormal] = 0
@@ -29,24 +31,27 @@ func _weight_options() -> Dictionary:
 		else:
 			opts[player.InputLeft] += 25
 	else:
+		# Otherwise prefer making an attack.
 		opts[player.InputDown] = 15
 		opts[player.InputNormal] = 25
 		opts[player.InputSpecial] = 25
+	
+	# Prefer using the same action as previous frame.
 	if not _last_action.is_empty():
 		opts[_last_action] += 100
 	
+	# Prefer blocking an attack
 	if dist_to_opp() < 2.0 and opponent.Action.is_performing_action():
 		opts[player.InputDown] += 80
 	
 	return opts
 
+# Picks randomly 1 key with the biggest weight
 func _pick_weighted(dict: Dictionary):
 	var weight_sum: int = 0
 	for w in dict.values():
 		weight_sum += w
 	var result = randi_range(0, weight_sum)
-	Debug.add_line("weight", weight_sum)
-	Debug.add_line("rsult", result)
 	for v in dict.keys():
 		if result <= dict[v]:
 			return v
