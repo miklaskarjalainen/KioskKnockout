@@ -99,4 +99,6 @@ func _physics_process(delta: float) -> void:
 		_press(ac)
 
 func _exit_tree() -> void:
+	if _last_action.is_empty():
+		return
 	Input.action_release(_last_action)

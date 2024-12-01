@@ -107,3 +107,7 @@ func _create_mesh_for_collision_shape(shape: CollisionShape3D):
 	node.mesh = mesh
 	node.material = HITBOX_MATERIAL
 	shape.add_child.call_deferred(node)
+
+func _exit_tree() -> void:
+	# Fixes a race-condition with stop_on_hit, if the attack is freed before the timer runs out.
+	get_tree().paused = false
