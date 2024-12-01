@@ -6,7 +6,6 @@ var player_2_path: NodePath = ""
 @onready var player1_bar: ProgressBar = $container/Player1
 @onready var player2_bar: ProgressBar = $container/Player2
 @onready var pause_screen: ColorRect = $PauseScreen
-@onready var timer: Timer = $Timer
 @onready var timer_label: Label = $TimerLabel
 @onready var victory_screen: ColorRect = $VictoryScreen
 
@@ -22,7 +21,6 @@ func _update_health_bars() -> void:
 
 func _physics_process(delta: float) -> void:
 	_update_health_bars()
-	timer_label.text = str(ceil(timer.time_left))
 
 func _ready() -> void:
 	timer_label.hide()
@@ -58,17 +56,21 @@ func _on_ps_quit_btn_pressed() -> void:
 	pause_screen.hide()
 
 func ko_timer() -> void:
-	timer.start(3)
+	Engine.time_scale = 0.5
+	
 	timer_label.show()
-	timer.timeout.connect(
-		func() -> void:
-			## FIXME: you can still toggle pause menu while
-			## the victory screen is shown which toggles the pause state
-			get_tree().paused = true
-			timer_label.hide()
-			victory_screen.show()
-			timer.stop()
-	)
+	timer_label.text = "3"
+	await get_tree().create_timer(1.0 * Engine.time_scale).timeout
+	timer_label.text = "2"
+	await get_tree().create_timer(1.0 * Engine.time_scale).timeout
+	timer_label.text = "1"
+	await get_tree().create_timer(1.0 * Engine.time_scale).timeout
+	
+	Engine.time_scale = 1.0
+	
+	get_tree().paused = true
+	timer_label.hide()
+	victory_screen.show()
 
 func _on_vs_quit_btn_pressed() -> void:
 	get_tree().paused = false
