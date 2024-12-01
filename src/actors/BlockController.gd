@@ -70,6 +70,8 @@ func _perform_block():
 		return
 	if not player.is_on_floor():
 		return
+	if player.Health.is_dead():
+		return
 	if _recovery_timer != 0 or _startup_timer != 0:
 		return
 	
