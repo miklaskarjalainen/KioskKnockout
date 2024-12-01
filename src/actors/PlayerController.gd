@@ -82,7 +82,7 @@ func _physics_process(delta: float) -> void:
 	
 	if _knockback_timer > 0:
 		if player.is_on_wall():
-			_knockback_amount.x *= -1
+			_knockback_amount.x *= -0.8
 		# What to do if under the effect of a knockbock
 		player.velocity.x = _knockback_amount.x
 		player.velocity.y = _knockback_amount.y
