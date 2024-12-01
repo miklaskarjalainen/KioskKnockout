@@ -2,7 +2,7 @@ extends Control
 
 @export var player_container: PlayerFrameContainer = null
 
-const MIN_PLAYER_COUNT: int = 2
+const MIN_PLAYER_COUNT: int = 1
 const MAX_PLAYER_COUNT: int = 2
 
 var _players: Array[String] = []
@@ -52,6 +52,9 @@ func _input(event: InputEvent) -> void:
 			_add_player(device)
 
 func _on_play_pressed() -> void:
+	if _players.size() == 1:
+		_players.push_back("_ai")
+		Console.info("AI enabled")
 	Global.players_controller_prefix = _players
 	Global.change_main_scene_to("res://src/scenes/Arena1.tscn")
 

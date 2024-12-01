@@ -9,6 +9,7 @@ const MODEL_ROTATION_SPEED := 8.4
 @onready var Health: HealthComponent = $HealthComponent
 @onready var Controller: PlayerController = $PlayerController
 @onready var Block: BlockController = $BlockController
+@onready var AI: CharacterAI = $AiComponent
 
 @export var PlayerIndex := 0 # 0 is first player, 1 is second player
 @export var Opponent: Player = null
@@ -28,6 +29,9 @@ func _ready():
 	assert(Model, "Model not assigned")
 	assert(ModelSkin, "is null")
 	Model.rotation.y = get_model_target_rotation()
+	
+	if Global.players_controller_prefix[PlayerIndex] == "_ai":
+		AI.enabled = true
 	
 	if PlayerIndex == 0:
 		GUI.player_1_path = get_path()
