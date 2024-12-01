@@ -4,7 +4,7 @@ class_name Player
 const MODEL_ROTATION_SPEED := 8.4
 
 @onready var Action: ActionController = $ActionController
-@onready var Model: Node3D = $player_model
+@onready var Model: SkinChanger = $player_model
 @onready var Health: HealthComponent = $HealthComponent
 @onready var Controller: PlayerController = $PlayerController
 @onready var Block: BlockController = $BlockController
@@ -28,8 +28,10 @@ func _ready():
 	
 	if PlayerIndex == 0:
 		GUI.player_1_path = get_path()
+		Model.set_skin_texture("res://assets/characters/P1_texture.png")
 	elif PlayerIndex == 1:
 		GUI.player_2_path = get_path()
+		Model.set_skin_texture("res://assets/characters/P2_texture.png")
 
 func get_model_target_rotation() -> float:
 	var opponent_on_right := is_opponent_on_right()

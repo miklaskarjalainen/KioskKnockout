@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dp6sarh3doobm"]
+[gd_scene load_steps=13 format=3 uid="uid://dp6sarh3doobm"]
 
 [ext_resource type="Script" path="res://src/actors/Player.gd" id="1_8625e"]
 [ext_resource type="Script" path="res://src/actors/AnimationHandler.gd" id="2_bt2ar"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://src/actors/AiComponent.gd" id="4_5xm56"]
 [ext_resource type="Script" path="res://src/actors/HealthComponent.gd" id="4_qrskp"]
 [ext_resource type="Script" path="res://src/actors/BlockController.gd" id="6_fwpic"]
+[ext_resource type="Script" path="res://assets/characters/SkinChanger.gd" id="9_xuwwm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rw8oh"]
 
@@ -70,6 +71,7 @@ target_position = Vector3(0, -2, 0)
 
 [node name="player_model" parent="." instance=ExtResource("3_bcynx")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("9_xuwwm")
 
 [node name="Torso" parent="player_model/Node/Humanoid" index="0"]
 transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 0, -0.03125, 0)
