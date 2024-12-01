@@ -16,8 +16,6 @@ const BACK_PEDAL_MULTIPLIER := 0.8
 @export var JumpVelocity: float = 13.2
 @export var JumpHoldStr: float = 18.5
 
-var is_blocking := true
-
 var _hitstun_timer   : int = 0 # How many frames left.
 var _knockback_timer : int = 0 # How many frames left.
 var _knockback_amount := Vector2(0,0)
@@ -88,7 +86,7 @@ func _physics_process(delta: float) -> void:
 		# What to do if under the effect of a knockbock
 		player.velocity.x = _knockback_amount.x
 		player.velocity.y = _knockback_amount.y
-	elif is_hitstun():
+	elif is_hitstun() or player.Health.is_dead():
 		_do_gravity(delta)
 	elif actions.is_performing_action():
 		_do_gravity(delta)

@@ -67,6 +67,8 @@ func _submit_action():
 	var buf = _button_buffer.duplicate()
 	_button_buffer.clear()
 	
+	if player.Health.is_dead():
+		return
 	if not block.can_move():
 		return
 	
