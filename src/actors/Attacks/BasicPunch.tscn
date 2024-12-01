@@ -10,15 +10,15 @@ collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_ms50o")
 stop_on_hit = 0.04
-startup = 8
+startup = 5
 active = 12
-recovery = 12
-hitstun = 12
+recovery = 7
+hitstun = 13
 anim_speed = 1.3
 min_dmg = 4
 max_dmg = 6
-knockback_amount = Vector2(5, 0)
-knockback_duration = 8
+knockback_amount = Vector2(4, 0)
+knockback_duration = 6
 play_sfx = "res://assets/sounds/sfx/whiff1.ogg"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

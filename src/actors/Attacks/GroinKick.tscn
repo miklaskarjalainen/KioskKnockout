@@ -13,13 +13,13 @@ stop_on_hit = 0.08
 startup = 8
 active = 12
 recovery = 15
-hitstun = 12
+hitstun = 60
 anim_speed = 1.1
 hitbox_location = 3
 min_dmg = 12
 max_dmg = 18
 knockback_amount = Vector2(3, 8)
-knockback_duration = 8
+knockback_duration = 10
 play_anim = "Groinpain"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

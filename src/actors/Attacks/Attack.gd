@@ -9,7 +9,7 @@ static var visible_hitboxes: bool = false
 @export_range(0, 60) var startup  : int = 0 ## How many frames until the attack becomes active
 @export_range(0, 60) var active   : int = 0 ## How many frames the attack can do damage
 @export_range(0, 60) var recovery : int = 0 ## How many frames until the character can move. (After active frames)
-@export_range(0, 60) var hitstun  : int = 0 ## How many frames the target will be stun if hit, should be greater or equal to knockback_duration. (For now atleast).
+@export_range(0, 240) var hitstun  : int = 0 ## How many frames the target will be stun if hit, should be greater or equal to knockback_duration. (For now atleast).
 @export_range(0, 60) var blockstun: int = 0 ## How many frames the target will be stun if blocked
 @export_range(0.2, 5.0, 0.1) var anim_speed: float = 1.0
 @export_category("Damage")
