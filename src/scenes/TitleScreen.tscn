@@ -57,24 +57,28 @@ layout_mode = 2
 
 [node name="GameTitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-anchor_top = 0.208904
-anchor_right = 1.0
-anchor_bottom = 0.285959
+anchor_left = 0.235294
+anchor_top = 0.0684932
+anchor_right = 0.764706
+anchor_bottom = 0.164384
 size_flags_vertical = 6
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 32
-text = "LCNC - Project"
+text = "Kiosk Knockout"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-anchor_left = 0.367647
-anchor_top = 0.479452
-anchor_right = 0.632353
-anchor_bottom = 0.868151
+anchor_left = 0.0367647
+anchor_top = 0.60274
+anchor_right = 0.323529
+anchor_bottom = 1.0
 size_flags_horizontal = 4
 size_flags_vertical = 6
+theme_override_constants/separation = 18
 alignment = 1
 metadata/_edit_use_anchors_ = true
 

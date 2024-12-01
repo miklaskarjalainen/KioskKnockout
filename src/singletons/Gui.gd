@@ -73,9 +73,10 @@ func ko_timer() -> void:
 	victory_screen.show()
 
 func start_timer() -> void:
+	if not Global.in_game:
+		return
 	get_tree().paused = true
-	if Global.in_game:
-		Engine.time_scale = 0.5
+	Engine.time_scale = 0.5
 	
 	timer_label.show()
 	timer_label.text = "3"
@@ -85,8 +86,7 @@ func start_timer() -> void:
 	timer_label.text = "1"
 	await get_tree().create_timer(1.0 * Engine.time_scale).timeout
 	timer_label.text = "Fight!"
-	if Global.in_game:
-		Engine.time_scale = 1.0
+	Engine.time_scale = 1.0
 	await get_tree().create_timer(0.5 * Engine.time_scale).timeout
 
 	get_tree().paused = false

@@ -1,4 +1,53 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dh5nkr4alh8x7"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dh5nkr4alh8x7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e7o7r"]
+bg_color = Color(0.17, 0.17, 0.17, 1)
+skew = Vector2(0.3, 0.005)
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.0646966, 0.0646965, 0.0646965, 1)
+border_blend = true
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.156863)
+shadow_size = 4
+shadow_offset = Vector2(1, 4)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2pitc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvc6b"]
+bg_color = Color(0.0474567, 0.664435, 0.630518, 1)
+skew = Vector2(0.3, 0.005)
+corner_detail = 20
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+shadow_color = Color(0, 0, 0, 0.156863)
+shadow_size = 4
+shadow_offset = Vector2(1, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkavr"]
+bg_color = Color(0.325333, 0.61, 0, 1)
+skew = Vector2(0.3, 0.005)
+border_width_right = 2
+border_width_bottom = 2
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+shadow_color = Color(0, 0, 0, 0.156863)
+shadow_size = 4
+shadow_offset = Vector2(1, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71i7p"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.61, 0.366, 0, 1)
+skew = Vector2(0.3, 0.005)
+border_color = Color(0.0646966, 0.0646965, 0.0646965, 1)
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.156863)
+shadow_size = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4sfh7"]
 bg_color = Color(0.172833, 0.172833, 0.172833, 1)
@@ -18,6 +67,12 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [resource]
+Button/styles/disabled = SubResource("StyleBoxFlat_e7o7r")
+Button/styles/focus = SubResource("StyleBoxEmpty_2pitc")
+Button/styles/hover = SubResource("StyleBoxFlat_yvc6b")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_wkavr")
+Button/styles/normal = SubResource("StyleBoxFlat_71i7p")
+Button/styles/pressed = SubResource("StyleBoxFlat_wkavr")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_4sfh7")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_5bgx2")
 ProgressBar/styles/low_health_fill = SubResource("StyleBoxFlat_40abh")
