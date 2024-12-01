@@ -9,6 +9,8 @@ func _ready() -> void:
 	for target in Camera.Targets:
 		if target is Player:
 			target.Health.on_died.connect(func(): _on_player_death(target))
+	
+	GUI.start_timer()
 
 func _exit_tree() -> void:
 	Global.in_game = false

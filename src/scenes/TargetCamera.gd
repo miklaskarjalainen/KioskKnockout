@@ -24,6 +24,7 @@ func _ready() -> void:
 	top_level = true
 	assert(Targets != null and Targets.size(), "Targets is empty")
 	_initial_distance = global_position.z
+	global_position.z += 25
 
 func _vec3_to_vec2(vec: Vector3) -> Vector2:
 	return Vector2(vec.x, vec.y)
