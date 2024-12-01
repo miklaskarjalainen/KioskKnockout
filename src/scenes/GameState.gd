@@ -2,9 +2,12 @@ extends Node
 class_name GameState
 
 @export var Camera: TargetCamera
+@export var Ingame: bool = true
 
 func _ready() -> void:
-	Global.in_game = true
+	Global.in_game = Ingame
+	Engine.time_scale = 1.0 if Ingame else 0.65
+	
 	assert(Camera, "Camera is not assigned")
 	for target in Camera.Targets:
 		if target is Player:

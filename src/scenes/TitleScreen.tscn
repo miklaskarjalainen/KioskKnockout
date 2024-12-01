@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc65uf8d6ov47"]
+[gd_scene load_steps=4 format=3 uid="uid://cc65uf8d6ov47"]
 
 [ext_resource type="Script" path="res://src/scenes/TitleScreen.gd" id="1_bry7n"]
 [ext_resource type="Script" path="res://src/gui/SfxButton.gd" id="2_w2rp5"]
+[ext_resource type="PackedScene" uid="uid://dvp2vq4xjs5cs" path="res://src/scenes/Arena1.tscn" id="3_2qwh1"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -12,7 +13,25 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bry7n")
 
+[node name="Arena1" parent="." instance=ExtResource("3_2qwh1")]
+
+[node name="player1" parent="Arena1" index="2"]
+Invincible = true
+
+[node name="AiComponent" parent="Arena1/player1" index="3"]
+enabled = true
+
+[node name="player2" parent="Arena1" index="3"]
+Invincible = true
+
+[node name="AiComponent" parent="Arena1/player2" index="3"]
+enabled = true
+
+[node name="GameState" parent="Arena1" index="6"]
+Ingame = false
+
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -116,3 +135,9 @@ script = ExtResource("2_w2rp5")
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/AboutButton" to="." method="_on_about_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+
+[editable path="Arena1"]
+[editable path="Arena1/player1"]
+[editable path="Arena1/player1/player_model"]
+[editable path="Arena1/player2"]
+[editable path="Arena1/player2/player_model"]

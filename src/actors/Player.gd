@@ -11,6 +11,7 @@ const MODEL_ROTATION_SPEED := 8.4
 
 @export var PlayerIndex := 0 # 0 is first player, 1 is second player
 @export var Opponent: Player = null
+@export var Invincible := false
 
 @onready var InputLeft := "%s_left" % Global.players_controller_prefix[PlayerIndex]
 @onready var InputRight := "%s_right" % Global.players_controller_prefix[PlayerIndex]
@@ -41,12 +42,18 @@ func is_opponent_on_right() -> bool:
 	return Opponent.global_position.x > global_position.x
 
 func damage(dmg: int, knockback_amount: Vector2, knockback_duration: int, hitstun: int):
+	if Invincible:
+		dmg = 0
+	
 	if Block.is_blocking():
 		AudioManager.play("res://assets/sounds/sfx/block1.ogg", AudioManager.Audio_Player.SFX)
 		
 		Block.damage(dmg)
 		# 10% of damage and  atleast 1.
 		dmg = max(dmg * 0.10, 1)
+		if Invincible:
+			dmg = 0
+		
 		knockback_amount *= 0.10
 		Health.damage(dmg)
 		Controller.apply_knockback(knockback_amount, knockback_duration)
@@ -54,7 +61,7 @@ func damage(dmg: int, knockback_amount: Vector2, knockback_duration: int, hitstu
 	
 	AudioManager.play("res://assets/sounds/sfx/hit1.ogg", AudioManager.Audio_Player.SFX)
 	
-	if dmg > randi_range(10, 18):
+	if dmg >= randi_range(7, 18):
 		AudioManager.play("res://assets/sounds/sfx/voice_hit1.ogg", AudioManager.Audio_Player.SFX)
 	
 	Health.damage(dmg)
