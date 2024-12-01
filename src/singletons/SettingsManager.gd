@@ -121,7 +121,7 @@ func regenerate_joy_inputs():
 func _remove_generated_inputs():
 	var generated_inputs = InputMap.get_actions().filter(
 		func(action: String):
-			return action.begins_with("_")
+			return action.begins_with("_joy")
 	)
 	
 	for ac in generated_inputs:

@@ -6,6 +6,7 @@ const INPUT_PREFIXES: Array[String] = [
 	"_1joy",
 	"_2joy",
 	"_3joy",
+	"_ai",
 ]
 
 var players_controller_prefix: Array[String] = [
