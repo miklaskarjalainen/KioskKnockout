@@ -81,3 +81,6 @@ func _physics_process(delta: float) -> void:
 	var ac = _pick_weighted(_weight_options())
 	if ac:
 		_press(ac)
+
+func _exit_tree() -> void:
+	Input.action_release(_last_action)
