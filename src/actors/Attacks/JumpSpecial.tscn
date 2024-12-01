@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/actors/Attacks/JumpSpecialScript.gd" id="2_cplwx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wuhdk"]
-size = Vector3(1.16602, 0.565186, 0.453125)
+size = Vector3(0.287109, 0.435547, 0.363037)
 
 [node name="JumpSpecial" type="Area3D"]
 collision_layer = 0
@@ -12,7 +12,7 @@ collision_mask = 2
 script = ExtResource("1_4shkd")
 stop_on_hit = 0.08
 startup = 12
-active = 60
+active = 15
 recovery = 60
 hitstun = 12
 hitbox_location = 1
