@@ -11,15 +11,17 @@ signal action_ended()
 @export var anim_controller: AnimationController = null
 @export var ground_cast: RayCast3D = null
 @export var block: BlockController = null
+@export var health: HealthComponent = null
 
 @onready var pos_rhand = Global.find_node_or_null(player, "pos_rhand")
 @onready var pos_lhand = Global.find_node_or_null(player, "pos_lhand")
 @onready var pos_rleg = Global.find_node_or_null(player, "pos_rleg")
 @onready var pos_lleg = Global.find_node_or_null(player, "pos_lleg")
 
+var _current_actions: Array[Node3D] = []
+
 var _button_erase: int = -1
 var _button_buffer := []
-
 var _performing_action := false
 
 func is_performing_action() -> bool:
@@ -28,9 +30,16 @@ func is_performing_action() -> bool:
 func _ready() -> void:
 	assert(anim_controller)
 	assert(player, "is null")
+	assert(health, "is null")
 	assert(player is Player, "is not player")
 	assert(pos_rhand, "is null")
 	assert(pos_lhand, "is null")
+	
+	health.on_damaged.connect(func (_dmg: int):
+		for c in _current_actions:
+			c.queue_free()
+		_current_actions.clear()
+		)
 	
 	action_started.connect(func(_ac: String, _spd: float): _performing_action = true)
 	action_ended.connect(func(): _performing_action = false)
@@ -41,7 +50,10 @@ func _perform_action(action_path: String):
 	
 	var atk: AttackHurtbox = load(action_path).instantiate()
 	action_started.emit(atk.play_anim, atk.anim_speed)
+	_current_actions.push_front(atk)
 	atk.tree_exiting.connect(func():
+		if _current_actions.has(atk):
+			_current_actions.erase(atk)
 		action_ended.emit()
 	)
 	atk.add_exclude(player)

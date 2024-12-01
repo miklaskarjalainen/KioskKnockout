@@ -29,11 +29,12 @@ script = ExtResource("1_8625e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.993321, 0)
 shape = SubResource("CapsuleShape3D_rw8oh")
 
-[node name="ActionController" type="Node" parent="." node_paths=PackedStringArray("anim_controller", "ground_cast", "block")]
+[node name="ActionController" type="Node" parent="." node_paths=PackedStringArray("anim_controller", "ground_cast", "block", "health")]
 script = ExtResource("3_t468b")
 anim_controller = NodePath("../AnimationHandler")
 ground_cast = NodePath("../GroundCloseness")
 block = NodePath("../BlockController")
+health = NodePath("../HealthComponent")
 
 [node name="AnimationHandler" type="Node" parent="." node_paths=PackedStringArray("anim", "actions", "controller", "health", "block")]
 script = ExtResource("2_bt2ar")
@@ -67,6 +68,7 @@ mesh = SubResource("SphereMesh_wklba")
 
 [node name="GroundCloseness" type="RayCast3D" parent="."]
 editor_description = "Used for jump special, cannot collide with env to allow special to work"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.165498, 0)
 target_position = Vector3(0, -2, 0)
 
 [node name="player_model" parent="." instance=ExtResource("3_bcynx")]
