@@ -72,6 +72,24 @@ func ko_timer() -> void:
 	timer_label.hide()
 	victory_screen.show()
 
+func start_timer() -> void:
+	get_tree().paused = true
+	Engine.time_scale = 0.5
+	
+	timer_label.show()
+	timer_label.text = "3"
+	await get_tree().create_timer(1.0 * Engine.time_scale).timeout
+	timer_label.text = "2"
+	await get_tree().create_timer(1.0 * Engine.time_scale).timeout
+	timer_label.text = "1"
+	await get_tree().create_timer(1.0 * Engine.time_scale).timeout
+	timer_label.text = "Fight!"
+	Engine.time_scale = 1.0
+	await get_tree().create_timer(0.5 * Engine.time_scale).timeout
+
+	get_tree().paused = false
+	timer_label.hide()
+
 func _on_vs_quit_btn_pressed() -> void:
 	get_tree().paused = false
 	Console.excute_cmd("exit")
