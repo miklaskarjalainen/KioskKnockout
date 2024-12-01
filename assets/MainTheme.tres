@@ -52,6 +52,8 @@ shadow_size = 4
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4sfh7"]
 bg_color = Color(0.172833, 0.172833, 0.172833, 1)
 skew = Vector2(0.3, 0.005)
+shadow_size = 2
+shadow_offset = Vector2(2, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5bgx2"]
 bg_color = Color(0.00687911, 0.457368, 0.194386, 1)
