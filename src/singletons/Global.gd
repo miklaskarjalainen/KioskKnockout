@@ -16,6 +16,13 @@ var players_controller_prefix: Array[String] = [
 var _main_scene_tree: SceneTree = null
 var in_game: bool = false
 
+func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("toggle_fullscreen"):
+		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
 ## Grab focus of a nth child of a node
 func set_focus(parent: Node, index: int) -> void:
 	if parent:
