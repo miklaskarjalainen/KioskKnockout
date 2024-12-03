@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://0edyjln4jorb"]
+
+[ext_resource type="Texture2D" uid="uid://cna80b0xusqrl" path="res://assets/textures/asphalt.png" id="1_30uo0"]
+
+[resource]
+albedo_texture = ExtResource("1_30uo0")
+uv1_offset = Vector3(1, 1.035, 0.1)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 150.0
+texture_filter = 0

@@ -1,14 +1,19 @@
-[gd_scene load_steps=17 format=3 uid="uid://dvp2vq4xjs5cs"]
+[gd_scene load_steps=20 format=3 uid="uid://dvp2vq4xjs5cs"]
 
-[ext_resource type="Material" uid="uid://bwwrkqr1noawi" path="res://assets/dev/dev_blue.tres" id="1_f7b4o"]
+[ext_resource type="Material" uid="uid://0edyjln4jorb" path="res://assets/textures/asphalt_texture.tres.tres" id="1_25r2m"]
 [ext_resource type="Material" uid="uid://cjxillm06ji65" path="res://assets/dev/dev_orange.tres" id="2_cxg53"]
+[ext_resource type="Material" uid="uid://dirudbclkfror" path="res://assets/textures/brick_texture.tres" id="2_q4t5w"]
 [ext_resource type="PackedScene" uid="uid://dp6sarh3doobm" path="res://src/actors/Player.tscn" id="2_y6vyn"]
 [ext_resource type="Material" uid="uid://cwqh8r2btxpsp" path="res://assets/dev/dev_gray.tres" id="3_diw7d"]
 [ext_resource type="Script" path="res://src/scenes/TargetCamera.gd" id="4_b2icj"]
 [ext_resource type="PackedScene" uid="uid://16bs7hyhk3pq" path="res://src/scenes/GameState.tscn" id="6_hfkfd"]
+[ext_resource type="PackedScene" uid="uid://85gvtrbjd40y" path="res://assets/models/kiosk.gltf" id="8_ghrwg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fop1y"]
-size = Vector3(100, 1, 70)
+size = Vector3(50, 1, 70)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ui0qm"]
+size = Vector3(25, 15, 15)
 
 [sub_resource type="BoxMesh" id="BoxMesh_64x4u"]
 lightmap_size_hint = Vector2i(24, 36)
@@ -30,7 +35,7 @@ background_mode = 2
 sky = SubResource("Sky_etotk")
 fog_enabled = true
 fog_light_color = Color(0.324998, 0.35401, 0.399615, 1)
-fog_density = 0.0626
+fog_density = 0.09
 
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_w6j0n"]
 
@@ -49,7 +54,7 @@ albedo_color = Color(0, 0.766667, 1, 0.192157)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_c4grk"]
 material = SubResource("StandardMaterial3D_jhm0m")
-size = Vector2(0.15, 0.3)
+size = Vector2(0.05, 0.1)
 orientation = 2
 
 [node name="Arena1" type="Node3D"]
@@ -60,44 +65,52 @@ use_collision = true
 [node name="floor" type="CSGMesh3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0317192, 0.161488, 21.9858)
 mesh = SubResource("BoxMesh_fop1y")
-material = ExtResource("1_f7b4o")
+material = ExtResource("1_25r2m")
 
 [node name="back_wall" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0317192, 2.16149, -10.0142)
-mesh = SubResource("BoxMesh_fop1y")
-material = ExtResource("1_f7b4o")
+transform = Transform3D(0.981097, -0.193515, 8.45882e-09, 0, -4.37114e-08, -1, 0.193515, 0.981097, -4.28851e-08, 13.9509, 8.10902, -14.7905)
+mesh = SubResource("BoxMesh_ui0qm")
+material = ExtResource("2_q4t5w")
+
+[node name="back_wall2" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.998722, 0.0505407, -2.2092e-09, 0, -4.37114e-08, -1, -0.0505407, 0.998722, -4.36555e-08, -8.57719, 8.10902, -14.7905)
+mesh = SubResource("BoxMesh_ui0qm")
+material = ExtResource("2_q4t5w")
 
 [node name="left_wall" type="CSGMesh3D" parent="CSGCombiner3D"]
 transform = Transform3D(-0.0100355, 0, -0.99995, 0, 1, 0, 0.99995, 0, -0.0100355, -17, 1.63, 0.087)
 mesh = SubResource("BoxMesh_64x4u")
 
-[node name="box1" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(0.860964, 0, -0.508666, 0, 1, 0, 0.508666, 0, 0.860964, -4.08988, 1.63006, -4.91322)
+[node name="box2" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.361885, 0, -0.932223, 0, 1, 0, 0.932223, 0, 0.361885, 1.90674, 1.6431, -29.5041)
 mesh = SubResource("BoxMesh_mnm20")
+material = ExtResource("3_diw7d")
+
+[node name="box3" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.590831, 0, -0.806795, 0, 1, 0, 0.806795, 0, 0.590831, 3.77119, 1.6431, -30.2279)
+mesh = SubResource("BoxMesh_mnm20")
+material = ExtResource("3_diw7d")
+
+[node name="box4" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.361885, 0, -0.932223, 0, 1, 0, 0.932223, 0, 0.361885, 2.47708, 3.6431, -30.7982)
+mesh = SubResource("BoxMesh_mnm20")
+material = ExtResource("3_diw7d")
+
+[node name="box1" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.860964, 0, -0.508666, 0, 1, 0, 0.508666, 0, 0.860964, -4.08988, 1.63006, -29.7285)
+mesh = SubResource("BoxMesh_mnm20")
+
+[node name="box5" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.590831, 0, -0.806795, 0, 1, 0, 0.806795, 0, 0.590831, 2.11611, 1.6431, -31.7299)
+mesh = SubResource("BoxMesh_mnm20")
+material = ExtResource("3_diw7d")
 
 [node name="right_wall" type="CSGMesh3D" parent="CSGCombiner3D"]
 transform = Transform3D(-0.0100355, 0, -0.99995, 0, 1, 0, 0.99995, 0, -0.0100355, 17, 1.63, 0.087)
 mesh = SubResource("BoxMesh_64x4u")
 
-[node name="box2" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(0.361885, 0, -0.932223, 0, 1, 0, 0.932223, 0, 0.361885, 1.90674, 1.6431, -4.68888)
-mesh = SubResource("BoxMesh_mnm20")
-material = ExtResource("3_diw7d")
-
-[node name="box3" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(0.590831, 0, -0.806795, 0, 1, 0, 0.806795, 0, 0.590831, 3.77119, 1.6431, -5.41265)
-mesh = SubResource("BoxMesh_mnm20")
-material = ExtResource("3_diw7d")
-
-[node name="box4" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(0.361885, 0, -0.932223, 0, 1, 0, 0.932223, 0, 0.361885, 2.47708, 3.6431, -5.98298)
-mesh = SubResource("BoxMesh_mnm20")
-material = ExtResource("3_diw7d")
-
-[node name="box5" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(0.590831, 0, -0.806795, 0, 1, 0, 0.806795, 0, 0.590831, 2.11611, 1.6431, -6.9146)
-mesh = SubResource("BoxMesh_mnm20")
-material = ExtResource("3_diw7d")
+[node name="blockbench_export" parent="CSGCombiner3D" instance=ExtResource("8_ghrwg")]
+transform = Transform3D(0.30618, 0, 3.98826, 0, 4, 0, -3.98826, 0, 0.30618, 0.706717, 0.358467, -4.02014)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.266353, -0.712342, 0.649327, 0.40585, 0.693918, 0.594781, -0.874266, 0.105108, 0.473931, 21.8999, 13.0236, 12.3503)
