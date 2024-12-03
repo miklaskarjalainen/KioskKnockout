@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dvp2vq4xjs5cs"]
+[gd_scene load_steps=21 format=3 uid="uid://dvp2vq4xjs5cs"]
 
 [ext_resource type="Material" uid="uid://0edyjln4jorb" path="res://assets/textures/asphalt_texture.tres.tres" id="1_25r2m"]
 [ext_resource type="Material" uid="uid://cjxillm06ji65" path="res://assets/dev/dev_orange.tres" id="2_cxg53"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dp6sarh3doobm" path="res://src/actors/Player.tscn" id="2_y6vyn"]
 [ext_resource type="Material" uid="uid://cwqh8r2btxpsp" path="res://assets/dev/dev_gray.tres" id="3_diw7d"]
 [ext_resource type="Script" path="res://src/scenes/TargetCamera.gd" id="4_b2icj"]
+[ext_resource type="Texture2D" uid="uid://cjx4toov6d61l" path="res://assets/textures/Kiosk_Knockout.png" id="6_5wxic"]
 [ext_resource type="PackedScene" uid="uid://16bs7hyhk3pq" path="res://src/scenes/GameState.tscn" id="6_hfkfd"]
 [ext_resource type="PackedScene" uid="uid://85gvtrbjd40y" path="res://assets/models/kiosk.gltf" id="8_ghrwg"]
 
@@ -111,6 +112,10 @@ mesh = SubResource("BoxMesh_64x4u")
 
 [node name="blockbench_export" parent="CSGCombiner3D" instance=ExtResource("8_ghrwg")]
 transform = Transform3D(0.30618, 0, 3.98826, 0, 4, 0, -3.98826, 0, 0.30618, 0.706717, 0.358467, -4.02014)
+
+[node name="Sprite3D" type="Sprite3D" parent="CSGCombiner3D/blockbench_export"]
+transform = Transform3D(0, 0, -0.18, 0, 0.18, 0, 0.18, 0, 0, -0.253189, 0.981463, 0.00131974)
+texture = ExtResource("6_5wxic")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.266353, -0.712342, 0.649327, 0.40585, 0.693918, 0.594781, -0.874266, 0.105108, 0.473931, 21.8999, 13.0236, 12.3503)
