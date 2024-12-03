@@ -64,17 +64,17 @@ orientation = 2
 use_collision = true
 
 [node name="floor" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0317192, 0.161488, 21.9858)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0317192, 0.161488, 6.36235)
 mesh = SubResource("BoxMesh_fop1y")
 material = ExtResource("1_25r2m")
 
 [node name="back_wall" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(0.981097, -0.193515, 8.45882e-09, 0, -4.37114e-08, -1, 0.193515, 0.981097, -4.28851e-08, 13.9509, 8.10902, -14.7905)
+transform = Transform3D(0.999807, 0.0196513, -8.58972e-10, 6.87503e-16, -4.37114e-08, -1, -0.0196513, 0.999807, -4.37029e-08, 9.51349, 8.10902, -15.6571)
 mesh = SubResource("BoxMesh_ui0qm")
 material = ExtResource("2_q4t5w")
 
 [node name="back_wall2" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(0.998722, 0.0505407, -2.2092e-09, 0, -4.37114e-08, -1, -0.0505407, 0.998722, -4.36555e-08, -8.57719, 8.10902, -14.7905)
+transform = Transform3D(0.998722, 0.0505407, -2.2092e-09, 0, -4.37114e-08, -1, -0.0505407, 0.998722, -4.36555e-08, -17.4647, 8.1356, -13.275)
 mesh = SubResource("BoxMesh_ui0qm")
 material = ExtResource("2_q4t5w")
 
@@ -83,26 +83,26 @@ transform = Transform3D(-0.0100355, 0, -0.99995, 0, 1, 0, 0.99995, 0, -0.0100355
 mesh = SubResource("BoxMesh_64x4u")
 
 [node name="box2" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(0.361885, 0, -0.932223, 0, 1, 0, 0.932223, 0, 0.361885, 1.90674, 1.6431, -29.5041)
+transform = Transform3D(0.529638, 0, -0.848224, 0, 1, 0, 0.848224, 0, 0.529638, -5.0221, 1.6431, -27.0569)
 mesh = SubResource("BoxMesh_mnm20")
 material = ExtResource("3_diw7d")
 
 [node name="box3" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(0.590831, 0, -0.806795, 0, 1, 0, 0.806795, 0, 0.590831, 3.77119, 1.6431, -30.2279)
+transform = Transform3D(0.731127, 0, -0.68224, 0, 1, 0, 0.68224, 0, 0.731127, -3.32565, 1.6431, -28.1163)
 mesh = SubResource("BoxMesh_mnm20")
 material = ExtResource("3_diw7d")
 
 [node name="box4" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(0.361885, 0, -0.932223, 0, 1, 0, 0.932223, 0, 0.361885, 2.47708, 3.6431, -30.7982)
+transform = Transform3D(0.529638, 0, -0.848224, 0, 1, 0, 0.848224, 0, 0.529638, -4.70351, 3.6431, -28.4348)
 mesh = SubResource("BoxMesh_mnm20")
 material = ExtResource("3_diw7d")
 
 [node name="box1" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(0.860964, 0, -0.508666, 0, 1, 0, 0.508666, 0, 0.860964, -4.08988, 1.63006, -29.7285)
+transform = Transform3D(0.860964, 0, -0.508666, 0, 1, 0, 0.508666, 0, 0.860964, -1.35022, 1.63006, -27.5107)
 mesh = SubResource("BoxMesh_mnm20")
 
 [node name="box5" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(0.590831, 0, -0.806795, 0, 1, 0, 0.806795, 0, 0.590831, 2.11611, 1.6431, -31.7299)
+transform = Transform3D(0.731127, 0, -0.68224, 0, 1, 0, 0.68224, 0, 0.731127, -5.23215, 1.6431, -29.2827)
 mesh = SubResource("BoxMesh_mnm20")
 material = ExtResource("3_diw7d")
 
