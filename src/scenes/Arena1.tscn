@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dvp2vq4xjs5cs"]
+[gd_scene load_steps=17 format=3 uid="uid://dvp2vq4xjs5cs"]
 
 [ext_resource type="Material" uid="uid://bwwrkqr1noawi" path="res://assets/dev/dev_blue.tres" id="1_f7b4o"]
 [ext_resource type="Material" uid="uid://cjxillm06ji65" path="res://assets/dev/dev_orange.tres" id="2_cxg53"]
@@ -28,8 +28,29 @@ sky_material = SubResource("ProceduralSkyMaterial_ic1ce")
 [sub_resource type="Environment" id="Environment_d5h23"]
 background_mode = 2
 sky = SubResource("Sky_etotk")
+fog_enabled = true
+fog_light_color = Color(0.324998, 0.35401, 0.399615, 1)
+fog_density = 0.0626
 
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_w6j0n"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2r1ur"]
+emission_shape_offset = Vector3(2.805, 0, 0)
+emission_shape = 3
+emission_box_extents = Vector3(5, 0.1, 2)
+direction = Vector3(-0.3, 0, 0.2)
+spread = 5.0
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhm0m"]
+transparency = 1
+albedo_color = Color(0, 0.766667, 1, 0.192157)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_c4grk"]
+material = SubResource("StandardMaterial3D_jhm0m")
+size = Vector2(0.15, 0.3)
+orientation = 2
 
 [node name="Arena1" type="Node3D"]
 
@@ -100,6 +121,13 @@ transform = Transform3D(1, 0, 0, 0, 0.998519, 0.0544035, 0, -0.0544035, 0.998519
 attributes = SubResource("CameraAttributesPhysical_w6j0n")
 script = ExtResource("4_b2icj")
 Targets = [NodePath("../player1"), NodePath("../player2")]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Camera3D"]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 0.998519, -0.0544035, 0, 0.0544035, 0.998519, 0, 4.11268, -6.48543)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_2r1ur")
+draw_pass_1 = SubResource("PlaneMesh_c4grk")
 
 [node name="GameState" parent="." node_paths=PackedStringArray("Camera") instance=ExtResource("6_hfkfd")]
 Camera = NodePath("../Camera3D")
