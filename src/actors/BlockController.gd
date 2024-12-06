@@ -5,9 +5,9 @@ class_name BlockController
 @export var action: ActionController = null
 @export var mesh: MeshInstance3D = null
 
-const BLOCK_STARTUP : int = 3
-const BLOCK_RECOVERY: int = 8
-const BLOCK_HEALTH: int = 60
+const BLOCK_STARTUP : int = 5
+const BLOCK_RECOVERY: int = 2
+const BLOCK_HEALTH: int = 75
 const RECHARGE_RATE: int = 8
 const DISCHARGE_RATE: int = 5
 const SHIELD_BREAK_STUN: int = 240

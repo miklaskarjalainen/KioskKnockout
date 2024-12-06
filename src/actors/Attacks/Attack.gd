@@ -32,7 +32,7 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 
 func _physics_process(_delta: float) -> void:
-	Console.info(str(_delta))
+	Debug.add_line("existed", _existed)
 	
 	_existed += 1
 	
