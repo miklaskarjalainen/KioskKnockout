@@ -135,10 +135,11 @@ environment = SubResource("Environment_d5h23")
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("Targets")]
 process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 0.998519, 0.0544035, 0, -0.0544035, 0.998519, 0, 2.77035, 6.69957)
+transform = Transform3D(1, 0, 0, 0, 0.998519, 0.0544035, 0, -0.0544035, 0.998519, 0, 3.10971, 6.81836)
 attributes = SubResource("CameraAttributesPhysical_w6j0n")
 script = ExtResource("4_b2icj")
 Targets = [NodePath("../player1"), NodePath("../player2")]
+Offset = Vector2(0, 3)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Camera3D"]
 process_mode = 3
