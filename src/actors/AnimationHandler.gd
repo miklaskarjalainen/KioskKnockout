@@ -4,7 +4,7 @@ extends Node
 ## automatically.
 class_name AnimationController
 
-const ANIM_BLEND: float = 0.25
+const ANIM_BLEND: float = 0.1
 
 @export var anim: AnimationPlayer = null
 @export var actions: ActionController = null

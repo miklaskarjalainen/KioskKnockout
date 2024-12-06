@@ -6,13 +6,13 @@ signal on_jump()
 const GRAVITY := 52.0
 # 0 = no buffering allowed, 1 = 1 frame, etc... (Physics frames)
 const JUMP_BUFFER_FRAMES := 4
-const BACK_PEDAL_MULTIPLIER := 0.8
+const BACK_PEDAL_MULTIPLIER := 0.92
 
 @export var player: Player = null
 @export var actions: ActionController = null
 @export var block: BlockController = null
 
-@export var MoveSpeed: float = 3.4
+@export var MoveSpeed: float = 4.3
 @export var JumpVelocity: float = 13.2
 @export var JumpHoldStr: float = 18.5
 

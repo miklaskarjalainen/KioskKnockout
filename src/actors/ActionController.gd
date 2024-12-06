@@ -1,7 +1,7 @@
 extends Node
 class_name ActionController
 
-const ACTION_ERASE_FRAMES: int = 12
+const ACTION_ERASE_FRAMES: int = 120
 
 ## Action name should be the same as the Animation name
 signal action_started(action_name: String, anim_spd: float)
@@ -44,9 +44,9 @@ func _ready() -> void:
 	action_started.connect(func(_ac: String, _spd: float): _performing_action = true)
 	action_ended.connect(func(): _performing_action = false)
 
-func _perform_action(action_path: String):
+func _perform_action(action_path: String) -> bool: 
 	if action_path.is_empty():
-		return
+		return false
 	
 	var atk: AttackHurtbox = load(action_path).instantiate()
 	action_started.emit(atk.play_anim, atk.anim_speed)
@@ -69,29 +69,29 @@ func _perform_action(action_path: String):
 			pos_lleg.add_child(atk)
 		_:
 			Console.error("Invalid hitbox location")
-	
+	return true
 
 # Try to match action buffer to an action.
-func _submit_action():
+func _submit_action() -> bool:
 	if _button_buffer.size() == 0:
-		return
-	
-	var buf = _button_buffer.duplicate()
-	_button_buffer.clear()
-	
+		return false
+	if is_performing_action():
+		return false
 	if player.Health.is_dead():
-		return
+		return false
 	if not block.can_move():
-		return
+		return false
+	
+	var buf = _button_buffer
 	
 	# TODO: dashes
 	if buf.size() >= 2:
 		if buf[0] == "left" and buf[1] == "left":
 			Console.warning("Dashes not implemented")
-			return
+			return false
 		elif buf[0] == "right" and buf[1] == "right":
 			Console.warning("Dashes not implemented")
-			return
+			return false
 	
 	var normal = "res://src/actors/Attacks/BasicPunch.tscn"
 	var special = "res://src/actors/Attacks/KarateKick.tscn"
@@ -109,11 +109,11 @@ func _submit_action():
 	
 	match buf[0]:
 		"normal":
-			_perform_action(normal)
+			return _perform_action(normal)
 		"special":
-			_perform_action(special)
+			return _perform_action(special)
 		_:
-			pass
+			return false
 
 # Adds a action to buffer
 func _push_action(str: String):
@@ -125,28 +125,30 @@ func _push_action(str: String):
 
 func _physics_process(delta: float) -> void:
 	Debug.add_line("btn_buffer", _button_buffer)
+	Debug.add_line("buffer_erase", _button_erase)
 	_handle_action_inputs()
 
 func _handle_action_inputs() -> void:
-	if not _performing_action:
-		
-		# TODO: Use opponent relative directions instead of "left" or "right".
-		if Input.is_action_just_pressed(player.InputLeft):
-			_push_action("left")
-		if Input.is_action_just_pressed(player.InputRight):
-			_push_action("right")
-		if Input.is_action_just_pressed(player.InputUp):
-			_push_action("up")
-		if Input.is_action_just_pressed(player.InputDown):
-			_push_action("down")
-		if Input.is_action_just_pressed(player.InputNormal):
-			_push_action("normal")
-			_submit_action()
-		if Input.is_action_just_pressed(player.InputSpecial):
-			_push_action("special")
-			_submit_action()
+	if Input.is_action_just_pressed(player.InputLeft):
+		_push_action("left")
+	if Input.is_action_just_pressed(player.InputRight):
+		_push_action("right")
+	if Input.is_action_just_pressed(player.InputUp):
+		_push_action("up")
+	if Input.is_action_just_pressed(player.InputDown):
+		_push_action("down")
+	if Input.is_action_just_pressed(player.InputNormal):
+		_push_action("normal")
+	if Input.is_action_just_pressed(player.InputSpecial):
+		_push_action("special")
+	
+	if _button_buffer.size() > 0:
+		if _button_buffer.front() == "special" or _button_buffer.front() == "normal":
+			if _submit_action():
+				_button_buffer.clear()
+				_button_erase = -1
 	
 	if _button_erase >= 0:
 		_button_erase -= 1
 		if _button_erase == -1:
-			_submit_action()
+			_button_buffer.clear()
