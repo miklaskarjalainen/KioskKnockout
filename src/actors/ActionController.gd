@@ -1,7 +1,7 @@
 extends Node
 class_name ActionController
 
-const ACTION_ERASE_FRAMES: int = 120
+const ACTION_ERASE_FRAMES: int = 12
 
 ## Action name should be the same as the Animation name
 signal action_started(action_name: String, anim_spd: float)
