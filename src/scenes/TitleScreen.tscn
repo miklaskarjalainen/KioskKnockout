@@ -87,6 +87,7 @@ size_flags_horizontal = 5
 size_flags_vertical = 3
 focus_neighbor_left = NodePath("../ExitButton")
 focus_neighbor_top = NodePath("../ExitButton")
+focus_neighbor_right = NodePath("../OptionsButton")
 focus_neighbor_bottom = NodePath("../OptionsButton")
 focus_next = NodePath("../OptionsButton")
 focus_previous = NodePath("../ExitButton")
