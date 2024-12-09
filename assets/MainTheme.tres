@@ -12,8 +12,6 @@ shadow_color = Color(0, 0, 0, 0.156863)
 shadow_size = 4
 shadow_offset = Vector2(1, 4)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2pitc"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvc6b"]
 bg_color = Color(0.0474567, 0.664435, 0.630518, 1)
 skew = Vector2(0.3, 0.005)
@@ -25,6 +23,8 @@ expand_margin_bottom = 2.0
 shadow_color = Color(0, 0, 0, 0.156863)
 shadow_size = 4
 shadow_offset = Vector2(1, 4)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_egmps"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkavr"]
 bg_color = Color(0.325333, 0.61, 0, 1)
@@ -97,8 +97,8 @@ corner_radius_bottom_left = 2
 
 [resource]
 Button/styles/disabled = SubResource("StyleBoxFlat_e7o7r")
-Button/styles/focus = SubResource("StyleBoxEmpty_2pitc")
-Button/styles/hover = SubResource("StyleBoxFlat_yvc6b")
+Button/styles/focus = SubResource("StyleBoxFlat_yvc6b")
+Button/styles/hover = SubResource("StyleBoxEmpty_egmps")
 Button/styles/hover_pressed = SubResource("StyleBoxFlat_wkavr")
 Button/styles/normal = SubResource("StyleBoxFlat_71i7p")
 Button/styles/pressed = SubResource("StyleBoxFlat_wkavr")

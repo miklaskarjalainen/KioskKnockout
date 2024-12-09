@@ -3,7 +3,7 @@ extends Control;
 @onready var buttons_h_box: Container = Global.find_node_or_null(self, "ButtonContainer")
 
 func _ready() -> void:
-	Global.set_focus(buttons_h_box, 0)
+	$MarginContainer/VBoxContainer/ButtonContainer/PlayButton.grab_focus()
 	Global._main_scene_tree = get_tree()
 
 func _on_play_button_pressed() -> void:

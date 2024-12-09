@@ -11,6 +11,7 @@ class_name OptionsMenu
 
 
 func _ready() -> void:
+	$MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/CloseButton.grab_focus()
 	$MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Audio/Master/Slider.value = AudioManager.master_volume * 100
 	$MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Audio/Music/Slider.value = AudioManager.music_volume * 100
 	$MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Audio/SFX/Slider.value = AudioManager.sfx_volume * 100

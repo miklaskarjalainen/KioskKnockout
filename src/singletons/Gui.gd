@@ -33,7 +33,7 @@ func _ready() -> void:
 		elif Global.players_controller_prefix.has(Global.INPUT_PREFIXES[device + 1]):
 			get_tree().paused = true
 			pause_screen.show()
-			Global.set_focus(pause_screen.get_child(0), 1)
+			$PauseScreen/VBoxContainer/ContinueBtn.grab_focus()
 	)
 
 func _input(event: InputEvent) -> void:
@@ -43,7 +43,7 @@ func _input(event: InputEvent) -> void:
 			get_tree().paused = !get_tree().paused
 			if get_tree().paused:
 				pause_screen.show()
-				Global.set_focus(pause_screen.get_child(0), 1)
+				$PauseScreen/VBoxContainer/ContinueBtn.grab_focus()
 			else:
 				pause_screen.hide()
 
@@ -73,6 +73,7 @@ func ko_timer() -> void:
 	get_tree().paused = true
 	timer_label.hide()
 	victory_screen.show()
+	$VictoryScreen/RestartBtn.grab_focus()
 
 func start_timer() -> void:
 	if not Global.in_game:

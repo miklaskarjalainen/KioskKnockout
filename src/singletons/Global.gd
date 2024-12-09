@@ -23,13 +23,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
-## Grab focus of a nth child of a node
-func set_focus(parent: Node, index: int) -> void:
-	if parent:
-		var child = parent.get_child(index);
-		if child:
-			child.grab_focus()
-
 ## Recursively finds node with the given name, from a parent node. 
 func find_node_or_null(parent: Node, target: String) -> Node:
 	for n in parent.get_children():

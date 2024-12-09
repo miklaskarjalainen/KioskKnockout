@@ -8,6 +8,7 @@ const MAX_PLAYER_COUNT: int = 2
 var _players: Array[String] = []
 
 func _ready():
+	$back.grab_focus()
 	_update_play_button()
 	Input.joy_connection_changed.connect(func (device: int, connected: bool):
 		if connected:
