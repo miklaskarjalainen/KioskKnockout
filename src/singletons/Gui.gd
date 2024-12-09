@@ -89,11 +89,11 @@ func start_timer() -> void:
 	await get_tree().create_timer(1.0 * Engine.time_scale).timeout
 	timer_label.text = "Fight!"
 	Engine.time_scale = 1.0
-	await get_tree().create_timer(0.5 * Engine.time_scale).timeout
-
 	get_tree().paused = false
-	timer_label.hide()
 	_game_over = false
+	
+	await get_tree().create_timer(0.5 * Engine.time_scale).timeout
+	timer_label.hide()
 
 func _on_vs_quit_btn_pressed() -> void:
 	get_tree().paused = false
