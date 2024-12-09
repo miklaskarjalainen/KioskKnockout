@@ -9,6 +9,7 @@ var player_2_path: NodePath = ""
 @onready var timer_label: Label = $TimerLabel
 @onready var victory_screen: ColorRect = $VictoryScreen
 
+var _game_over: bool = true
 
 func _update_health_bars() -> void:
 	var pl1: Player = get_node_or_null(player_1_path)
@@ -38,7 +39,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		var ev := event as InputEventKey
-		if ev.is_action_pressed("kb_pause") and Global.in_game:
+		if ev.is_action_pressed("kb_pause") and Global.in_game and not _game_over:
 			get_tree().paused = !get_tree().paused
 			if get_tree().paused:
 				pause_screen.show()
@@ -56,6 +57,7 @@ func _on_ps_quit_btn_pressed() -> void:
 	pause_screen.hide()
 
 func ko_timer() -> void:
+	_game_over = true
 	Engine.time_scale = 0.5
 	
 	timer_label.show()
@@ -91,6 +93,7 @@ func start_timer() -> void:
 
 	get_tree().paused = false
 	timer_label.hide()
+	_game_over = false
 
 func _on_vs_quit_btn_pressed() -> void:
 	get_tree().paused = false
