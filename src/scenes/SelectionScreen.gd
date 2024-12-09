@@ -9,6 +9,12 @@ var _players: Array[String] = []
 
 func _ready():
 	_update_play_button()
+	Input.joy_connection_changed.connect(func (device: int, connected: bool):
+		if connected:
+			return
+		elif Global.players_controller_prefix.has(Global.INPUT_PREFIXES[device + 1]):
+			_remove_player(device + 1)
+	)
 
 func _add_player(device: int):
 	if device >= Global.INPUT_PREFIXES.size():
