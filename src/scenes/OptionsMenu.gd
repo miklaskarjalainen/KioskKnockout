@@ -7,6 +7,7 @@ class_name OptionsMenu
 @onready var ui_volume_label: Label = $MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Audio/UI/Percentage
 @onready var vsync_state_label: Label = $MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Graphics/VSync/State
 @onready var max_fps_value_label: Label = $MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Graphics/MaxFPS/Value
+@onready var fullscreen_state_label: Label = $MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Graphics/FullScreen/State
 
 
 func _ready() -> void:
@@ -21,6 +22,12 @@ func _ready() -> void:
 		vsync_state_label.text = "Disabled"
 		$MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Graphics/VSync/CheckButton.button_pressed = false
 	$MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Graphics/MaxFPS/Slider.value = clamp(5, 240, Engine.max_fps)
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		fullscreen_state_label.text = "Enabled"
+		$MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Graphics/FullScreen/CheckButton.button_pressed = true
+	else:
+		fullscreen_state_label.text = "Disabled"
+		$MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Graphics/FullScreen/CheckButton.button_pressed = false
 
 func _on_close_button_pressed() -> void:
 	Global.change_main_scene_to("res://src/scenes/TitleScreen.tscn")
@@ -63,3 +70,12 @@ func _on_max_fps_slider_value_changed(value: float) -> void:
 		_fps = 0
 	max_fps_value_label.text = "%s" % [_text]
 	Engine.max_fps = _fps
+
+
+func _on_full_screen_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		fullscreen_state_label.text = "Enabled"
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		fullscreen_state_label.text = "Disabled"

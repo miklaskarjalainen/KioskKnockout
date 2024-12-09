@@ -18,6 +18,7 @@ class Settings:
 		# Graphics settings
 		config.set_value("video", "vsync", DisplayServer.window_get_vsync_mode() as int)
 		config.set_value("video", "max_fps", Engine.max_fps)
+		config.set_value("video", "fullscreen", DisplayServer.window_get_mode() as int)
 		
 		# Keybinds
 		var action_names: Array[StringName] = InputMap.get_actions().filter(
@@ -44,6 +45,8 @@ class Settings:
 		var vsync: int = config.get_value("video", "vsync", DisplayServer.window_get_vsync_mode() as int)
 		DisplayServer.window_set_vsync_mode(vsync)
 		Engine.max_fps = config.get_value("video", "max_fps", Engine.max_fps)
+		var fullscreen: int = config.get_value("video", "fullscreen", DisplayServer.window_get_mode() as int)
+		DisplayServer.window_set_mode(fullscreen)
 		
 		# Audio settings
 		AudioManager.master_volume = config.get_value("audio", "master_volume", 1.0)

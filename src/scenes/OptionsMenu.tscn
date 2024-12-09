@@ -220,6 +220,26 @@ value = 240.0
 layout_mode = 2
 text = "100%"
 
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Graphics"]
+layout_mode = 2
+
+[node name="FullScreen" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Graphics"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Setting" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Graphics/FullScreen"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+text = "    Fullscreen:"
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Graphics/FullScreen"]
+layout_mode = 2
+
+[node name="State" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Graphics/FullScreen"]
+layout_mode = 2
+text = "Enabled"
+
 [node name="Controls" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/TabContainer"]
 visible = false
 layout_mode = 2
@@ -232,3 +252,4 @@ metadata/_tab_index = 2
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Audio/UI/Slider" to="." method="_on_ui_volume_slider_value_changed"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Graphics/VSync/CheckButton" to="." method="_on_vsync_button_toggled"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Graphics/MaxFPS/Slider" to="." method="_on_max_fps_slider_value_changed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Graphics/FullScreen/CheckButton" to="." method="_on_full_screen_button_toggled"]
