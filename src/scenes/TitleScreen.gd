@@ -13,8 +13,7 @@ func _on_options_button_pressed() -> void:
 	Global.change_main_scene_to("res://src/scenes/OptionsMenu.tscn")
 
 func _on_about_button_pressed() -> void:
-	Console.warning("Not Implemented")
-	pass # Replace with function body.
+	Global.change_main_scene_to("res://src/scenes/AboutScreen.tscn")
 
 func _on_exit_button_pressed() -> void:
 	print("quitting")
