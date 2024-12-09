@@ -84,16 +84,16 @@ text = "Quit to title screen"
 script = ExtResource("2_xnwok")
 
 [node name="TimerLabel" type="Label" parent="."]
-visible = false
 layout_mode = 0
-offset_left = 480.0
-offset_top = 288.0
-offset_right = 672.0
-offset_bottom = 351.0
+anchor_left = 0.416667
+anchor_top = 0.444444
+anchor_right = 0.583333
+anchor_bottom = 0.541667
 theme_override_font_sizes/font_size = 40
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="VictoryScreen" type="ColorRect" parent="."]
 visible = false
