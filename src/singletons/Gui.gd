@@ -28,7 +28,7 @@ func _ready() -> void:
 	pause_screen.hide()
 	victory_screen.hide()
 	Input.joy_connection_changed.connect(func (device: int, connected: bool):
-		if connected:
+		if connected or not Global.in_game:
 			return
 		elif Global.players_controller_prefix.has(Global.INPUT_PREFIXES[device + 1]):
 			get_tree().paused = true
