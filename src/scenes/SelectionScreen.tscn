@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bavc8k7sl031p"]
 
 [ext_resource type="Script" path="res://src/scenes/SelectionScreen.gd" id="1_cxrss"]
+[ext_resource type="Script" path="res://src/gui/SfxButton.gd" id="2_5b7jy"]
 [ext_resource type="PackedScene" uid="uid://bej1u1c73id27" path="res://src/scenes/SelectionScreen/PlayerControllerFrame.tscn" id="2_rc6t4"]
 [ext_resource type="Script" path="res://src/scenes/SelectionScreen/PlayerFrameContainer.gd" id="2_sxq82"]
-[ext_resource type="Script" path="res://src/gui/SfxButton.gd" id="2_wsitb"]
 
 [node name="SelectionScreen" type="Control" node_paths=PackedStringArray("player_container")]
 layout_mode = 3
@@ -31,7 +31,7 @@ anchor_top = 0.851852
 anchor_right = 0.138889
 anchor_bottom = 0.91358
 text = "Back"
-script = ExtResource("2_wsitb")
+script = ExtResource("2_5b7jy")
 metadata/_edit_use_anchors_ = true
 
 [node name="_info" type="Label" parent="."]
@@ -55,7 +55,7 @@ anchor_top = 0.864198
 anchor_right = 0.930556
 anchor_bottom = 0.938272
 text = "Play"
-script = ExtResource("2_wsitb")
+script = ExtResource("2_5b7jy")
 metadata/_edit_use_anchors_ = true
 
 [node name="players" type="HBoxContainer" parent="."]

@@ -53,7 +53,6 @@ func _on_ui_volume_slider_value_changed(value: float) -> void:
 	AudioManager.update_audio_server()
 	ui_volume_label.text = "%s%s" % [int(value), "%"]
 
-
 func _on_vsync_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
@@ -61,7 +60,6 @@ func _on_vsync_button_toggled(toggled_on: bool) -> void:
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 		vsync_state_label.text = "Disabled"
-		
 
 func _on_max_fps_slider_value_changed(value: float) -> void:
 	var _fps: int = int(value)
@@ -71,7 +69,6 @@ func _on_max_fps_slider_value_changed(value: float) -> void:
 		_fps = 0
 	max_fps_value_label.text = "%s" % [_text]
 	Engine.max_fps = _fps
-
 
 func _on_full_screen_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:

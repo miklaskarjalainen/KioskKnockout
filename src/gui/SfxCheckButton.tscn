@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://0d4e6rsshsrw"]
+
+[ext_resource type="Script" path="res://src/gui/SfxCheckButton.gd" id="1_080q8"]
+
+[node name="SfxCheckButton" type="CheckButton"]
+offset_right = 48.0
+offset_bottom = 20.0
+script = ExtResource("1_080q8")

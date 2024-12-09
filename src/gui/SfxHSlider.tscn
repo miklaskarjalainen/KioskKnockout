@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cc33fnpmkenfy"]
+
+[ext_resource type="Script" path="res://src/gui/SfxHSlider.gd" id="1_iu4j3"]
+
+[node name="SfxHSlider" type="HSlider"]
+offset_right = 16.0
+offset_bottom = 16.0
+script = ExtResource("1_iu4j3")
