@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dvp2vq4xjs5cs"]
+[gd_scene load_steps=23 format=3 uid="uid://dvp2vq4xjs5cs"]
 
 [ext_resource type="Material" uid="uid://0edyjln4jorb" path="res://assets/textures/asphalt_texture.tres.tres" id="1_25r2m"]
 [ext_resource type="Material" uid="uid://cjxillm06ji65" path="res://assets/dev/dev_orange.tres" id="2_cxg53"]
@@ -9,6 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://cjx4toov6d61l" path="res://assets/textures/Kiosk_Knockout.png" id="6_5wxic"]
 [ext_resource type="PackedScene" uid="uid://16bs7hyhk3pq" path="res://src/scenes/GameState.tscn" id="6_hfkfd"]
 [ext_resource type="PackedScene" uid="uid://85gvtrbjd40y" path="res://assets/models/kiosk.gltf" id="8_ghrwg"]
+[ext_resource type="PackedScene" uid="uid://btsswqyqm3c6h" path="res://assets/characters/generic_car.gltf" id="10_6x7h1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dmn63"]
+size = Vector3(0.640869, 1, 2.09863)
 
 [sub_resource type="BoxMesh" id="BoxMesh_fop1y"]
 size = Vector3(50, 1, 70)
@@ -60,6 +64,17 @@ orientation = 2
 
 [node name="Arena1" type="Node3D"]
 
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 15.8952, 0.534717, -0.550066)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179565, 0, 0.0444336)
+shape = SubResource("BoxShape3D_dmn63")
+
+[node name="blockbench_export" parent="StaticBody3D" instance=ExtResource("10_6x7h1")]
+transform = Transform3D(0.980755, 0, -0.195244, 0, 1, 0, 0.195244, 0, 0.980755, 0, 0, 0)
+
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
 
@@ -108,6 +123,7 @@ material = ExtResource("3_diw7d")
 
 [node name="right_wall" type="CSGMesh3D" parent="CSGCombiner3D"]
 transform = Transform3D(-0.0100355, 0, -0.99995, 0, 1, 0, 0.99995, 0, -0.0100355, 17, 1.63, 0.087)
+visible = false
 mesh = SubResource("BoxMesh_64x4u")
 
 [node name="blockbench_export" parent="CSGCombiner3D" instance=ExtResource("8_ghrwg")]
