@@ -1,6 +1,7 @@
 .godot/
 build/
 
+*.zip
 *.exe
 *.pck
 *.tmp
