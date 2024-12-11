@@ -37,15 +37,17 @@ func _ready() -> void:
 	)
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		var ev := event as InputEventKey
-		if ev.is_action_pressed("kb_pause") and Global.in_game and not _game_over:
-			get_tree().paused = !get_tree().paused
-			if get_tree().paused:
-				pause_screen.show()
-				$PauseScreen/VBoxContainer/ContinueBtn.grab_focus()
-			else:
-				pause_screen.hide()
+	_handle_pause(event, "kb_pause")
+	_handle_pause(event, "joy_pause")
+
+func _handle_pause(event: InputEvent, action: String) -> void:
+	if event.is_action_pressed(action) and Global.in_game and not _game_over:
+		get_tree().paused = !get_tree().paused
+		if get_tree().paused:
+			pause_screen.show()
+			$PauseScreen/VBoxContainer/ContinueBtn.grab_focus()
+		else:
+			pause_screen.hide()
 
 func _on_continue_btn_pressed() -> void:
 	get_tree().paused = false
