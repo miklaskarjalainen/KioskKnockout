@@ -6,10 +6,10 @@ enum Audio_Player { Music, UI, SFX }
 @onready var _ui_player: AudioStreamPlayer = $UISoundPlayer
 @onready var _sfx_player: AudioStreamPlayer = $SFXSoundPlayer
 
-var master_volume: float
-var music_volume: float
-var ui_volume: float
-var sfx_volume: float
+var master_volume: float = 0.25
+var music_volume: float  = 0.25
+var ui_volume: float     = 0.25
+var sfx_volume: float    = 0.25
 
 func _ready() -> void:
 	_sfx_player.play()
@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func play(fpath: String, audio_channel: Audio_Player) -> AudioStreamPlayer:
 	var audio_player: AudioStreamPlayer
-	var stream: AudioStream = AudioStreamOggVorbis.load_from_file(fpath)
+	var stream: AudioStream = load(fpath)
 	
 	match audio_channel:
 		Audio_Player.Music:
