@@ -80,11 +80,10 @@ size_flags_vertical = 3
 text = "Developers:
 	Miklas Karjalainen, Lenni Siggberg & Ville Vilppula
 
-Music:
-	Title Screen: Generating Worlds - Gold Eagle, Nathaniel Kalliomaa
-	In Game: Infinite Realities - Gold Eagle, Nathaniel Kalliomaa
-
-More:
-	XELU's Free Controllers & Keyboard Prompts (CC0) - Nicolae (XELU) Berbece, Paul Paun"
+Credits:
+	Title Screen & In game music (MIT) - Gold Eagle
+	Little Camera Preview Addon (MIT) - Anthony Cossins
+	XELU's Free Controllers & Keyboard Prompts (CC0) - Nicolae (XELU) Berbece, Paul Paun
+"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]

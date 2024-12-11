@@ -15,19 +15,19 @@ script = ExtResource("1_bry7n")
 
 [node name="Arena1" parent="." instance=ExtResource("3_2qwh1")]
 
-[node name="player1" parent="Arena1" index="2"]
+[node name="player1" parent="Arena1" index="3"]
 Invincible = true
 
 [node name="AiComponent" parent="Arena1/player1" index="3"]
 enabled = true
 
-[node name="player2" parent="Arena1" index="3"]
+[node name="player2" parent="Arena1" index="4"]
 Invincible = true
 
 [node name="AiComponent" parent="Arena1/player2" index="3"]
 enabled = true
 
-[node name="GameState" parent="Arena1" index="6"]
+[node name="GameState" parent="Arena1" index="7"]
 Ingame = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -71,10 +71,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-anchor_left = 0.0367647
-anchor_top = 0.60274
-anchor_right = 0.323529
-anchor_bottom = 1.0
+anchor_left = 0.0735294
+anchor_top = 0.520548
+anchor_right = 0.360294
+anchor_bottom = 0.917808
 size_flags_horizontal = 4
 size_flags_vertical = 6
 theme_override_constants/separation = 18
