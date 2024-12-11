@@ -1,0 +1,1 @@
+godot ./project.godot --headless --export-release Linux_x86_64 ./KioskKnockout.x86_64

@@ -1,0 +1,1 @@
+godot ./project.godot --headless --export-release Windows ./KioskKnockout.exe
