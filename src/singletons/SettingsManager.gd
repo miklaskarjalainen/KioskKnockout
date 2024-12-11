@@ -132,6 +132,7 @@ func _remove_generated_inputs():
 	
 
 func _ready() -> void:
+	regenerate_joy_inputs()
 	default_settings = settings.get_as_config()
 	_open_settings(SETTINGS_SAVE_PATH)
 
