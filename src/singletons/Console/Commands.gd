@@ -210,5 +210,21 @@ static func initialize_commands():
 			"Toggles the debug view"
 			),
 	)
+	Console.add_command(
+		"get_action",
+		Cmd.new(
+			func(args: Array[String]):
+				var action: String = args[0]
+				if not InputMap.has_action(action):
+					Console.warning("No action called '%s' exists!" % [action])
+					return
+				var events = InputMap.action_get_events(action)
+				for ev in events:
+					Console.info(str(ev))
+				pass,
+			1,
+			"Retrieves the events associated with an action"
+			),
+	)
 	
 	pass
