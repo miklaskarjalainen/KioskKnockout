@@ -259,11 +259,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Enabled"
 
-[node name="Controls" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 2
-
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Audio/Master/Slider" to="." method="_on_master_volume_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/MarginContainer2/TabContainer/Audio/Music/Slider" to="." method="_on_music_volume_slider_value_changed"]

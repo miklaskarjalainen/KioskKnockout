@@ -36,22 +36,22 @@ func _on_close_button_pressed() -> void:
 func _on_master_volume_slider_value_changed(value: float) -> void:
 	AudioManager.master_volume = value / 100
 	AudioManager.update_audio_server()
-	master_volume_label.text = "%s%s" % [int(value), "%"]
+	master_volume_label.text = "    %s%s    " % [int(value), "%"]
 
 func _on_music_volume_slider_value_changed(value: float) -> void:
 	AudioManager.music_volume = value / 100
 	AudioManager.update_audio_server()
-	music_volume_label.text = "%s%s" % [int(value), "%"]
+	music_volume_label.text = "    %s%s    " % [int(value), "%"]
 
 func _on_sfx_volume_slider_value_changed(value: float) -> void:
 	AudioManager.sfx_volume = value / 100
 	AudioManager.update_audio_server()
-	sfx_volume_label.text = "%s%s" % [int(value), "%"]
+	sfx_volume_label.text = "    %s%s    " % [int(value), "%"]
 
 func _on_ui_volume_slider_value_changed(value: float) -> void:
 	AudioManager.ui_volume = value / 100
 	AudioManager.update_audio_server()
-	ui_volume_label.text = "%s%s" % [int(value), "%"]
+	ui_volume_label.text = "    %s%s    " % [int(value), "%"]
 
 func _on_vsync_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
@@ -65,9 +65,9 @@ func _on_max_fps_slider_value_changed(value: float) -> void:
 	var _fps: int = int(value)
 	var _text: String = str(_fps)
 	if int(value) == 9:
-		_text = "Unlimited"
+		_text = "    Unlimited    "
 		_fps = 0
-	max_fps_value_label.text = "%s" % [_text]
+	max_fps_value_label.text = "    %s    " % [_text]
 	Engine.max_fps = _fps
 
 func _on_full_screen_button_toggled(toggled_on: bool) -> void:
